@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { FinalCta } from '@/components/FinalCta';
 import { CounsellingModal } from '@/components/CounsellingModal';
 import { InstitutionModal } from '@/components/InstitutionModal';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
@@ -507,6 +508,9 @@ export default function CollegesPage() {
           </div>
         </div>
       </section>
+
+      {/* Clean High-Impact CTA Banner */}
+      <FinalCta onOpenCounselling={() => setCounsellingModalOpen(true)} />
 
       <Footer
         onOpenCounselling={() => setCounsellingModalOpen(true)}

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { FinalCta } from '@/components/FinalCta';
 import { CounsellingModal } from '@/components/CounsellingModal';
 import { InstitutionModal } from '@/components/InstitutionModal';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
@@ -636,7 +637,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Footer with integrated consultation banner */}
+      {/* Clean High-Impact CTA Banner */}
+      <FinalCta onOpenCounselling={() => setCounsellingModalOpen(true)} />
+
+      {/* Footer */}
       <Footer
         onOpenCounselling={() => setCounsellingModalOpen(true)}
         onOpenInstitutionModal={() => setInstitutionModalOpen(true)}

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Phone, MapPin, Mail, Menu, X, ArrowRight, GraduationCap } from 'lucide-react';
+import { Phone, Mail, Menu, X, ArrowRight, GraduationCap } from 'lucide-react';
 
 interface HeaderProps {
   onOpenCounselling: () => void;
@@ -50,22 +50,20 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="container top-bar-inner">
           <div className="top-bar-contacts">
             <span className="top-bar-item">
-              <MapPin size={14} style={{ color: 'var(--orange-primary)' }} />
-              <span>Lucknow, Uttar Pradesh, India</span>
-            </span>
-            <span className="top-bar-item">
               <Phone size={14} style={{ color: 'var(--orange-primary)' }} />
               <a href="tel:+917054545455">+91 70545 45455</a>
             </span>
-            <span className="top-bar-item d-none-sm">
-              <Mail size={14} style={{ color: 'var(--orange-primary)' }} />
-              <a href="mailto:acemycampus@gmail.com">acemycampus@gmail.com</a>
+            <span className="top-bar-item">
+              <Phone size={14} style={{ color: 'var(--orange-primary)' }} />
+              <a href="tel:+919648313555">+91 96483 13555</a>
             </span>
           </div>
 
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem', color: '#E2E8F0', fontWeight: '500' }}>
-            <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: '#22C55E', boxShadow: '0 0 6px #22C55E' }} />
-            <span>Lucknow Admissions Advisory Desk • 100% Free Career Guidance</span>
+          <div className="top-bar-contacts">
+            <span className="top-bar-item">
+              <Mail size={14} style={{ color: 'var(--orange-primary)' }} />
+              <a href="mailto:acemycampus@gmail.com">acemycampus@gmail.com</a>
+            </span>
           </div>
         </div>
       </div>
@@ -202,12 +200,12 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Mobile Contact Quick Strip */}
         <div style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '12px', padding: '14px', marginBottom: '22px', border: '1px solid rgba(255, 255, 255, 0.08)', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.825rem', color: '#CBD5E1' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <MapPin size={14} color="var(--orange-primary)" />
-            <span>Lucknow, Uttar Pradesh, India</span>
+            <Phone size={14} color="var(--orange-primary)" />
+            <a href="tel:+917054545455" style={{ color: '#ffffff', fontWeight: '600' }}>+91 70545 45455</a>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Phone size={14} color="var(--orange-primary)" />
-            <a href="tel:+917054545455" style={{ color: '#ffffff', fontWeight: '600' }}>+91 70545 45455</a>
+            <a href="tel:+919648313555" style={{ color: '#ffffff', fontWeight: '600' }}>+91 96483 13555</a>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Mail size={14} color="var(--orange-primary)" />

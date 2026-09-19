@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Header } from '@/components/Header';
+import { FinalCta } from '@/components/FinalCta';
 import { Footer } from '@/components/Footer';
 import { CounsellingModal } from '@/components/CounsellingModal';
 import { InstitutionModal } from '@/components/InstitutionModal';
@@ -305,45 +306,11 @@ export default function TestimonialsPage() {
               </div>
             ))}
           </div>
-
-          {/* Bottom CTA Card */}
-          <div 
-            style={{ 
-              marginTop: '65px', 
-              background: 'linear-gradient(135deg, var(--navy-primary) 0%, #0d285f 100%)', 
-              borderRadius: 'var(--radius-xl)', 
-              padding: '44px', 
-              color: '#ffffff',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: '24px',
-              boxShadow: 'var(--shadow-xl)'
-            }}
-          >
-            <div>
-              <span style={{ color: 'var(--orange-primary)', fontSize: '0.825rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                Start Your Journey
-              </span>
-              <h3 style={{ fontSize: '1.75rem', color: '#ffffff', marginTop: '4px', marginBottom: '8px' }}>
-                Ready to find your own success pathway?
-              </h3>
-              <p style={{ color: '#CBD5E1', fontSize: '1rem' }}>
-                Join thousands of students who found the right campus with zero pressure.
-              </p>
-            </div>
-
-            <button 
-              onClick={() => setCounsellingModalOpen(true)}
-              className="btn btn-primary btn-lg"
-            >
-              <span>Get Free Counselling Today</span>
-              <ArrowRight size={18} />
-            </button>
-          </div>
         </div>
       </section>
+
+      {/* Clean High-Impact CTA Banner */}
+      <FinalCta onOpenCounselling={() => setCounsellingModalOpen(true)} />
 
       <Footer
         onOpenCounselling={() => setCounsellingModalOpen(true)}

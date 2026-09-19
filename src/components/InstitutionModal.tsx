@@ -2,8 +2,7 @@
 
 import React, { useState } from 'react';
 import { 
-  X, CheckCircle, Building2, User, Mail, Phone, 
-  MapPin, Check, Briefcase, TrendingUp, ShieldCheck 
+  X, CheckCircle, Mail, Phone, Check, ShieldCheck 
 } from 'lucide-react';
 
 interface InstitutionModalProps {
@@ -247,51 +246,42 @@ export const InstitutionModal: React.FC<InstitutionModalProps> = ({ isOpen, onCl
                 {/* Institute Name */}
                 <div className="form-group" style={{ marginBottom: 0 }}>
                   <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Institute / University Name *</label>
-                  <div className="modal-input-wrapper">
-                    <Building2 size={15} className="modal-input-icon" />
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Apex University / National Institute"
-                      className="form-input modal-input-with-icon"
-                      style={{ height: '42px', fontSize: '0.875rem' }}
-                      value={instituteName}
-                      onChange={(e) => setInstituteName(e.target.value)}
-                    />
-                  </div>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Apex University / National Institute"
+                    className="form-input"
+                    style={{ height: '42px', fontSize: '0.875rem' }}
+                    value={instituteName}
+                    onChange={(e) => setInstituteName(e.target.value)}
+                  />
                 </div>
 
                 {/* Contact Person and Designation */}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Contact Person *</label>
-                    <div className="modal-input-wrapper">
-                      <User size={15} className="modal-input-icon" />
-                      <input
-                        type="text"
-                        required
-                        placeholder="Your Full Name"
-                        className="form-input modal-input-with-icon"
-                        style={{ height: '42px', fontSize: '0.875rem' }}
-                        value={contactPerson}
-                        onChange={(e) => setContactPerson(e.target.value)}
-                      />
-                    </div>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Your Full Name"
+                      className="form-input"
+                      style={{ height: '42px', fontSize: '0.875rem' }}
+                      value={contactPerson}
+                      onChange={(e) => setContactPerson(e.target.value)}
+                    />
                   </div>
 
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Designation</label>
-                    <div className="modal-input-wrapper">
-                      <Briefcase size={15} className="modal-input-icon" />
-                      <input
-                        type="text"
-                        placeholder="e.g. Director / Dean / Marketing Head"
-                        className="form-input modal-input-with-icon"
-                        style={{ height: '42px', fontSize: '0.875rem' }}
-                        value={designation}
-                        onChange={(e) => setDesignation(e.target.value)}
-                      />
-                    </div>
+                    <input
+                      type="text"
+                      placeholder="e.g. Director / Dean / Marketing Head"
+                      className="form-input"
+                      style={{ height: '42px', fontSize: '0.875rem' }}
+                      value={designation}
+                      onChange={(e) => setDesignation(e.target.value)}
+                    />
                   </div>
                 </div>
 
@@ -299,34 +289,28 @@ export const InstitutionModal: React.FC<InstitutionModalProps> = ({ isOpen, onCl
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Official Email *</label>
-                    <div className="modal-input-wrapper">
-                      <Mail size={15} className="modal-input-icon" />
-                      <input
-                        type="email"
-                        required
-                        placeholder="admissions@institute.edu.in"
-                        className="form-input modal-input-with-icon"
-                        style={{ height: '42px', fontSize: '0.875rem' }}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
+                    <input
+                      type="email"
+                      required
+                      placeholder="admissions@institute.edu.in"
+                      className="form-input"
+                      style={{ height: '42px', fontSize: '0.875rem' }}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
                   </div>
 
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Direct Phone *</label>
-                    <div className="modal-input-wrapper">
-                      <Phone size={15} className="modal-input-icon" />
-                      <input
-                        type="tel"
-                        required
-                        placeholder="+91 98765 43210"
-                        className="form-input modal-input-with-icon"
-                        style={{ height: '42px', fontSize: '0.875rem' }}
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                      />
-                    </div>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="+91 98765 43210"
+                      className="form-input"
+                      style={{ height: '42px', fontSize: '0.875rem' }}
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
                   </div>
                 </div>
 

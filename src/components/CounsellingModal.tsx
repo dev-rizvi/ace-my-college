@@ -2,8 +2,7 @@
 
 import React, { useState } from 'react';
 import { 
-  X, CheckCircle, Sparkles, Phone, MessageSquare, 
-  User, Mail, MapPin, GraduationCap, BookOpen, ShieldCheck, Check, ArrowRight
+  X, CheckCircle, Phone, MessageSquare, ShieldCheck, Check, ArrowRight
 } from 'lucide-react';
 
 interface CounsellingModalProps {
@@ -258,51 +257,42 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
                 {/* Full Name */}
                 <div className="form-group" style={{ marginBottom: 0 }}>
                   <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Full Name *</label>
-                  <div className="modal-input-wrapper">
-                    <User size={15} className="modal-input-icon" />
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Rahul Sharma"
-                      className="form-input modal-input-with-icon"
-                      style={{ height: '42px', fontSize: '0.875rem' }}
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                    />
-                  </div>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Rahul Sharma"
+                    className="form-input"
+                    style={{ height: '42px', fontSize: '0.875rem' }}
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                  />
                 </div>
 
                 {/* Phone and Email */}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Mobile / WhatsApp *</label>
-                    <div className="modal-input-wrapper">
-                      <Phone size={15} className="modal-input-icon" />
-                      <input
-                        type="tel"
-                        required
-                        placeholder="+91 98765 43210"
-                        className="form-input modal-input-with-icon"
-                        style={{ height: '42px', fontSize: '0.875rem' }}
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                      />
-                    </div>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="+91 98765 43210"
+                      className="form-input"
+                      style={{ height: '42px', fontSize: '0.875rem' }}
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
                   </div>
 
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Email Address</label>
-                    <div className="modal-input-wrapper">
-                      <Mail size={15} className="modal-input-icon" />
-                      <input
-                        type="email"
-                        placeholder="name@example.com"
-                        className="form-input modal-input-with-icon"
-                        style={{ height: '42px', fontSize: '0.875rem' }}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
+                    <input
+                      type="email"
+                      placeholder="name@example.com"
+                      className="form-input"
+                      style={{ height: '42px', fontSize: '0.875rem' }}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
                   </div>
                 </div>
 
@@ -310,41 +300,35 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Current Academic Level</label>
-                    <div className="modal-input-wrapper">
-                      <GraduationCap size={15} className="modal-input-icon" />
-                      <select
-                        className="form-select modal-input-with-icon"
-                        style={{ height: '42px', fontSize: '0.85rem' }}
-                        value={classLevel}
-                        onChange={(e) => setClassLevel(e.target.value)}
-                      >
-                        <option value="Class 10 / 11">Class 10 / 11</option>
-                        <option value="Class 12 / Passed">Class 12 / Passed</option>
-                        <option value="Undergraduate (College)">Undergraduate (UG)</option>
-                        <option value="Postgraduate Aspirant">Postgraduate (PG)</option>
-                      </select>
-                    </div>
+                    <select
+                      className="form-select"
+                      style={{ height: '42px', fontSize: '0.85rem' }}
+                      value={classLevel}
+                      onChange={(e) => setClassLevel(e.target.value)}
+                    >
+                      <option value="Class 10 / 11">Class 10 / 11</option>
+                      <option value="Class 12 / Passed">Class 12 / Passed</option>
+                      <option value="Undergraduate (College)">Undergraduate (UG)</option>
+                      <option value="Postgraduate Aspirant">Postgraduate (PG)</option>
+                    </select>
                   </div>
 
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Interested Stream</label>
-                    <div className="modal-input-wrapper">
-                      <BookOpen size={15} className="modal-input-icon" />
-                      <select
-                        className="form-select modal-input-with-icon"
-                        style={{ height: '42px', fontSize: '0.85rem' }}
-                        value={stream}
-                        onChange={(e) => setStream(e.target.value)}
-                      >
-                        <option value="Engineering & Technology">Engineering & Technology</option>
-                        <option value="Medical & Health Sciences">Medical & Health Sciences</option>
-                        <option value="Management & Commerce">Management & Commerce</option>
-                        <option value="Law & Legal Studies">Law & Legal Studies</option>
-                        <option value="Design & Architecture">Design & Architecture</option>
-                        <option value="Postgraduate & Global Pathways">Postgraduate & Global</option>
-                        <option value="Applied Sciences & Humanities">Sciences & Humanities</option>
-                      </select>
-                    </div>
+                    <select
+                      className="form-select"
+                      style={{ height: '42px', fontSize: '0.85rem' }}
+                      value={stream}
+                      onChange={(e) => setStream(e.target.value)}
+                    >
+                      <option value="Engineering & Technology">Engineering & Technology</option>
+                      <option value="Medical & Health Sciences">Medical & Health Sciences</option>
+                      <option value="Management & Commerce">Management & Commerce</option>
+                      <option value="Law & Legal Studies">Law & Legal Studies</option>
+                      <option value="Design & Architecture">Design & Architecture</option>
+                      <option value="Postgraduate & Global Pathways">Postgraduate & Global</option>
+                      <option value="Applied Sciences & Humanities">Sciences & Humanities</option>
+                    </select>
                   </div>
                 </div>
 
@@ -352,17 +336,14 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>City / Location</label>
-                    <div className="modal-input-wrapper">
-                      <MapPin size={15} className="modal-input-icon" />
-                      <input
-                        type="text"
-                        placeholder="e.g. Lucknow, Kanpur, Delhi"
-                        className="form-input modal-input-with-icon"
-                        style={{ height: '42px', fontSize: '0.875rem' }}
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                      />
-                    </div>
+                    <input
+                      type="text"
+                      placeholder="e.g. Lucknow, Kanpur, Delhi"
+                      className="form-input"
+                      style={{ height: '42px', fontSize: '0.875rem' }}
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                    />
                   </div>
 
                   <div className="form-group" style={{ marginBottom: 0 }}>
