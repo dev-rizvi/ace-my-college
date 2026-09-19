@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ArrowRight, Sparkles, Compass, Star, GraduationCap, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Compass, Star, GraduationCap, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 interface HeroProps {
   onOpenCounselling: (prefill?: { stream?: string; classLevel?: string; location?: string }) => void;
@@ -123,7 +123,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
             </div>
           </div>
 
-          {/* Floating 'Find the best path for you' form */}
+          {/* 'Find the best path for you' form */}
           <div className="hero-finder-card">
             <div className="finder-header">
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -135,10 +135,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                   <p className="finder-subtitle">Match verified colleges &amp; degrees tailored to your aspirations</p>
                 </div>
               </div>
-              <span className="finder-ai-chip">
-                <Sparkles size={12} />
-                <span>AI Matcher</span>
-              </span>
             </div>
 
             <form onSubmit={handleFinderSubmit} className="finder-form-layout">
