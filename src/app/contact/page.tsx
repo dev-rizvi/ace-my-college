@@ -198,9 +198,8 @@ export default function ContactPage() {
               gap: '16px' 
             }}
           >
-            {/* Card 1: Primary Helpline */}
-            <a 
-              href="tel:+917054545455"
+            {/* Card 1: Online Counselling Desk */}
+            <div 
               style={{
                 background: '#ffffff',
                 borderRadius: '16px',
@@ -210,7 +209,6 @@ export default function ContactPage() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '14px',
-                textDecoration: 'none',
                 transition: 'all 0.25s ease',
               }}
               className="quick-contact-card"
@@ -228,22 +226,21 @@ export default function ContactPage() {
                   flexShrink: 0 
                 }}
               >
-                <Phone size={22} />
+                <Sparkles size={22} />
               </div>
               <div style={{ minWidth: 0, flex: 1 }}>
                 <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: '700', color: 'var(--orange-primary)', letterSpacing: '0.04em' }}>
-                  Admissions Helpline
+                  Counselling Desk
                 </div>
                 <div style={{ fontSize: '1.025rem', fontWeight: '800', color: 'var(--navy-primary)', marginTop: '2px', whiteSpace: 'nowrap' }}>
-                  +91 70545 45455
+                  100% Free Guidance
                 </div>
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Tap to call now</div>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Fill form below for instant call</div>
               </div>
-            </a>
+            </div>
 
-            {/* Card 2: Senior Advisory Desk */}
-            <a 
-              href="tel:+919648313555"
+            {/* Card 2: Lucknow Advisory Hub */}
+            <div 
               style={{
                 background: '#ffffff',
                 borderRadius: '16px',
@@ -253,7 +250,6 @@ export default function ContactPage() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '14px',
-                textDecoration: 'none',
                 transition: 'all 0.25s ease',
               }}
               className="quick-contact-card"
@@ -271,18 +267,18 @@ export default function ContactPage() {
                   flexShrink: 0 
                 }}
               >
-                <Users size={22} />
+                <MapPin size={22} />
               </div>
               <div style={{ minWidth: 0, flex: 1 }}>
                 <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: '700', color: 'var(--navy-primary)', letterSpacing: '0.04em' }}>
-                  Student Advisory
+                  Advisory Centre
                 </div>
                 <div style={{ fontSize: '1.025rem', fontWeight: '800', color: 'var(--navy-primary)', marginTop: '2px', whiteSpace: 'nowrap' }}>
-                  +91 96483 13555
+                  Hazratganj, Lucknow
                 </div>
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Career clarity desk</div>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Mon–Sat: 9:30 AM – 7 PM</div>
               </div>
-            </a>
+            </div>
 
             {/* Card 3: WhatsApp Support */}
             <a 
@@ -505,8 +501,8 @@ export default function ContactPage() {
                     <span style={{ color: 'var(--text-body)', fontSize: '0.92rem', display: 'block', marginTop: '2px' }}>
                       Dedicated desk for university partnerships, student outreach &amp; campus branding:
                     </span>
-                    <a href="tel:+918527948763" style={{ color: 'var(--orange-primary)', fontWeight: '700', fontSize: '0.92rem', display: 'inline-block', marginTop: '4px' }}>
-                      +91 85279 48763 (Partnerships Desk)
+                    <a href="mailto:acemycampus@gmail.com?subject=Institutional%20Partnerships" style={{ color: 'var(--orange-primary)', fontWeight: '700', fontSize: '0.92rem', display: 'inline-block', marginTop: '4px' }}>
+                      acemycampus@gmail.com (Partnerships Desk)
                     </a>
                   </div>
                 </div>

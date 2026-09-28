@@ -106,7 +106,7 @@ export const InstitutionModal: React.FC<InstitutionModalProps> = ({ isOpen, onCl
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
               <img 
-                src="/images/logo-icon.png" 
+                src="/images/emblem-transparent.png" 
                 alt="ACE MY CAMPUS" 
                 style={{ width: '38px', height: '38px', objectFit: 'contain' }} 
               />
@@ -158,9 +158,6 @@ export const InstitutionModal: React.FC<InstitutionModalProps> = ({ isOpen, onCl
             <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
               <a href="mailto:acemycampus@gmail.com" style={{ color: '#ffffff', fontWeight: '700', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <Mail size={13} color="var(--orange-primary)" /> acemycampus@gmail.com
-              </a>
-              <a href="tel:+917054545455" style={{ color: '#ffffff', fontWeight: '700', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Phone size={13} color="var(--orange-primary)" /> +91 70545 45455
               </a>
             </div>
           </div>
@@ -228,13 +225,15 @@ export const InstitutionModal: React.FC<InstitutionModalProps> = ({ isOpen, onCl
                 </span>
               </div>
 
-              <h3 style={{ fontSize: '1.5rem', color: 'var(--navy-primary)', fontWeight: '800', marginTop: '6px', marginBottom: '4px' }}>
-                Partner With ACE MY CAMPUS
-              </h3>
+              <div className="modal-form-header-content">
+                <h3 style={{ fontSize: '1.5rem', color: 'var(--navy-primary)', fontWeight: '800', marginTop: '6px', marginBottom: '4px' }}>
+                  Partner With ACE MY CAMPUS
+                </h3>
 
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '18px' }}>
-                Accelerate enrollment conversions with customized educational marketing.
-              </p>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '18px' }}>
+                  Accelerate enrollment conversions with customized educational marketing.
+                </p>
+              </div>
 
               {errorMsg && (
                 <div style={{ background: '#FEE2E2', border: '1px solid #F87171', color: '#B91C1C', padding: '10px 14px', borderRadius: 'var(--radius-sm)', fontSize: '0.85rem', marginBottom: '16px' }}>
@@ -258,7 +257,7 @@ export const InstitutionModal: React.FC<InstitutionModalProps> = ({ isOpen, onCl
                 </div>
 
                 {/* Contact Person and Designation */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
+                <div className="modal-form-grid-2">
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Contact Person *</label>
                     <input
@@ -286,7 +285,7 @@ export const InstitutionModal: React.FC<InstitutionModalProps> = ({ isOpen, onCl
                 </div>
 
                 {/* Email and Phone */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
+                <div className="modal-form-grid-2">
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Official Email *</label>
                     <input

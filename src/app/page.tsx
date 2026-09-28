@@ -5,8 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { CoreServices } from '@/components/CoreServices';
-import { StudentJourney } from '@/components/StudentJourney';
-import { WhyUsAndReviews } from '@/components/WhyUsAndReviews';
+import { TrustStats } from '@/components/TrustStats';
 import { FaqSection } from '@/components/FaqSection';
 import { FinalCta } from '@/components/FinalCta';
 import { Footer } from '@/components/Footer';
@@ -46,7 +45,7 @@ export default function Home() {
         onOpenInstitutionModal={() => setInstitutionModalOpen(true)}
       />
 
-      {/* 2. Hero Section with Banner, Consultation Form & 4 Highlight Boxes */}
+      {/* 2. Hero Section with Consultation Form & 4 Highlight Boxes */}
       <Hero
         onOpenCounselling={(prefill) => {
           if (prefill) setCounsellingPrefill(prefill);
@@ -57,7 +56,10 @@ export default function Home() {
         }}
       />
 
-      {/* 3. Four Main Core Services */}
+      {/* 3. Proven Trust Statistics from Slide 5 (Why trust ACE MY CAMPUS?) */}
+      <TrustStats />
+
+      {/* 4. WHAT WE DO: 3 Clear Photo Guidance Cards + Slide 6 Banner */}
       <CoreServices
         onOpenCounselling={handleOpenCounselling}
         onOpenCollegeFilter={() => {
@@ -65,16 +67,10 @@ export default function Home() {
         }}
       />
 
-      {/* 4. The ACE MY CAMPUS 8-Step Student Journey */}
-      <StudentJourney onOpenCounselling={handleOpenCounselling} />
-
-      {/* 5. Why ACE MY CAMPUS & Student Testimonial Slider */}
-      <WhyUsAndReviews />
-
-      {/* 6. Frequently Asked Questions */}
+      {/* 5. Frequently Asked Questions (Clean Accordion) */}
       <FaqSection />
 
-      {/* 7. Clean High-Impact CTA Banner */}
+      {/* 6. High-Impact CTA Banner */}
       <FinalCta onOpenCounselling={() => handleOpenCounselling()} />
 
 

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { 
-  X, CheckCircle, Phone, MessageSquare, ShieldCheck, Check, ArrowRight
+  X, CheckCircle, ShieldCheck, Check, ArrowRight 
 } from 'lucide-react';
 
 interface CounsellingModalProps {
@@ -22,12 +22,12 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
   prefillData,
 }) => {
   const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [city, setCity] = useState(prefillData?.location || 'Lucknow');
-  const [classLevel, setClassLevel] = useState(prefillData?.classLevel || 'Class 12 / Passed');
-  const [stream, setStream] = useState(prefillData?.stream || 'Engineering & Technology');
-  const [message, setMessage] = useState(prefillData?.collegeName ? `Enquiring about admission at ${prefillData.collegeName}` : '');
+  const [email, setEmail] = useState('');
+  const [course, setCourse] = useState(prefillData?.stream?.includes('BBA') ? 'BBA' : 'MBA');
+  const [location, setLocation] = useState(prefillData?.location || '');
+  const [targetCollege, setTargetCollege] = useState(prefillData?.collegeName || '');
+  const [whatsappUpdates, setWhatsappUpdates] = useState(true);
 
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -47,8 +47,13 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!fullName || !phone) {
-      setErrorMsg('Please enter your name and contact phone number.');
+    if (!fullName.trim() || !phone.trim()) {
+      setErrorMsg('Please enter your full name and contact phone number.');
+      return;
+    }
+
+    if (!location.trim()) {
+      setErrorMsg('Please enter your city/location.');
       return;
     }
 
@@ -60,14 +65,14 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          full_name: fullName,
-          email,
-          phone,
-          city,
-          class_level: classLevel,
-          interested_stream: stream,
-          preferred_location: city,
-          message,
+          full_name: fullName.trim(),
+          email: email.trim(),
+          phone: phone.trim(),
+          city: location.trim(),
+          class_level: 'Higher Education / Degree Aspirant',
+          interested_stream: course,
+          preferred_location: location.trim(),
+          message: targetCollege ? `Target College: ${targetCollege.trim()}` : 'Counselling Modal Request',
         }),
       });
 
@@ -79,7 +84,7 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
       }
     } catch (err) {
       console.error(err);
-      setErrorMsg('Network error. Please WhatsApp us directly at +91 70545 45455.');
+      setErrorMsg('Network error. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -93,12 +98,12 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
   return (
     <div className="modal-overlay" onClick={handleResetAndClose}>
       <div className="modal-box-premium" onClick={(e) => e.stopPropagation()}>
-        {/* Left Brand Panel */}
+        {/* Left Brand Panel: Slide 2 Reference */}
         <div className="modal-brand-sidebar">
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
               <img 
-                src="/images/logo-icon.png" 
+                src="/images/emblem-transparent.png" 
                 alt="ACE MY CAMPUS" 
                 style={{ width: '38px', height: '38px', objectFit: 'contain' }} 
               />
@@ -106,59 +111,62 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
                 ACE MY <span style={{ color: 'var(--orange-primary)' }}>CAMPUS</span>
               </span>
             </div>
-            <p style={{ fontSize: '0.8rem', color: '#CBD5E1', marginBottom: '28px', fontStyle: 'italic' }}>
+            <p style={{ fontSize: '0.8rem', color: '#CBD5E1', marginBottom: '24px', fontStyle: 'italic' }}>
               Your Campus | Your Growth | Your Success
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <h4 style={{ fontSize: '1.1rem', color: '#ffffff', fontWeight: '800', marginBottom: '16px' }}>
+              Why register with us?
+            </h4>
+
+            {/* Exactly as specified in Slide 2: 5000+ Students Counselled */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.2)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
-                  <Check size={13} strokeWidth={3} />
+                <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.25)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                  <Check size={12} strokeWidth={3} />
                 </div>
-                <div>
-                  <strong style={{ display: 'block', fontSize: '0.85rem', color: '#ffffff' }}>Career First Matching</strong>
-                  <span style={{ fontSize: '0.775rem', color: '#94A3B8', lineHeight: '1.4' }}>Align career pathways before locking a college degree.</span>
-                </div>
+                <span style={{ fontSize: '0.84rem', color: '#E2E8F0', lineHeight: '1.45' }}>
+                  <strong style={{ color: '#ffffff' }}>5000+ Students Counselled</strong>, Absolutely Free of Cost
+                </span>
               </div>
 
               <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.2)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
-                  <Check size={13} strokeWidth={3} />
+                <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.25)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                  <Check size={12} strokeWidth={3} />
                 </div>
-                <div>
-                  <strong style={{ display: 'block', fontSize: '0.85rem', color: '#ffffff' }}>500+ Partner Campuses</strong>
-                  <span style={{ fontSize: '0.775rem', color: '#94A3B8', lineHeight: '1.4' }}>Direct liaison with verified university admission desks.</span>
-                </div>
+                <span style={{ fontSize: '0.84rem', color: '#E2E8F0', lineHeight: '1.45' }}>
+                  Get help from our experts in finding the right college for you
+                </span>
               </div>
 
               <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.2)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
-                  <Check size={13} strokeWidth={3} />
+                <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.25)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                  <Check size={12} strokeWidth={3} />
                 </div>
-                <div>
-                  <strong style={{ display: 'block', fontSize: '0.85rem', color: '#ffffff' }}>Zero Hidden Fees</strong>
-                  <span style={{ fontSize: '0.775rem', color: '#94A3B8', lineHeight: '1.4' }}>No donation, no capitation fees. 100% transparency.</span>
+                <span style={{ fontSize: '0.84rem', color: '#E2E8F0', lineHeight: '1.45' }}>
+                  With totally online Admission Process we help you get college admission without having to step out
+                </span>
+              </div>
+
+              <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.25)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                  <Check size={12} strokeWidth={3} />
                 </div>
+                <span style={{ fontSize: '0.84rem', color: '#E2E8F0', lineHeight: '1.45' }}>
+                  You won&apos;t get unwanted calls from third parties
+                </span>
               </div>
             </div>
           </div>
 
-          <div style={{ marginTop: '30px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '12px', padding: '14px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
-            <span style={{ fontSize: '0.725rem', color: '#CBD5E1', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '6px' }}>
-              Direct Helpline (Call / WhatsApp)
+          <div style={{ marginTop: '28px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '12px', padding: '12px 14px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
+            <span style={{ fontSize: '0.75rem', color: '#CBD5E1', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <ShieldCheck size={14} color="var(--orange-primary)" /> 100% Unbiased &amp; Confidential Guidance
             </span>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <a href="tel:+917054545455" style={{ color: '#ffffff', fontWeight: '700', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Phone size={13} color="var(--orange-primary)" /> +91 70545 45455
-              </a>
-              <a href="tel:+919648313555" style={{ color: '#ffffff', fontWeight: '700', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Phone size={13} color="var(--orange-primary)" /> +91 96483 13555
-              </a>
-            </div>
           </div>
         </div>
 
-        {/* Right Form Panel */}
+        {/* Right Form Panel: Slide 2 Reference */}
         <div className="modal-form-content">
           <button className="modal-close-btn-premium" onClick={handleResetAndClose} aria-label="Close modal">
             <X size={18} />
@@ -188,175 +196,141 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
               </h3>
 
               <p style={{ color: 'var(--text-body)', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '24px', maxWidth: '440px', margin: '0 auto 24px' }}>
-                Thank you, <strong>{fullName}</strong>. An ACE MY CAMPUS senior academic mentor will evaluate your profile and contact you within 24 hours.
+                Thank you, <strong>{fullName}</strong>. An ACE MY CAMPUS senior academic mentor will evaluate your profile and contact you shortly.
               </p>
 
               <div style={{ background: 'var(--bg-subtle)', borderRadius: 'var(--radius-md)', padding: '16px 20px', marginBottom: '26px', textAlign: 'left', fontSize: '0.85rem', border: '1px solid var(--border-subtle)', maxWidth: '440px', margin: '0 auto 26px' }}>
-                <div style={{ marginBottom: '6px' }}><strong>Interested Stream:</strong> {stream}</div>
-                <div style={{ marginBottom: '6px' }}><strong>Class Level:</strong> {classLevel}</div>
+                <div style={{ marginBottom: '6px' }}><strong>Selected Course:</strong> {course}</div>
+                <div style={{ marginBottom: '6px' }}><strong>Location:</strong> {location}</div>
                 <div><strong>Contact Phone:</strong> {phone}</div>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '440px', margin: '0 auto' }}>
-                <a
-                  href={`https://wa.me/917054545455?text=Hello%20ACE%20MY%20CAMPUS,%20I%20am%20${encodeURIComponent(fullName)}.%20I%20just%20requested%20counselling%20for%20${encodeURIComponent(stream)}.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary"
-                  style={{ width: '100%', justifyContent: 'center' }}
-                >
-                  <MessageSquare size={16} />
-                  <span>Connect Instantly on WhatsApp</span>
-                </a>
-
-                <button 
-                  onClick={handleResetAndClose}
-                  className="btn btn-outline"
-                  style={{ width: '100%' }}
-                >
-                  Close
-                </button>
-              </div>
+              <button 
+                onClick={handleResetAndClose}
+                className="btn btn-primary"
+                style={{ width: '100%', maxWidth: '300px', margin: '0 auto' }}
+              >
+                Done
+              </button>
             </div>
           ) : (
             <div>
-              <div style={{ marginBottom: '4px' }}>
-                <span 
-                  style={{ 
-                    fontSize: '0.725rem', 
-                    fontWeight: '800', 
-                    color: 'var(--orange-primary)', 
-                    background: 'var(--orange-light)', 
-                    padding: '4px 12px', 
-                    borderRadius: 'var(--radius-full)', 
-                    textTransform: 'uppercase', 
-                    letterSpacing: '0.05em',
-                    border: '1px solid rgba(250, 100, 0, 0.25)',
-                    display: 'inline-block'
-                  }}
-                >
-                  Free 1-on-1 Mentorship
-                </span>
+              <div className="modal-form-header-content">
+                <h3 style={{ fontSize: '1.45rem', color: 'var(--navy-primary)', fontWeight: '800', marginTop: '2px', marginBottom: '6px' }}>
+                  Give us your details and let&apos;s start your admission journey today !
+                </h3>
+
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '18px' }}>
+                  Fill out the form below to receive personalized college recommendations.
+                </p>
               </div>
 
-              <h3 style={{ fontSize: '1.5rem', color: 'var(--navy-primary)', fontWeight: '800', marginTop: '6px', marginBottom: '4px' }}>
-                Book Your Free Counselling Session
-              </h3>
-
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '18px' }}>
-                No sales pressure. Honest, transparent career & college admission guidance.
-              </p>
-
               {errorMsg && (
-                <div style={{ background: '#FEE2E2', border: '1px solid #F87171', color: '#B91C1C', padding: '10px 14px', borderRadius: 'var(--radius-sm)', fontSize: '0.85rem', marginBottom: '16px' }}>
+                <div style={{ background: '#FEE2E2', border: '1px solid #F87171', color: '#B91C1C', padding: '10px 14px', borderRadius: 'var(--radius-sm)', fontSize: '0.85rem', marginBottom: '14px' }}>
                   {errorMsg}
                 </div>
               )}
 
+              {/* Form matching Slide 2: Name, Phone Number, Email address, Course( MBA, PGDM, BBA, B.com), Location, Target college (Optional) */}
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {/* Full Name */}
+                {/* 1. Name */}
                 <div className="form-group" style={{ marginBottom: 0 }}>
-                  <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Full Name *</label>
+                  <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Name *</label>
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Rahul Sharma"
+                    placeholder="Enter your full name"
                     className="form-input"
-                    style={{ height: '42px', fontSize: '0.875rem' }}
+                    style={{ height: '40px', fontSize: '0.875rem' }}
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                   />
                 </div>
 
-                {/* Phone and Email */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
+                {/* 2. Phone Number & 3. Email */}
+                <div className="modal-form-grid-2">
                   <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Mobile / WhatsApp *</label>
+                    <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Phone Number *</label>
                     <input
                       type="tel"
                       required
-                      placeholder="+91 98765 43210"
+                      placeholder="Enter mobile number"
                       className="form-input"
-                      style={{ height: '42px', fontSize: '0.875rem' }}
+                      style={{ height: '40px', fontSize: '0.875rem' }}
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                     />
                   </div>
 
                   <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Email Address</label>
+                    <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Email address</label>
                     <input
                       type="email"
-                      placeholder="name@example.com"
+                      placeholder="Enter email address"
                       className="form-input"
-                      style={{ height: '42px', fontSize: '0.875rem' }}
+                      style={{ height: '40px', fontSize: '0.875rem' }}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                 </div>
 
-                {/* Academic Level and Stream */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
+                {/* 4. Course: MBA, PGDM, BBA, B.com */}
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Course *</label>
+                  <select
+                    className="form-select"
+                    style={{ height: '40px', fontSize: '0.85rem' }}
+                    value={course}
+                    onChange={(e) => setCourse(e.target.value)}
+                  >
+                    <option value="MBA">MBA</option>
+                    <option value="PGDM">PGDM</option>
+                    <option value="BBA">BBA</option>
+                    <option value="B.Com">B.com</option>
+                  </select>
+                </div>
+
+                {/* 5. Location & 6. Target College (Optional) */}
+                <div className="modal-form-grid-2">
                   <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Current Academic Level</label>
-                    <select
-                      className="form-select"
-                      style={{ height: '42px', fontSize: '0.85rem' }}
-                      value={classLevel}
-                      onChange={(e) => setClassLevel(e.target.value)}
-                    >
-                      <option value="Class 10 / 11">Class 10 / 11</option>
-                      <option value="Class 12 / Passed">Class 12 / Passed</option>
-                      <option value="Undergraduate (College)">Undergraduate (UG)</option>
-                      <option value="Postgraduate Aspirant">Postgraduate (PG)</option>
-                    </select>
+                    <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Location *</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Your City / State"
+                      className="form-input"
+                      style={{ height: '40px', fontSize: '0.875rem' }}
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                    />
                   </div>
 
                   <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Interested Stream</label>
-                    <select
-                      className="form-select"
-                      style={{ height: '42px', fontSize: '0.85rem' }}
-                      value={stream}
-                      onChange={(e) => setStream(e.target.value)}
-                    >
-                      <option value="Engineering & Technology">Engineering & Technology</option>
-                      <option value="Medical & Health Sciences">Medical & Health Sciences</option>
-                      <option value="Management & Commerce">Management & Commerce</option>
-                      <option value="Law & Legal Studies">Law & Legal Studies</option>
-                      <option value="Design & Architecture">Design & Architecture</option>
-                      <option value="Postgraduate & Global Pathways">Postgraduate & Global</option>
-                      <option value="Applied Sciences & Humanities">Sciences & Humanities</option>
-                    </select>
+                    <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Target college (Optional)</label>
+                    <input
+                      type="text"
+                      placeholder="Target College (Optional)"
+                      className="form-input"
+                      style={{ height: '40px', fontSize: '0.875rem' }}
+                      value={targetCollege}
+                      onChange={(e) => setTargetCollege(e.target.value)}
+                    />
                   </div>
                 </div>
 
-                {/* City and Message/Target College */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
-                  <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>City / Location</label>
-                    <input
-                      type="text"
-                      placeholder="e.g. Lucknow, Kanpur, Delhi"
-                      className="form-input"
-                      style={{ height: '42px', fontSize: '0.875rem' }}
-                      value={city}
-                      onChange={(e) => setCity(e.target.value)}
-                    />
-                  </div>
-
-                  <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Target College (Optional)</label>
-                    <input
-                      type="text"
-                      placeholder="e.g. BBDU, Amity, SRM..."
-                      className="form-input"
-                      style={{ height: '42px', fontSize: '0.875rem' }}
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                    />
-                  </div>
+                {/* WhatsApp Updates Checkbox */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '4px' }}>
+                  <input
+                    type="checkbox"
+                    id="modal-wa-updates"
+                    checked={whatsappUpdates}
+                    onChange={(e) => setWhatsappUpdates(e.target.checked)}
+                    style={{ cursor: 'pointer', accentColor: 'var(--orange-primary)', width: '15px', height: '15px' }}
+                  />
+                  <label htmlFor="modal-wa-updates" style={{ fontSize: '0.78rem', color: '#64748B', cursor: 'pointer', margin: 0 }}>
+                    Enable updates &amp; important information on WhatsApp
+                  </label>
                 </div>
 
                 {/* Submit button */}
@@ -366,21 +340,21 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
                   className="btn btn-primary"
                   style={{ 
                     width: '100%', 
-                    marginTop: '10px', 
-                    height: '46px',
+                    marginTop: '8px', 
+                    height: '44px',
                     fontSize: '0.95rem',
-                    fontWeight: '700',
+                    fontWeight: '800',
                     boxShadow: '0 4px 16px rgba(250, 100, 0, 0.35)',
                     justifyContent: 'center',
                     borderRadius: '10px'
                   }}
                 >
-                  {loading ? 'Submitting...' : 'Confirm Free Counselling Session →'}
+                  {loading ? 'Submitting...' : 'Get Free Counselling'}
                 </button>
 
-                <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', margin: '2px 0 0', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
+                <p style={{ fontSize: '0.74rem', color: 'var(--text-muted)', textAlign: 'center', margin: '2px 0 0', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
                   <ShieldCheck size={14} color="var(--orange-primary)" />
-                  <span>100% Free & Confidential • Verified Mentors • No Spam</span>
+                  <span>100% Free &amp; Unbiased • Verified Advisors • Zero Spam</span>
                 </p>
               </form>
             </div>

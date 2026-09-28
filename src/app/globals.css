@@ -313,13 +313,13 @@ button, input, select, textarea {
   border-radius: var(--radius-lg);
 }
 
-/* Header & Top Bar */
+/* Header & Top Bar - Crisp White Aesthetic for High Logo Contrast */
 .top-bar {
-  background: var(--navy-deep);
-  color: rgba(255, 255, 255, 0.78);
+  background: #F8FAFC;
+  color: #64748B;
   font-size: 0.8rem;
   padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid #E2E8F0;
 }
 
 @media (max-width: 991px) {
@@ -346,21 +346,32 @@ button, input, select, textarea {
   display: flex;
   align-items: center;
   gap: 6px;
+  color: #475569;
+}
+
+.top-bar-item a {
+  color: #0F172A;
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+.top-bar-item a:hover {
+  color: var(--orange-primary);
 }
 
 .audience-pill {
   display: inline-flex;
-  background: rgba(255, 255, 255, 0.08);
+  background: #E2E8F0;
   border-radius: var(--radius-full);
   padding: 3px;
   gap: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #CBD5E1;
 }
 
 .audience-pill button {
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.8);
+  color: #475569;
   padding: 4px 14px;
   border-radius: var(--radius-full);
   font-size: 0.775rem;
@@ -379,11 +390,11 @@ button, input, select, textarea {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(7, 27, 65, 0.96);
+  background: #ffffff;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px rgba(3, 13, 32, 0.3);
+  border-bottom: 1px solid #E2E8F0;
+  box-shadow: 0 4px 20px -2px rgba(10, 37, 64, 0.06);
   transition: all var(--transition-smooth);
 }
 
@@ -457,19 +468,19 @@ button, input, select, textarea {
 
 .brand-name {
   font-family: var(--font-outfit), sans-serif;
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 900;
-  letter-spacing: 0.02em;
-  color: #ffffff;
+  letter-spacing: -0.01em;
+  color: #041630;
   line-height: 1;
 }
 
 .brand-tagline {
   font-size: 0.725rem;
-  color: #94A3B8;
-  font-weight: 500;
+  color: #64748B;
+  font-weight: 600;
   margin-top: 3px;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
 }
 
 .brand-tagline span {
@@ -480,7 +491,7 @@ button, input, select, textarea {
 .nav-menu {
   display: none;
   align-items: center;
-  gap: 24px;
+  gap: 26px;
 }
 
 @media (min-width: 992px) {
@@ -488,14 +499,17 @@ button, input, select, textarea {
 }
 
 .nav-link {
-  font-size: 0.925rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #334155;
   padding: 6px 0;
   position: relative;
+  transition: color var(--transition-fast);
 }
 
-.nav-link:hover, .nav-link.active { color: #ffffff; }
+.nav-link:hover, .nav-link.active { 
+  color: var(--orange-primary); 
+}
 
 .nav-link::after {
   content: '';
@@ -504,7 +518,7 @@ button, input, select, textarea {
   left: 0;
   width: 0;
   height: 2.5px;
-  background: linear-gradient(90deg, var(--orange-primary), var(--blue-vibrant));
+  background: var(--orange-primary);
   border-radius: var(--radius-full);
   transition: width var(--transition-fast);
 }
@@ -518,26 +532,31 @@ button, input, select, textarea {
 }
 
 .login-btn {
-  color: #ffffff;
-  font-weight: 500;
-  font-size: 0.9rem;
-  padding: 8px 16px;
+  color: #0A2540;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 8px 18px;
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1.5px solid #CBD5E1;
   transition: all var(--transition-fast);
-  background: rgba(255, 255, 255, 0.05);
+  background: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .login-btn:hover {
-  border-color: #ffffff;
-  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--orange-primary);
+  color: var(--orange-primary);
+  background: var(--orange-light);
 }
 
 .mobile-toggle {
   display: flex;
   background: transparent;
   border: none;
-  color: #ffffff;
+  color: #041630;
   cursor: pointer;
   padding: 8px;
 }
@@ -550,17 +569,17 @@ button, input, select, textarea {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 80%;
+  width: 82%;
   max-width: 360px;
   height: 100vh;
-  background: var(--navy-deep);
+  background: #ffffff;
   z-index: 200;
   padding: 30px 24px;
   display: flex;
   flex-direction: column;
-  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.18);
   transition: right 300ms ease;
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid #E2E8F0;
 }
 
 .mobile-drawer.open { right: 0; }
@@ -2087,6 +2106,90 @@ button, input, select, textarea {
   }
   .modal-form-content {
     padding: 24px 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal-form-content {
+    padding: 20px 16px;
+  }
+}
+
+.modal-form-header-content {
+  padding-right: 44px;
+}
+
+.modal-form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 576px) {
+  .modal-form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Hero Consultation Form Responsive Grid */
+.hero-form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .hero-form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .consultation-hero-card {
+    padding: 22px 18px !important;
+  }
+}
+
+/* Course Explorer Filter Scroll */
+.courses-filter-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding-bottom: 8px;
+  width: 100%;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.courses-filter-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.courses-filter-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Universal Hero CTA Buttons Responsive Stacking */
+.hero-cta-buttons-responsive {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 576px) {
+  .hero-cta-buttons-responsive {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    gap: 10px;
+  }
+  .hero-cta-buttons-responsive .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 

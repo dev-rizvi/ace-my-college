@@ -461,6 +461,6 @@ export const FAQS: FAQItem[] = [
   {
     category: 'general',
     question: "How can I book an in-person or online counselling session?",
-    answer: "Simply click 'Get Guidance' or 'Get Free Counselling' anywhere on this site, fill out your current class and interested stream, or reach our counsellors directly on WhatsApp at +91 70545 45455."
+    answer: "Simply click 'Get Guidance' or 'Get Free Counselling' anywhere on this site, fill out your current class and interested stream, or reach our counsellors directly on WhatsApp."
   }
 ];

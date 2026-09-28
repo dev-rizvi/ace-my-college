@@ -34,7 +34,7 @@ export async function POST(request: Request) {
   } catch (error: any) {
     console.error('API Error in /api/counselling:', error);
     return NextResponse.json(
-      { error: 'Failed to process request. Please try again or WhatsApp us at +91 70545 45455.' },
+      { error: 'Failed to process request. Please try again or email us at acemycampus@gmail.com.' },
       { status: 500 }
     );
   }

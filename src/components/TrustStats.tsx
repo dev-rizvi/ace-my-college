@@ -1,13 +1,13 @@
 'use client';
 
 import React from 'react';
-import { Building2, Users, ShieldCheck, CheckCircle2, Award, Sparkles } from 'lucide-react';
+import { Building2, Users, Award, Sparkles } from 'lucide-react';
 
 export const TrustStats: React.FC = () => {
   return (
-    <section style={{ padding: '60px 0 75px', background: '#ffffff', position: 'relative' }}>
+    <section style={{ padding: '110px 0 80px', background: '#ffffff', position: 'relative' }}>
       <div className="container text-center">
-        {/* Section Header */}
+        {/* Section Header as per Slide 5 */}
         <div style={{ maxWidth: '750px', margin: '0 auto 48px', textAlign: 'center' }}>
           <div 
             style={{ 
@@ -15,7 +15,7 @@ export const TrustStats: React.FC = () => {
               alignItems: 'center', 
               gap: '8px', 
               background: 'var(--orange-light)', 
-              color: 'var(--orange-primary)',
+              color: 'var(--orange-primary)', 
               padding: '4px 14px', 
               borderRadius: '9999px', 
               fontSize: '0.8rem',
@@ -26,7 +26,7 @@ export const TrustStats: React.FC = () => {
             }}
           >
             <Sparkles size={14} />
-            <span>PROVEN EXCELLENCE</span>
+            <span>UNMATCHED CREDIBILITY</span>
           </div>
 
           <h2 
@@ -52,166 +52,177 @@ export const TrustStats: React.FC = () => {
             }} 
           />
 
-          <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6' }}>
-            Empowering students across India with data-backed counseling, transparent fee cutoffs, and genuine admissions.
+          <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', lineHeight: '1.6' }}>
+            Empowering students and parents with unbiased guidance, verified college options, and zero capitation fees.
           </p>
         </div>
 
-        {/* 3 Large Trust Cards */}
+        {/* 3 Bold Stat Cards matching Slide 5 Image 2 */}
         <div 
           style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-            gap: '28px' 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+            gap: '28px',
+            maxWidth: '1080px',
+            margin: '0 auto'
           }}
         >
-          {/* Stat Card 1 */}
+          {/* Card 1: 200+ Partner Institutions Across India */}
           <div 
             style={{ 
-              background: '#F8FAFC', 
-              borderRadius: '20px', 
-              padding: '38px 28px', 
-              border: '1px solid rgba(10, 56, 113, 0.08)',
-              boxShadow: '0 10px 30px -5px rgba(6, 33, 71, 0.06)',
+              background: 'linear-gradient(135deg, #FA6400 0%, #E05300 100%)', 
+              borderRadius: '22px', 
+              padding: '42px 28px', 
+              color: '#ffffff',
+              boxShadow: '0 14px 34px -6px rgba(250, 100, 0, 0.35)',
               position: 'relative',
               textAlign: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
               transition: 'transform 0.3s ease, box-shadow 0.3s ease'
             }}
             className="trust-stat-box"
           >
             <div 
               style={{ 
-                width: '56px', 
-                height: '56px', 
+                width: '58px', 
+                height: '58px', 
                 borderRadius: '16px', 
-                background: 'var(--orange-light)', 
-                color: 'var(--orange-primary)', 
+                background: 'rgba(255, 255, 255, 0.2)', 
+                color: '#ffffff', 
                 display: 'flex', 
                 alignItems: 'center', 
                 justifyContent: 'center', 
-                margin: '0 auto 18px',
-                boxShadow: '0 6px 18px rgba(250, 100, 0, 0.2)'
+                marginBottom: '18px'
               }}
             >
-              <Building2 size={28} />
+              <Building2 size={30} />
             </div>
             <h3 
               style={{ 
                 fontFamily: 'var(--font-outfit), sans-serif',
-                fontSize: 'clamp(2.5rem, 4vw, 3.2rem)', 
+                fontSize: 'clamp(2.8rem, 4.5vw, 3.5rem)', 
                 fontWeight: '900', 
-                color: 'var(--navy-primary)', 
+                color: '#ffffff', 
                 lineHeight: 1, 
-                marginBottom: '10px' 
+                marginBottom: '12px' 
               }}
             >
-              1000+
+              200+
             </h3>
-            <h5 style={{ fontSize: '1.1rem', fontWeight: '800', color: 'var(--text-main)', marginBottom: '6px' }}>
-              Partner Institutions
-            </h5>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
-              Accredited colleges and universities across Uttar Pradesh, Delhi NCR, and PAN India.
+            <h4 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#ffffff', marginBottom: '8px', lineHeight: '1.3' }}>
+              Partner institutions across India
+            </h4>
+            <p style={{ fontSize: '0.88rem', color: 'rgba(255, 255, 255, 0.85)', lineHeight: '1.45', margin: 0 }}>
+              Accredited universities &amp; top management institutes
             </p>
           </div>
 
-          {/* Stat Card 2 */}
+          {/* Card 2: 2500+ Successful admissions */}
           <div 
             style={{ 
-              background: '#F8FAFC', 
-              borderRadius: '20px', 
-              padding: '38px 28px', 
-              border: '1px solid rgba(10, 56, 113, 0.08)',
-              boxShadow: '0 10px 30px -5px rgba(6, 33, 71, 0.06)',
+              background: 'linear-gradient(135deg, #FA6400 0%, #E05300 100%)', 
+              borderRadius: '22px', 
+              padding: '42px 28px', 
+              color: '#ffffff',
+              boxShadow: '0 14px 34px -6px rgba(250, 100, 0, 0.35)',
               position: 'relative',
               textAlign: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
               transition: 'transform 0.3s ease, box-shadow 0.3s ease'
             }}
             className="trust-stat-box"
           >
             <div 
               style={{ 
-                width: '56px', 
-                height: '56px', 
+                width: '58px', 
+                height: '58px', 
                 borderRadius: '16px', 
-                background: 'var(--blue-light)', 
-                color: 'var(--navy-primary)', 
+                background: 'rgba(255, 255, 255, 0.2)', 
+                color: '#ffffff', 
                 display: 'flex', 
                 alignItems: 'center', 
                 justifyContent: 'center', 
-                margin: '0 auto 18px',
-                boxShadow: '0 6px 18px rgba(10, 56, 113, 0.15)'
+                marginBottom: '18px'
               }}
             >
-              <Users size={28} />
+              <Users size={30} />
             </div>
             <h3 
               style={{ 
                 fontFamily: 'var(--font-outfit), sans-serif',
-                fontSize: 'clamp(2.5rem, 4vw, 3.2rem)', 
+                fontSize: 'clamp(2.8rem, 4.5vw, 3.5rem)', 
                 fontWeight: '900', 
-                color: 'var(--navy-primary)', 
+                color: '#ffffff', 
                 lineHeight: 1, 
-                marginBottom: '10px' 
+                marginBottom: '12px' 
               }}
             >
-              10,000+
+              2500+
             </h3>
-            <h5 style={{ fontSize: '1.1rem', fontWeight: '800', color: 'var(--text-main)', marginBottom: '6px' }}>
-              Successful Admissions
-            </h5>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
-              Students guided with personalized counseling across Lucknow, Kanpur, Delhi NCR &amp; Pune.
+            <h4 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#ffffff', marginBottom: '8px', lineHeight: '1.3' }}>
+              Successful admissions
+            </h4>
+            <p style={{ fontSize: '0.88rem', color: 'rgba(255, 255, 255, 0.85)', lineHeight: '1.45', margin: 0 }}>
+              Presence in Pune, Mumbai, Delhi, Lucknow &amp; PAN India
             </p>
           </div>
 
-          {/* Stat Card 3 */}
+          {/* Card 3: 100% Placement support */}
           <div 
             style={{ 
-              background: '#F8FAFC', 
-              borderRadius: '20px', 
-              padding: '38px 28px', 
-              border: '1px solid rgba(10, 56, 113, 0.08)',
-              boxShadow: '0 10px 30px -5px rgba(6, 33, 71, 0.06)',
+              background: 'linear-gradient(135deg, #FA6400 0%, #E05300 100%)', 
+              borderRadius: '22px', 
+              padding: '42px 28px', 
+              color: '#ffffff',
+              boxShadow: '0 14px 34px -6px rgba(250, 100, 0, 0.35)',
               position: 'relative',
               textAlign: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
               transition: 'transform 0.3s ease, box-shadow 0.3s ease'
             }}
             className="trust-stat-box"
           >
             <div 
               style={{ 
-                width: '56px', 
-                height: '56px', 
+                width: '58px', 
+                height: '58px', 
                 borderRadius: '16px', 
-                background: 'var(--orange-light)', 
-                color: 'var(--orange-primary)', 
+                background: 'rgba(255, 255, 255, 0.2)', 
+                color: '#ffffff', 
                 display: 'flex', 
                 alignItems: 'center', 
                 justifyContent: 'center', 
-                margin: '0 auto 18px',
-                boxShadow: '0 6px 18px rgba(250, 100, 0, 0.2)'
+                marginBottom: '18px'
               }}
             >
-              <ShieldCheck size={28} />
+              <Award size={30} />
             </div>
             <h3 
               style={{ 
                 fontFamily: 'var(--font-outfit), sans-serif',
-                fontSize: 'clamp(2.5rem, 4vw, 3.2rem)', 
+                fontSize: 'clamp(2.8rem, 4.5vw, 3.5rem)', 
                 fontWeight: '900', 
-                color: 'var(--orange-primary)', 
+                color: '#ffffff', 
                 lineHeight: 1, 
-                marginBottom: '10px' 
+                marginBottom: '12px' 
               }}
             >
               100%
             </h3>
-            <h5 style={{ fontSize: '1.1rem', fontWeight: '800', color: 'var(--text-main)', marginBottom: '6px' }}>
-              Guaranteed Honest Guidance
-            </h5>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
-              Transparent fee disclosures, personal 1-on-1 counseling model, and zero capitation fees.
+            <h4 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#ffffff', marginBottom: '8px', lineHeight: '1.3' }}>
+              Placement support
+            </h4>
+            <p style={{ fontSize: '0.88rem', color: 'rgba(255, 255, 255, 0.85)', lineHeight: '1.45', margin: 0 }}>
+              Personal One-on-One Counselling Model
             </p>
           </div>
         </div>

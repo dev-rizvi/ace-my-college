@@ -3,9 +3,9 @@
 import React from 'react';
 import Link from 'next/link';
 import {
-  GraduationCap, MapPin, Mail, Phone, ShieldCheck,
-  Award, Building2, CheckCircle2, Clock, ArrowRight
+  MapPin, Mail, ShieldCheck, ArrowRight, Clock
 } from 'lucide-react';
+import { LinkedinIcon, FacebookIcon, InstagramIcon } from '@/components/SocialIcons';
 
 interface FooterProps {
   onOpenCounselling: () => void;
@@ -26,23 +26,22 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Column 1: Brand Info & Mission */}
           <div>
             <div style={{ marginBottom: '18px' }}>
-              <Link href="/" style={{ display: 'inline-block' }}>
-                <div
-                  style={{
-                    background: '#ffffff',
-                    borderRadius: '14px',
-                    padding: '10px 16px',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)',
-                    border: '1px solid rgba(255, 255, 255, 0.3)'
-                  }}
-                >
+              <Link href="/" style={{ display: 'inline-block', textDecoration: 'none' }}>
+                {/* Clean Logo without any white square box container */}
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '12px' }}>
                   <img
-                    src="/images/logo-trimmed.png"
+                    src="/images/emblem-transparent.png"
                     alt="ACE MY CAMPUS Official Logo"
-                    style={{ height: '56px', width: 'auto', display: 'block' }}
+                    style={{ height: '48px', width: 'auto', display: 'block' }}
                   />
+                  <div>
+                    <span style={{ fontSize: '1.35rem', fontWeight: '900', color: '#ffffff', letterSpacing: '-0.02em', display: 'block' }}>
+                      ACE MY <span style={{ color: 'var(--orange-primary)' }}>CAMPUS</span>
+                    </span>
+                    <span style={{ fontSize: '0.74rem', color: '#94A3B8', letterSpacing: '0.04em' }}>
+                      Your Campus | Your Growth | Your Success
+                    </span>
+                  </div>
                 </div>
               </Link>
             </div>
@@ -56,12 +55,42 @@ export const Footer: React.FC<FooterProps> = ({
               <span>100% Free &amp; Unbiased Guidance</span>
             </div>
 
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '16px' }}>
+              <a 
+                href="https://linkedin.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="LinkedIn"
+                style={{ color: '#CBD5E1', background: 'rgba(255, 255, 255, 0.08)', padding: '8px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}
+              >
+                <LinkedinIcon size={16} />
+              </a>
+              <a 
+                href="https://facebook.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Facebook"
+                style={{ color: '#CBD5E1', background: 'rgba(255, 255, 255, 0.08)', padding: '8px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}
+              >
+                <FacebookIcon size={16} />
+              </a>
+              <a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Instagram"
+                style={{ color: '#CBD5E1', background: 'rgba(255, 255, 255, 0.08)', padding: '8px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}
+              >
+                <InstagramIcon size={16} />
+              </a>
+            </div>
+
             <div>
               <button
                 onClick={onOpenCounselling}
                 className="btn btn-primary btn-sm"
               >
-                <span>Get Free Guidance</span>
+                <span>Get Free Counselling</span>
                 <ArrowRight size={14} />
               </button>
             </div>
@@ -73,27 +102,27 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="footer-links">
               <li><Link href="/">Home</Link></li>
               <li><Link href="/about">About Us</Link></li>
+              <li><Link href="/courses">Course Explorer</Link></li>
               <li><Link href="/colleges">Colleges Directory</Link></li>
               <li><Link href="/testimonials">Student Reviews</Link></li>
               <li><Link href="/contact">Contact Us</Link></li>
-              <li><Link href="/#for-institutions">For Institutions</Link></li>
             </ul>
           </div>
 
           {/* Column 3: Academic Pathways */}
           <div>
-            <h4 className="footer-col-title">Academic Pathways</h4>
+            <h4 className="footer-col-title">Academic Courses</h4>
             <ul className="footer-links">
-              <li><Link href="/colleges">Engineering &amp; Technology</Link></li>
-              <li><Link href="/colleges">Management &amp; Business (MBA/BBA)</Link></li>
-              <li><Link href="/colleges">Medical &amp; Allied Health</Link></li>
-              <li><Link href="/colleges">Law &amp; Legal Studies</Link></li>
-              <li><Link href="/colleges">Design &amp; Architecture</Link></li>
+              <li><Link href="/courses">MBA (Master of Business Admin)</Link></li>
+              <li><Link href="/courses">PGDM (Post Graduate Diploma)</Link></li>
+              <li><Link href="/courses">BBA (Bachelor of Business Admin)</Link></li>
+              <li><Link href="/courses">B.Com / Honors</Link></li>
+              <li><Link href="/courses">B.Tech &amp; Engineering</Link></li>
               <li><Link href="/colleges">Pan-India College Search</Link></li>
             </ul>
           </div>
 
-          {/* Column 4: Contact Lucknow HQ (Clean Admissions Desk) */}
+          {/* Column 4: Contact Lucknow HQ (Clean Admissions Desk - No Phone Numbers) */}
           <div>
             <h4 className="footer-col-title">Admissions &amp; Advisory</h4>
 
@@ -106,25 +135,10 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
 
             <div className="footer-contact-item">
-              <Phone size={18} color="var(--orange-primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
-              <div>
-                <span style={{ fontWeight: '600', color: '#ffffff', display: 'block' }}>Admissions Helpline</span>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', marginTop: '2px' }}>
-                  <a href="tel:+917054545455" style={{ color: 'var(--orange-primary)', fontWeight: '700', fontSize: '0.925rem' }}>
-                    +91 70545 45455
-                  </a>
-                  <a href="tel:+919648313555" style={{ color: 'var(--orange-primary)', fontWeight: '700', fontSize: '0.925rem' }}>
-                    +91 96483 13555
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="footer-contact-item">
               <Mail size={18} color="var(--orange-primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
               <div>
                 <span style={{ fontWeight: '600', color: '#ffffff', display: 'block' }}>Email Enquiries</span>
-                <a href="mailto:acemycampus@gmail.com" style={{ color: '#CBD5E1', fontSize: '0.875rem' }}>
+                <a href="mailto:acemycampus@gmail.com" style={{ color: 'var(--orange-primary)', fontSize: '0.875rem', fontWeight: '700' }}>
                   acemycampus@gmail.com
                 </a>
               </div>

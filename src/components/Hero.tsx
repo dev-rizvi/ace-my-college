@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { 
-  ArrowRight, ShieldCheck, CheckCircle2, Phone, AlertCircle 
+  ArrowRight, ShieldCheck, CheckCircle2, AlertCircle,
+  BookOpen, Compass, Building2, GraduationCap
 } from 'lucide-react';
 
 interface HeroProps {
@@ -11,12 +12,13 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges }) => {
-  // Form State
+  // Form State as per Slide 2: Name, Phone Number, Email address, Course( MBA, PGDM, BBA, B.com), Location, Target college (Optional)
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
   const [course, setCourse] = useState('MBA');
-  const [message, setMessage] = useState('');
+  const [location, setLocation] = useState('');
+  const [targetCollege, setTargetCollege] = useState('');
   const [agreed, setAgreed] = useState(true);
 
   const [loading, setLoading] = useState(false);
@@ -51,6 +53,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
       return;
     }
 
+    if (!location.trim()) {
+      setErrorMsg('Please enter your city/location.');
+      return;
+    }
+
     if (!agreed) {
       setErrorMsg('Please accept terms to proceed with consultation.');
       return;
@@ -67,11 +74,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
           full_name: name.trim(),
           email: email.trim(),
           phone: phone.trim(),
-          city: 'Lucknow',
-          class_level: 'Class 12 / Passed',
+          city: location.trim(),
+          class_level: 'Higher Education / Degree Aspirant',
           interested_stream: course,
-          preferred_location: 'Pan India',
-          message: message.trim(),
+          preferred_location: location.trim(),
+          message: targetCollege ? `Target College: ${targetCollege.trim()}` : 'General Consultation',
         }),
       });
 
@@ -79,10 +86,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
         setSubmitted(true);
       } else {
         const d = await res.json().catch(() => ({}));
-        setErrorMsg(d.error || 'Failed to submit. Please call or WhatsApp our helpline.');
+        setErrorMsg(d.error || 'Failed to submit. Please try again.');
       }
     } catch {
-      setErrorMsg('Network error. Please connect via WhatsApp or Phone.');
+      setErrorMsg('Network error. Please try again or submit your inquiry.');
     } finally {
       setLoading(false);
     }
@@ -92,11 +99,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
     <section 
       style={{
         position: 'relative',
-        backgroundImage: `linear-gradient(135deg, rgba(4, 22, 48, 0.90) 0%, rgba(10, 56, 113, 0.88) 55%, rgba(6, 33, 71, 0.95) 100%), url('/images/banner-about.jpg')`,
+        backgroundImage: `linear-gradient(135deg, rgba(4, 22, 48, 0.94) 0%, rgba(10, 56, 113, 0.88) 45%, rgba(6, 33, 71, 0.65) 100%), url('/images/hero-student-contrast.jpg')`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center 30%',
+        backgroundPosition: 'center right',
         color: '#ffffff',
-        padding: '90px 0 90px',
+        padding: '85px 0 95px',
         overflow: 'hidden',
       }}
     >
@@ -105,7 +112,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="hero-consultation-grid">
-            {/* Left Column: Bold Headline & Trust Information */}
+            {/* Left Column: Heading and Tagline as requested in Slide 1 */}
             <div style={{ color: '#ffffff' }}>
               <div 
                 style={{ 
@@ -126,20 +133,20 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                 </span>
               </div>
 
+              {/* Exact Heading from Slide 1 */}
               <h1 
                 style={{ 
                   fontFamily: 'var(--font-outfit), sans-serif', 
-                  fontSize: 'clamp(2.3rem, 4.2vw, 3.6rem)', 
+                  fontSize: 'clamp(2.4rem, 4.4vw, 3.8rem)', 
                   fontWeight: '800', 
-                  lineHeight: '1.15', 
+                  lineHeight: '1.18', 
                   letterSpacing: '-0.025em', 
                   color: '#ffffff',
-                  marginBottom: '14px',
-                  textTransform: 'uppercase'
+                  marginBottom: '16px'
                 }}
               >
-                TAKE YOUR FUTURE TO <br />
-                <span className="text-gradient-orange">BEST COLLEGES</span>
+                Right Guidance, <br />
+                <span className="text-gradient-orange">Bright Future</span>
               </h1>
 
               {/* Orange Divider */}
@@ -153,80 +160,62 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                 }} 
               />
 
+              {/* Exact Subtitles from Slide 1 */}
               <p 
                 style={{ 
-                  fontSize: 'clamp(1rem, 1.5vw, 1.15rem)', 
-                  color: '#CBD5E1', 
-                  lineHeight: '1.7', 
+                  fontSize: 'clamp(1.05rem, 1.6vw, 1.25rem)', 
+                  color: '#F1F5F9', 
+                  lineHeight: '1.6', 
                   maxWidth: '560px', 
-                  marginBottom: '28px' 
+                  marginBottom: '10px',
+                  fontWeight: '600'
                 }}
               >
-                ACE MY CAMPUS provides personalized career clarity, transparent fee cutoffs, 
-                and verified admissions across India’s leading universities. Guidance, not pressure.
+                Guiding Thousand of students and parents to find the right college.
+              </p>
+              <p 
+                style={{ 
+                  fontSize: 'clamp(0.98rem, 1.4vw, 1.12rem)', 
+                  color: '#CBD5E1', 
+                  lineHeight: '1.6', 
+                  maxWidth: '560px', 
+                  marginBottom: '32px',
+                  fontStyle: 'italic'
+                }}
+              >
+                One Student, One Dream, One Step Toward India&apos;s Future
               </p>
 
-              {/* Trust Checkpoints */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '32px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.94rem', color: '#F1F5F9' }}>
-                  <CheckCircle2 size={18} color="var(--orange-primary)" style={{ flexShrink: 0 }} />
-                  <span>100% Free Student Guidance &amp; Profile Evaluation</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.94rem', color: '#F1F5F9' }}>
-                  <CheckCircle2 size={18} color="var(--orange-primary)" style={{ flexShrink: 0 }} />
-                  <span>Zero Capitation Fee / Zero Donation Stance</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.94rem', color: '#F1F5F9' }}>
-                  <CheckCircle2 size={18} color="var(--orange-primary)" style={{ flexShrink: 0 }} />
-                  <span>500+ Verified Partner Institutions Across India</span>
-                </div>
-              </div>
-
-              {/* CTA Buttons */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center' }}>
-                <a 
-                  href="#colleges" 
+              {/* Single Clean Bold CTA Button */}
+              <div>
+                <button 
+                  onClick={() => onOpenCounselling()}
                   className="btn btn-primary"
                   style={{ 
-                    padding: '13px 26px', 
-                    borderRadius: '10px', 
-                    fontWeight: '700', 
-                    boxShadow: '0 8px 24px rgba(250, 100, 0, 0.4)',
+                    padding: '16px 36px', 
+                    borderRadius: '12px', 
+                    fontWeight: '800', 
+                    fontSize: '1.05rem',
+                    boxShadow: '0 8px 28px rgba(250, 100, 0, 0.45)',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '8px'
+                    gap: '10px'
                   }}
                 >
-                  <span>Explore 500+ Colleges</span>
+                  <span>Get Free Counselling</span>
                   <ArrowRight size={18} />
-                </a>
-
-                <a 
-                  href="tel:+917054545455"
-                  className="btn btn-outline-white"
-                  style={{ 
-                    padding: '13px 22px', 
-                    borderRadius: '10px', 
-                    fontWeight: '700',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px'
-                  }}
-                >
-                  <Phone size={17} />
-                  <span>Call +91 70545 45455</span>
-                </a>
+                </button>
               </div>
             </div>
 
-            {/* Right Column: "ENQUIRE NOW - Get Consultation" Card */}
+            {/* Right Column: Clean Form matching Slide 2 reference */}
             <div>
               <div 
                 className="consultation-hero-card"
                 style={{
                   background: '#ffffff',
                   borderRadius: '20px',
-                  padding: '36px 30px',
+                  padding: '34px 28px',
                   boxShadow: '0 24px 50px -12px rgba(4, 22, 48, 0.45)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
                   color: 'var(--text-main)',
@@ -258,7 +247,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                 <h3 
                   style={{ 
                     fontFamily: 'var(--font-outfit), sans-serif', 
-                    fontSize: '1.75rem', 
+                    fontSize: '1.7rem', 
                     fontWeight: '800', 
                     color: 'var(--navy-primary)', 
                     letterSpacing: '-0.02em',
@@ -268,7 +257,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                 >
                   Get Consultation
                 </h3>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', marginBottom: '22px' }}>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', marginBottom: '20px' }}>
                   Connect directly with verified admissions counsellors.
                 </p>
 
@@ -294,11 +283,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                       Request Submitted!
                     </h4>
                     <p style={{ color: 'var(--text-body)', fontSize: '0.92rem', marginBottom: '22px' }}>
-                      Thank you, <strong style={{ color: 'var(--navy-primary)' }}>{name}</strong>. Our senior education advisor will call you within 15 minutes.
+                      Thank you, <strong style={{ color: 'var(--navy-primary)' }}>{name}</strong>. Our senior education advisor will reach out shortly.
                     </p>
                     <button 
                       type="button" 
-                      onClick={() => { setSubmitted(false); setName(''); setPhone(''); setEmail(''); setMessage(''); }}
+                      onClick={() => { setSubmitted(false); setName(''); setPhone(''); setEmail(''); setLocation(''); setTargetCollege(''); }}
                       className="btn btn-outline btn-sm"
                       style={{ borderRadius: '8px', fontWeight: '700' }}
                     >
@@ -306,7 +295,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleConsultationSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: '100%' }}>
+                  <form onSubmit={handleConsultationSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
                     {errorMsg && (
                       <div 
                         style={{ 
@@ -327,20 +316,30 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                       </div>
                     )}
 
-                    {/* Name */}
+                    {/* 1. Name */}
                     <div style={{ width: '100%' }}>
                       <input 
                         type="text"
-                        placeholder="Your Full Name *"
+                        placeholder="Name *"
                         className="form-input"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         style={{ width: '100%' }}
+                        required
                       />
                     </div>
 
-                    {/* Email & Phone */}
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', width: '100%' }}>
+                    {/* 2. Phone Number & 3. Email Address */}
+                    <div className="hero-form-grid-2">
+                      <input 
+                        type="tel"
+                        placeholder="Phone Number *"
+                        className="form-input"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        style={{ width: '100%' }}
+                        required
+                      />
                       <input 
                         type="email"
                         placeholder="Email Address"
@@ -349,17 +348,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                         onChange={(e) => setEmail(e.target.value)}
                         style={{ width: '100%' }}
                       />
-                      <input 
-                        type="tel"
-                        placeholder="Phone No *"
-                        className="form-input"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        style={{ width: '100%' }}
-                      />
                     </div>
 
-                    {/* Course */}
+                    {/* 4. Course: MBA, PGDM, BBA, B.com as per Slide 2 */}
                     <div style={{ width: '100%' }}>
                       <select 
                         className="form-select"
@@ -367,39 +358,49 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                         onChange={(e) => setCourse(e.target.value)}
                         style={{ width: '100%' }}
                       >
-                        <option value="MBA">MBA / PGDM</option>
+                        <option value="MBA">MBA</option>
+                        <option value="PGDM">PGDM</option>
                         <option value="BBA">BBA</option>
-                        <option value="B.Tech">B.Tech / Engineering</option>
-                        <option value="BCA">BCA / MCA</option>
-                        <option value="MBBS">MBBS / Healthcare</option>
-                        <option value="Law">Law (LLB / BA LLB)</option>
-                        <option value="Design">Design &amp; Architecture</option>
+                        <option value="B.Com">B.com</option>
                       </select>
                     </div>
 
-                    {/* Message */}
+                    {/* 5. Location */}
                     <div style={{ width: '100%' }}>
-                      <textarea 
-                        rows={3}
-                        placeholder="Message or Preferred College (Optional)"
+                      <input 
+                        type="text"
+                        placeholder="Location / City *"
                         className="form-input"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        style={{ resize: 'none', width: '100%' }}
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                        style={{ width: '100%' }}
+                        required
+                      />
+                    </div>
+
+                    {/* 6. Target College (Optional) */}
+                    <div style={{ width: '100%' }}>
+                      <input 
+                        type="text"
+                        placeholder="Target College (Optional)"
+                        className="form-input"
+                        value={targetCollege}
+                        onChange={(e) => setTargetCollege(e.target.value)}
+                        style={{ width: '100%' }}
                       />
                     </div>
 
                     {/* Consent Checkbox */}
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', width: '100%', marginTop: '2px' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', width: '100%', marginTop: '2px' }}>
                       <input 
                         type="checkbox" 
                         id="hero-agree" 
                         checked={agreed}
                         onChange={(e) => setAgreed(e.target.checked)}
-                        style={{ marginTop: '3px', cursor: 'pointer', accentColor: 'var(--orange-primary)', width: '16px', height: '16px', flexShrink: 0 }}
+                        style={{ marginTop: '3px', cursor: 'pointer', accentColor: 'var(--orange-primary)', width: '15px', height: '15px', flexShrink: 0 }}
                       />
-                      <label htmlFor="hero-agree" style={{ fontSize: '0.78rem', color: '#64748B', lineHeight: '1.45', cursor: 'pointer', margin: 0 }}>
-                        By submitting, you agree to our Terms of Service &amp; authorize notifications on Call / WhatsApp / SMS.
+                      <label htmlFor="hero-agree" style={{ fontSize: '0.76rem', color: '#64748B', lineHeight: '1.4', cursor: 'pointer', margin: 0 }}>
+                        Enable updates &amp; important information on WhatsApp.
                       </label>
                     </div>
 
@@ -410,10 +411,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                       className="btn btn-primary"
                       style={{ 
                         width: '100%', 
-                        padding: '14px', 
+                        padding: '13px', 
                         borderRadius: '10px', 
                         fontWeight: '800', 
-                        fontSize: '1rem',
+                        fontSize: '0.98rem',
                         boxShadow: '0 8px 22px rgba(250, 100, 0, 0.4)',
                         display: 'flex',
                         alignItems: 'center',
@@ -422,10 +423,177 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                         marginTop: '4px'
                       }}
                     >
-                      {loading ? 'Submitting...' : 'Submit Request →'}
+                      {loading ? 'Submitting...' : 'Get Free Counselling'}
                     </button>
                   </form>
                 )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 4 Overlapping Feature Highlights matching a3career.com */}
+        <div className="container" style={{ position: 'relative', zIndex: 10, marginTop: '64px', marginBottom: '-55px' }}>
+          <div 
+            style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', 
+              gap: '18px' 
+            }}
+          >
+            {/* Card 1 */}
+            <div 
+              style={{
+                background: '#ffffff',
+                borderRadius: '16px',
+                padding: '24px 20px',
+                boxShadow: '0 15px 35px -5px rgba(4, 22, 48, 0.1)',
+                border: '1px solid #E2E8F0',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '16px',
+              }}
+              className="hero-feature-card"
+            >
+              <div 
+                style={{ 
+                  width: '50px', 
+                  height: '50px', 
+                  borderRadius: '14px', 
+                  background: 'var(--orange-light)', 
+                  color: 'var(--orange-primary)', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  flexShrink: 0 
+                }}
+              >
+                <BookOpen size={24} />
+              </div>
+              <div>
+                <h4 style={{ fontSize: '1.02rem', fontWeight: '800', color: '#041630', margin: 0 }}>
+                  Career Discovery
+                </h4>
+                <p style={{ fontSize: '0.82rem', color: '#64748B', margin: '4px 0 0', lineHeight: '1.4' }}>
+                  Find careers matching your strengths
+                </p>
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div 
+              style={{
+                background: '#ffffff',
+                borderRadius: '16px',
+                padding: '24px 20px',
+                boxShadow: '0 15px 35px -5px rgba(4, 22, 48, 0.1)',
+                border: '1px solid #E2E8F0',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '16px',
+              }}
+              className="hero-feature-card"
+            >
+              <div 
+                style={{ 
+                  width: '50px', 
+                  height: '50px', 
+                  borderRadius: '14px', 
+                  background: 'var(--blue-light)', 
+                  color: 'var(--navy-primary)', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  flexShrink: 0 
+                }}
+              >
+                <Compass size={24} />
+              </div>
+              <div>
+                <h4 style={{ fontSize: '1.02rem', fontWeight: '800', color: '#041630', margin: 0 }}>
+                  Course Exploration
+                </h4>
+                <p style={{ fontSize: '0.82rem', color: '#64748B', margin: '4px 0 0', lineHeight: '1.4' }}>
+                  Explore top courses &amp; growth paths
+                </p>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div 
+              style={{
+                background: '#ffffff',
+                borderRadius: '16px',
+                padding: '24px 20px',
+                boxShadow: '0 15px 35px -5px rgba(4, 22, 48, 0.1)',
+                border: '1px solid #E2E8F0',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '16px',
+              }}
+              className="hero-feature-card"
+            >
+              <div 
+                style={{ 
+                  width: '50px', 
+                  height: '50px', 
+                  borderRadius: '14px', 
+                  background: 'var(--orange-light)', 
+                  color: 'var(--orange-primary)', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  flexShrink: 0 
+                }}
+              >
+                <Building2 size={24} />
+              </div>
+              <div>
+                <h4 style={{ fontSize: '1.02rem', fontWeight: '800', color: '#041630', margin: 0 }}>
+                  College Comparison
+                </h4>
+                <p style={{ fontSize: '0.82rem', color: '#64748B', margin: '4px 0 0', lineHeight: '1.4' }}>
+                  Compare fees, placements &amp; ROI
+                </p>
+              </div>
+            </div>
+
+            {/* Card 4 */}
+            <div 
+              style={{
+                background: '#ffffff',
+                borderRadius: '16px',
+                padding: '24px 20px',
+                boxShadow: '0 15px 35px -5px rgba(4, 22, 48, 0.1)',
+                border: '1px solid #E2E8F0',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '16px',
+              }}
+              className="hero-feature-card"
+            >
+              <div 
+                style={{ 
+                  width: '50px', 
+                  height: '50px', 
+                  borderRadius: '14px', 
+                  background: 'var(--blue-light)', 
+                  color: 'var(--navy-primary)', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  flexShrink: 0 
+                }}
+              >
+                <GraduationCap size={24} />
+              </div>
+              <div>
+                <h4 style={{ fontSize: '1.02rem', fontWeight: '800', color: '#041630', margin: 0 }}>
+                  Expert Guidance
+                </h4>
+                <p style={{ fontSize: '0.82rem', color: '#64748B', margin: '4px 0 0', lineHeight: '1.4' }}>
+                  1-on-1 personalized advisory
+                </p>
               </div>
             </div>
           </div>
