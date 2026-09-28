@@ -9,8 +9,8 @@ import { InstitutionModal } from '@/components/InstitutionModal';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { 
   GraduationCap, Briefcase, TrendingUp, Award, Clock, 
-  CheckCircle2, ArrowRight, ShieldCheck, Search, BookOpen, 
-  Sparkles, Filter, Building2, ChevronRight
+  CheckCircle2, ArrowRight, ShieldCheck, Search, 
+  Sparkles, Filter, Building2, ChevronRight, Trophy, Laptop, Scale, Layers, X
 } from 'lucide-react';
 
 interface CourseData {
@@ -21,6 +21,7 @@ interface CourseData {
   level: string;
   duration: string;
   eligibility: string;
+  shortEligibility?: string;
   avgPackage: string;
   highestPackage: string;
   specializations: string[];
@@ -38,6 +39,7 @@ const COURSES_DATA: CourseData[] = [
     level: 'Postgraduate (PG)',
     duration: '2 Years (4 Semesters)',
     eligibility: 'Graduation in any discipline with minimum 50% marks + CAT/MAT/CMAT/XAT/State Entrance',
+    shortEligibility: 'Graduation (50%+) + National Entrance (CAT/MAT/CMAT)',
     avgPackage: '₹7.5 LPA - ₹16.0 LPA',
     highestPackage: '₹28.5 LPA',
     specializations: [
@@ -66,6 +68,7 @@ const COURSES_DATA: CourseData[] = [
     level: 'Postgraduate Diploma (AICTE Approved)',
     duration: '2 Years (Trimester / Semester)',
     eligibility: 'Bachelor’s Degree (50%+) from a recognized university + Valid score in National MBA Entrance Tests',
+    shortEligibility: 'Bachelor’s Degree (50%+) + Entrance Exam Score',
     avgPackage: '₹8.0 LPA - ₹18.5 LPA',
     highestPackage: '₹32.0 LPA',
     specializations: [
@@ -93,6 +96,7 @@ const COURSES_DATA: CourseData[] = [
     level: 'Undergraduate (UG)',
     duration: '3 Years (6 Semesters)',
     eligibility: '10+2 (Higher Secondary) with minimum 50% aggregate in any stream from recognized board',
+    shortEligibility: '10+2 in any stream (minimum 50% aggregate)',
     avgPackage: '₹4.5 LPA - ₹8.5 LPA',
     highestPackage: '₹15.0 LPA',
     specializations: [
@@ -120,6 +124,7 @@ const COURSES_DATA: CourseData[] = [
     level: 'Undergraduate (UG)',
     duration: '3 Years (6 Semesters)',
     eligibility: '10+2 with Commerce / Mathematics preferred (minimum 50% aggregate)',
+    shortEligibility: '10+2 with Commerce / Math preferred (50%+)',
     avgPackage: '₹4.0 LPA - ₹7.5 LPA',
     highestPackage: '₹12.5 LPA',
     specializations: [
@@ -147,6 +152,7 @@ const COURSES_DATA: CourseData[] = [
     level: 'Undergraduate (UG)',
     duration: '4 Years (8 Semesters)',
     eligibility: '10+2 with Physics, Mathematics, and Chemistry/Computer (minimum 50%) + JEE Main / CUET / State Exam',
+    shortEligibility: '10+2 with PCM (50%+) + JEE Main / CUET',
     avgPackage: '₹6.5 LPA - ₹15.0 LPA',
     highestPackage: '₹44.0 LPA',
     specializations: [
@@ -175,6 +181,7 @@ const COURSES_DATA: CourseData[] = [
     level: 'Undergraduate (BCA 3 Yrs) / Postgraduate (MCA 2 Yrs)',
     duration: '3 Years (BCA) / 2 Years (MCA)',
     eligibility: '10+2 with Mathematics or Computer Science for BCA; BCA/B.Sc IT with 50%+ for MCA',
+    shortEligibility: '10+2 with Math/CS (BCA); BCA/B.Sc IT (50%+) for MCA',
     avgPackage: '₹5.0 LPA - ₹11.0 LPA',
     highestPackage: '₹22.0 LPA',
     specializations: [
@@ -202,6 +209,7 @@ const COURSES_DATA: CourseData[] = [
     level: 'Integrated UG (5 Years) / PG (1-2 Years)',
     duration: '5 Years (Integrated) / 2 Years (LLM)',
     eligibility: '10+2 with minimum 45% aggregate (General) or 40% (Reserved) for 5-Year Law',
+    shortEligibility: '10+2 with 45%+ (5-Yr Integrated) / LLB (LLM)',
     avgPackage: '₹5.5 LPA - ₹12.5 LPA',
     highestPackage: '₹20.0 LPA',
     specializations: [
@@ -233,11 +241,26 @@ export default function CoursesPage() {
 
   const categories = [
     { id: 'all', label: 'All Courses' },
-    { id: 'management', label: 'Management (MBA & PGDM)' },
-    { id: 'undergrad', label: 'Undergraduate (BBA & B.Com)' },
-    { id: 'technology', label: 'Technology (B.Tech & BCA)' },
-    { id: 'law', label: 'Legal Studies (Law)' },
+    { id: 'management', label: 'Management' },
+    { id: 'undergrad', label: 'Undergraduate' },
+    { id: 'technology', label: 'Technology' },
+    { id: 'law', label: 'Law' },
   ];
+
+  const getCategoryCount = (catId: string) => {
+    if (catId === 'all') return COURSES_DATA.length;
+    return COURSES_DATA.filter((c) => c.category === catId).length;
+  };
+
+  const getCategoryIcon = (catId: string) => {
+    switch (catId) {
+      case 'management': return <Briefcase size={14} />;
+      case 'undergrad': return <GraduationCap size={14} />;
+      case 'technology': return <Laptop size={14} />;
+      case 'law': return <Scale size={14} />;
+      default: return <Layers size={14} />;
+    }
+  };
 
   const filteredCourses = COURSES_DATA.filter((course) => {
     const matchesCategory = activeCategory === 'all' || course.category === activeCategory;
@@ -357,275 +380,237 @@ export default function CoursesPage() {
       </section>
 
       {/* =========================================================================
-          FILTER & SEARCH BAR
+          FILTER & SEARCH BAR (UNIFIED STICKY TOOLBAR)
           ========================================================================= */}
-      <section style={{ padding: '36px 0 20px', background: '#ffffff', borderBottom: '1px solid #E2E8F0' }}>
+      <section className="courses-toolbar-section">
         <div className="container">
-          <div 
-            style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between', 
-              alignItems: 'center', 
-              flexWrap: 'wrap', 
-              gap: '20px' 
-            }}
-          >
+          <div className="courses-toolbar-container">
             {/* Category Filter Pills */}
-            <div className="courses-filter-scroll">
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className="courses-filter-btn"
-                  style={{
-                    padding: '8px 18px',
-                    borderRadius: '9999px',
-                    fontSize: '0.86rem',
-                    fontWeight: activeCategory === cat.id ? '800' : '600',
-                    border: activeCategory === cat.id ? '1px solid var(--orange-primary)' : '1px solid #CBD5E1',
-                    background: activeCategory === cat.id ? 'var(--orange-primary)' : '#ffffff',
-                    color: activeCategory === cat.id ? '#ffffff' : 'var(--navy-primary)',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s',
-                    boxShadow: activeCategory === cat.id ? '0 4px 12px rgba(250, 100, 0, 0.3)' : 'none'
-                  }}
-                >
-                  {cat.label}
-                </button>
-              ))}
+            <div className="courses-filter-pills-row">
+              {categories.map((cat) => {
+                const isSelected = activeCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setActiveCategory(cat.id)}
+                    className={`course-filter-chip ${isSelected ? 'active' : ''}`}
+                  >
+                    <span style={{ color: isSelected ? '#FA6400' : '#64748B', display: 'flex' }}>
+                      {getCategoryIcon(cat.id)}
+                    </span>
+                    <span>{cat.label}</span>
+                    <span className="chip-count">
+                      {getCategoryCount(cat.id)}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Search Input */}
-            <div style={{ position: 'relative', width: '100%', maxWidth: '320px' }}>
-              <Search 
-                size={17} 
-                style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: '#94A3B8' }} 
-              />
+            {/* Unified Search Input */}
+            <div className="courses-search-wrap">
               <input
                 type="text"
-                placeholder="Search courses or roles..."
+                placeholder="Search programs, skills, roles..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="form-input"
-                style={{
-                  paddingLeft: '40px',
-                  height: '42px',
-                  borderRadius: '10px',
-                  fontSize: '0.88rem',
-                  border: '1px solid #CBD5E1',
-                  width: '100%'
-                }}
+                className="courses-search-input"
               />
+              <Search size={16} className="courses-search-icon" />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="courses-search-clear"
+                  aria-label="Clear search"
+                >
+                  <X size={12} />
+                </button>
+              )}
             </div>
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          COURSES LISTING GRID
+          COURSES LISTING GRID (RESPONSIVE CARDS)
           ========================================================================= */}
-      <section style={{ padding: '60px 0 80px', flexGrow: 1 }}>
+      <section style={{ padding: '48px 0 80px', flexGrow: 1 }}>
         <div className="container">
-          <div style={{ marginBottom: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.95rem', color: '#64748B', fontWeight: '600' }}>
-              Showing <strong style={{ color: 'var(--navy-primary)' }}>{filteredCourses.length}</strong> available programs
-            </span>
+          {/* Header row with count & active filter badges */}
+          <div style={{ marginBottom: '28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ fontSize: '0.92rem', color: '#64748B', fontWeight: '600' }}>
+                Showing <strong style={{ color: '#0A3871' }}>{filteredCourses.length}</strong> verified career {filteredCourses.length === 1 ? 'program' : 'programs'}
+              </span>
+              {searchQuery && (
+                <span 
+                  style={{ 
+                    fontSize: '0.78rem', 
+                    background: '#FFF5EE', 
+                    color: '#FA6400', 
+                    padding: '2px 10px', 
+                    borderRadius: '9999px',
+                    fontWeight: '700',
+                    border: '1px solid rgba(250, 100, 0, 0.2)',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px'
+                  }}
+                >
+                  Search: &ldquo;{searchQuery}&rdquo;
+                  <button 
+                    onClick={() => setSearchQuery('')} 
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: '#FA6400', display: 'flex' }}
+                  >
+                    <X size={12} />
+                  </button>
+                </span>
+              )}
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px', fontSize: '0.84rem', color: '#64748B' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <Sparkles size={14} color="#FA6400" /> High-Placement Focus
+              </span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <ShieldCheck size={14} color="#0A3871" /> UGC / AICTE Verified
+              </span>
+            </div>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-            {filteredCourses.map((course) => (
-              <div 
-                key={course.id}
-                style={{
-                  background: '#ffffff',
-                  borderRadius: '20px',
-                  border: '1px solid #E2E8F0',
-                  boxShadow: '0 10px 30px -4px rgba(6, 33, 71, 0.06)',
-                  padding: '36px 32px',
-                  transition: 'transform 0.2s, box-shadow 0.2s',
-                  position: 'relative',
-                  overflow: 'hidden'
-                }}
-                className="course-detail-card"
-              >
-                {/* Top Border Accent */}
-                <div 
-                  style={{ 
-                    position: 'absolute', 
-                    top: 0, 
-                    left: 0, 
-                    width: '6px', 
-                    height: '100%', 
-                    background: course.category === 'management' ? 'var(--orange-primary)' : 'var(--navy-primary)' 
-                  }} 
-                />
+          {/* Cards Grid */}
+          <div className="courses-grid-cards">
+            {filteredCourses.map((course) => {
+              const accentGradient = 
+                course.category === 'management' ? 'linear-gradient(90deg, #0A3871 0%, #FA6400 100%)' :
+                course.category === 'technology' ? 'linear-gradient(90deg, #0A3871 0%, #165EB8 100%)' :
+                course.category === 'law' ? 'linear-gradient(90deg, #0A3871 0%, #FF782D 100%)' :
+                'linear-gradient(90deg, #0A3871 0%, #062147 100%)';
 
-                <div 
-                  style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between', 
-                    alignItems: 'flex-start', 
-                    flexWrap: 'wrap', 
-                    gap: '16px',
-                    marginBottom: '16px' 
-                  }}
-                >
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-                      <span 
-                        style={{ 
-                          fontSize: '0.78rem', 
-                          fontWeight: '800', 
-                          textTransform: 'uppercase', 
-                          color: 'var(--orange-primary)',
-                          background: 'var(--orange-light)',
-                          padding: '4px 12px',
-                          borderRadius: '6px'
-                        }}
-                      >
-                        {course.level}
-                      </span>
-                      <span style={{ fontSize: '0.84rem', color: '#64748B', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                        <Clock size={14} /> {course.duration}
-                      </span>
-                    </div>
+              const categoryLabel = 
+                course.category === 'management' ? 'Management' :
+                course.category === 'technology' ? 'Technology' :
+                course.category === 'undergrad' ? 'Undergraduate' :
+                'Legal Studies';
 
-                    <h2 
-                      style={{ 
-                        fontSize: 'clamp(1.5rem, 2.5vw, 1.95rem)', 
-                        fontWeight: '800', 
-                        color: 'var(--navy-primary)', 
-                        margin: 0,
-                        fontFamily: 'var(--font-outfit), sans-serif'
-                      }}
-                    >
-                      {course.name}
-                    </h2>
-                  </div>
+              return (
+                <div key={course.id} className="course-card-pro">
+                  {/* Top Accent Gradient Line */}
+                  <div className="course-card-accent-bar" style={{ background: accentGradient }} />
 
-                  {/* Placement Badges */}
-                  <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
-                    <div style={{ background: '#F1F5F9', padding: '10px 18px', borderRadius: '12px', textAlign: 'center', border: '1px solid #E2E8F0' }}>
-                      <div style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: '700', textTransform: 'uppercase' }}>Average CTC</div>
-                      <div style={{ fontSize: '1.15rem', color: 'var(--navy-primary)', fontWeight: '800' }}>{course.avgPackage}</div>
-                    </div>
-                    <div style={{ background: 'var(--orange-light)', padding: '10px 18px', borderRadius: '12px', textAlign: 'center', border: '1px solid rgba(250, 100, 0, 0.2)' }}>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--orange-primary)', fontWeight: '700', textTransform: 'uppercase' }}>Highest Package</div>
-                      <div style={{ fontSize: '1.15rem', color: 'var(--orange-primary)', fontWeight: '900' }}>{course.highestPackage}</div>
-                    </div>
-                  </div>
-                </div>
-
-                <p style={{ color: '#475569', fontSize: '0.98rem', lineHeight: '1.7', marginBottom: '24px' }}>
-                  {course.description}
-                </p>
-
-                {/* Course Details Grid */}
-                <div 
-                  style={{ 
-                    display: 'grid', 
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-                    gap: '24px',
-                    background: '#F8FAFC',
-                    borderRadius: '16px',
-                    padding: '24px 20px',
-                    marginBottom: '26px',
-                    border: '1px solid #E2E8F0'
-                  }}
-                >
-                  {/* Specializations */}
-                  <div>
-                    <h4 style={{ fontSize: '0.95rem', fontWeight: '800', color: 'var(--navy-primary)', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <BookOpen size={16} color="var(--orange-primary)" />
-                      In-Demand Specializations
-                    </h4>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                      {course.specializations.map((spec, i) => (
-                        <span 
-                          key={i} 
-                          style={{ 
-                            fontSize: '0.8rem', 
-                            background: '#ffffff', 
-                            color: 'var(--navy-primary)', 
-                            border: '1px solid #CBD5E1', 
-                            padding: '4px 10px', 
-                            borderRadius: '6px',
-                            fontWeight: '600'
-                          }}
-                        >
-                          {spec}
+                  <div className="course-card-content">
+                    {/* Header Row: Category Badge + Duration + Code Emblem */}
+                    <div className="course-card-header-row">
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span className="course-meta-pill">
+                          {getCategoryIcon(course.category)}
+                          {categoryLabel}
                         </span>
-                      ))}
+                        <span className="course-duration-text">
+                          <Clock size={12} color="#64748B" />
+                          {course.duration.split('(')[0].trim()}
+                        </span>
+                      </div>
+                      <span className="course-code-badge">{course.shortName}</span>
+                    </div>
+
+                    {/* Course Title */}
+                    <h3 className="course-card-title" title={course.name}>
+                      {course.name}
+                    </h3>
+
+                    {/* Short Description */}
+                    <p className="course-card-desc">
+                      {course.description}
+                    </p>
+
+
+                    {/* Clean Metadata (Airy, clean 2-line info with icons) */}
+                    <div className="course-clean-meta">
+                      <div className="course-clean-meta-item">
+                        <GraduationCap size={14} color="#0A3871" style={{ flexShrink: 0, marginTop: '2px' }} />
+                        <span>
+                          <strong>Eligibility: </strong>
+                          {course.shortEligibility || course.eligibility}
+                        </span>
+                      </div>
+                      <div className="course-clean-meta-item">
+                        <Building2 size={14} color="#FA6400" style={{ flexShrink: 0, marginTop: '2px' }} />
+                        <span>
+                          <strong>Top Recruiters: </strong>
+                          {course.topRecruiters.slice(0, 4).join(', ')}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Card Actions */}
+                    <div className="course-card-actions">
+                      <button
+                        onClick={() => handleOpenCounsellingForCourse(course.shortName)}
+                        className="course-btn-counsel"
+                      >
+                        <span>Get Free Counselling</span>
+                        <ArrowRight size={14} />
+                      </button>
+
+                      <Link
+                        href="/colleges"
+                        className="course-btn-explore"
+                      >
+                        <span>Colleges</span>
+                        <ChevronRight size={14} />
+                      </Link>
                     </div>
                   </div>
-
-                  {/* Career Roles */}
-                  <div>
-                    <h4 style={{ fontSize: '0.95rem', fontWeight: '800', color: 'var(--navy-primary)', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <Briefcase size={16} color="var(--orange-primary)" />
-                      Career Job Roles
-                    </h4>
-                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                      {course.careerRoles.slice(0, 3).map((role, i) => (
-                        <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem', color: '#475569' }}>
-                          <CheckCircle2 size={14} color="var(--orange-primary)" />
-                          <span>{role}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Eligibility */}
-                  <div>
-                    <h4 style={{ fontSize: '0.95rem', fontWeight: '800', color: 'var(--navy-primary)', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <GraduationCap size={16} color="var(--orange-primary)" />
-                      Eligibility &amp; Admission
-                    </h4>
-                    <p style={{ fontSize: '0.86rem', color: '#475569', lineHeight: '1.55', margin: 0 }}>
-                      {course.eligibility}
-                    </p>
-                  </div>
                 </div>
-
-                {/* Card Action Row */}
-                <div 
-                  style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between', 
-                    alignItems: 'center', 
-                    flexWrap: 'wrap', 
-                    gap: '16px',
-                    borderTop: '1px solid #F1F5F9',
-                    paddingTop: '20px'
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.84rem', color: '#64748B' }}>
-                    <span style={{ fontWeight: '700', color: 'var(--navy-primary)' }}>Top Recruiters:</span>
-                    <span>{course.topRecruiters.join(', ')}</span>
-                  </div>
-
-                  <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                    <button
-                      onClick={() => handleOpenCounsellingForCourse(course.shortName)}
-                      className="btn btn-primary"
-                      style={{ padding: '11px 22px', borderRadius: '8px', fontWeight: '800', fontSize: '0.9rem' }}
-                    >
-                      <span>Get Free Counselling</span>
-                      <ArrowRight size={15} />
-                    </button>
-                    
-                    <Link
-                      href="/colleges"
-                      className="btn btn-outline"
-                      style={{ padding: '11px 20px', borderRadius: '8px', fontWeight: '700', fontSize: '0.9rem' }}
-                    >
-                      <span>Find {course.shortName} Colleges</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
+
+          {/* Empty State */}
+          {filteredCourses.length === 0 && (
+            <div 
+              style={{
+                background: '#ffffff',
+                borderRadius: '20px',
+                border: '1px solid #E2E8F0',
+                padding: '60px 24px',
+                textAlign: 'center',
+                boxShadow: '0 4px 20px -2px rgba(10, 56, 113, 0.05)',
+                maxWidth: '540px',
+                margin: '30px auto'
+              }}
+            >
+              <div 
+                style={{
+                  width: '64px',
+                  height: '64px',
+                  borderRadius: '50%',
+                  background: 'rgba(250, 100, 0, 0.1)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 16px',
+                  color: 'var(--orange-primary)'
+                }}
+              >
+                <Search size={28} />
+              </div>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--navy-primary)', marginBottom: '8px' }}>
+                No courses found
+              </h3>
+              <p style={{ color: '#64748B', fontSize: '0.92rem', marginBottom: '20px', lineHeight: '1.6' }}>
+                We couldn&apos;t find any programs matching &ldquo;{searchQuery}&rdquo;. Try adjusting your keywords or clearing the category filter.
+              </p>
+              <button
+                onClick={() => { setSearchQuery(''); setActiveCategory('all'); }}
+                className="btn btn-primary"
+                style={{ padding: '10px 22px', borderRadius: '8px', fontWeight: '700' }}
+              >
+                Reset All Filters
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

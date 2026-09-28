@@ -119,14 +119,23 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
               Why register with us?
             </h4>
 
-            {/* Exactly as specified in Slide 2: 5000+ Students Counselled */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            {/* Consistent Brand Stats: 5000+ Students Counselled & 2500+ Successful Admissions */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
                 <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.25)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
                   <Check size={12} strokeWidth={3} />
                 </div>
                 <span style={{ fontSize: '0.84rem', color: '#E2E8F0', lineHeight: '1.45' }}>
                   <strong style={{ color: '#ffffff' }}>5000+ Students Counselled</strong>, Absolutely Free of Cost
+                </span>
+              </div>
+
+              <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.25)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                  <Check size={12} strokeWidth={3} />
+                </div>
+                <span style={{ fontSize: '0.84rem', color: '#E2E8F0', lineHeight: '1.45' }}>
+                  <strong style={{ color: '#ffffff' }}>2500+ Successful Admissions</strong> across 200+ partner colleges
                 </span>
               </div>
 
@@ -159,9 +168,9 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
             </div>
           </div>
 
-          <div style={{ marginTop: '28px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '12px', padding: '12px 14px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
+          <div style={{ marginTop: '24px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '12px', padding: '12px 14px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
             <span style={{ fontSize: '0.75rem', color: '#CBD5E1', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <ShieldCheck size={14} color="var(--orange-primary)" /> 100% Unbiased &amp; Confidential Guidance
+              <ShieldCheck size={14} color="var(--orange-primary)" /> 100% Free Guidance • 2500+ Admissions Secured
             </span>
           </div>
         </div>
@@ -354,7 +363,7 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
 
                 <p style={{ fontSize: '0.74rem', color: 'var(--text-muted)', textAlign: 'center', margin: '2px 0 0', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
                   <ShieldCheck size={14} color="var(--orange-primary)" />
-                  <span>100% Free &amp; Unbiased • Verified Advisors • Zero Spam</span>
+                  <span>100% Free &amp; Unbiased • 2500+ Admissions • Zero Spam</span>
                 </p>
               </form>
             </div>

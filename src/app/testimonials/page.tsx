@@ -118,7 +118,7 @@ export default function TestimonialsPage() {
           <div className="page-hero-badge">
             <span className="live-pulse-dot blue" style={{ background: 'var(--orange-primary)' }} />
             <span className="badge-text">
-              VERIFIED REVIEWS • 10,000+ STORIES
+              VERIFIED REVIEWS • 5,000+ STUDENTS COUNSELLED
             </span>
           </div>
 
@@ -180,8 +180,8 @@ export default function TestimonialsPage() {
                 <Users size={26} />
               </div>
               <div>
-                <div className="about-stat-val">10,000+</div>
-                <div className="about-stat-label">Students Mentored &amp; Placed</div>
+                <div className="about-stat-val">5000+</div>
+                <div className="about-stat-label">Students Counselled (Free)</div>
               </div>
             </div>
 
@@ -190,8 +190,8 @@ export default function TestimonialsPage() {
                 <Star size={26} />
               </div>
               <div>
-                <div className="about-stat-val">4.9 / 5</div>
-                <div className="about-stat-label">Verified Rating (1,200+ Reviews)</div>
+                <div className="about-stat-val">2500+</div>
+                <div className="about-stat-label">Successful Admissions Secured</div>
               </div>
             </div>
 
@@ -200,8 +200,8 @@ export default function TestimonialsPage() {
                 <Award size={26} />
               </div>
               <div>
-                <div className="about-stat-val">98%</div>
-                <div className="about-stat-label">Admission Satisfaction Index</div>
+                <div className="about-stat-val">100%</div>
+                <div className="about-stat-label">Placement &amp; Admission Support</div>
               </div>
             </div>
 
@@ -210,8 +210,8 @@ export default function TestimonialsPage() {
                 <Building2 size={26} />
               </div>
               <div>
-                <div className="about-stat-val">500+</div>
-                <div className="about-stat-label">Partner Campuses Represented</div>
+                <div className="about-stat-val">200+</div>
+                <div className="about-stat-label">Partner Institutions Across India</div>
               </div>
             </div>
           </div>

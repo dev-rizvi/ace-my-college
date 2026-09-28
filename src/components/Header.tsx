@@ -168,7 +168,7 @@ export const Header: React.FC<HeaderProps> = ({
               alt="ACE MY CAMPUS" 
               style={{ height: '38px', width: 'auto', objectFit: 'contain', display: 'block' }} 
             />
-            <span className="brand-name" style={{ fontSize: '1.2rem', color: '#041630' }}>
+            <span className="brand-name" style={{ fontSize: '1.2rem', color: '#0A3871' }}>
               ACE MY <span style={{ color: 'var(--orange-primary)' }}>CAMPUS</span>
             </span>
           </div>

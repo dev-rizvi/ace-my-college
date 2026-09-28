@@ -66,11 +66,11 @@ export interface FAQItem {
 }
 
 export const TRUST_STATS = [
-  { value: "10,000+", label: "Students Guided", icon: "GraduationCap" },
-  { value: "500+", label: "Colleges Partnered", icon: "Building2" },
-  { value: "4.8/5", label: "Average Rating", icon: "Star" },
-  { value: "15+", label: "Expert Counsellors", icon: "Users" },
-  { value: "98%", label: "Student Satisfaction", icon: "CheckCircle2" }
+  { value: "5000+", label: "Students Counselled", icon: "GraduationCap" },
+  { value: "2500+", label: "Successful Admissions", icon: "Users" },
+  { value: "200+", label: "Partner Institutions", icon: "Building2" },
+  { value: "100%", label: "Placement Support", icon: "Award" },
+  { value: "4.9/5", label: "Average Rating", icon: "Star" }
 ];
 
 export const CORE_SERVICES: ServiceItem[] = [

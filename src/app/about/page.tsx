@@ -7,8 +7,8 @@ import { Footer } from '@/components/Footer';
 import { CounsellingModal } from '@/components/CounsellingModal';
 import { InstitutionModal } from '@/components/InstitutionModal';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { 
-  Building2, Users, Award, ShieldCheck, CheckCircle2, 
+import {
+  Building2, Users, Award, ShieldCheck, CheckCircle2,
   ArrowRight, GraduationCap, HeartHandshake, Sparkles,
   Megaphone, TrendingUp, Compass
 } from 'lucide-react';
@@ -27,7 +27,7 @@ export default function AboutPage() {
       {/* =========================================================================
           1. CLEAN HERO BANNER: Modeled after reference (a3career.com / Slide 7)
           ========================================================================= */}
-      <section 
+      <section
         style={{
           position: 'relative',
           backgroundImage: `linear-gradient(135deg, rgba(4, 22, 48, 0.92) 0%, rgba(10, 56, 113, 0.85) 60%, rgba(6, 33, 71, 0.92) 100%), url('/images/banner-about.jpg')`,
@@ -39,15 +39,15 @@ export default function AboutPage() {
         }}
       >
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <span 
-            style={{ 
-              display: 'inline-block', 
-              color: 'var(--orange-primary)', 
+          <span
+            style={{
+              display: 'inline-block',
+              color: 'var(--orange-primary)',
               background: 'rgba(250, 100, 0, 0.15)',
-              padding: '6px 18px', 
-              borderRadius: '9999px', 
-              fontSize: '0.82rem', 
-              fontWeight: '800', 
+              padding: '6px 18px',
+              borderRadius: '9999px',
+              fontSize: '0.82rem',
+              fontWeight: '800',
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
               marginBottom: '14px',
@@ -57,12 +57,12 @@ export default function AboutPage() {
             ABOUT ACE MY CAMPUS
           </span>
 
-          <h1 
-            style={{ 
-              fontSize: 'clamp(2.4rem, 4.5vw, 3.8rem)', 
-              fontWeight: '900', 
-              letterSpacing: '-0.02em', 
-              color: '#ffffff', 
+          <h1
+            style={{
+              fontSize: 'clamp(2.4rem, 4.5vw, 3.8rem)',
+              fontWeight: '900',
+              letterSpacing: '-0.02em',
+              color: '#ffffff',
               marginBottom: '12px',
               fontFamily: 'var(--font-outfit), sans-serif'
             }}
@@ -70,21 +70,21 @@ export default function AboutPage() {
             ABOUT US
           </h1>
 
-          <div 
-            style={{ 
-              width: '65px', 
-              height: '4px', 
-              background: 'linear-gradient(90deg, #FA6400, #FF782D)', 
-              borderRadius: '2px', 
-              margin: '0 auto 18px' 
-            }} 
+          <div
+            style={{
+              width: '65px',
+              height: '4px',
+              background: 'linear-gradient(90deg, #FA6400, #FF782D)',
+              borderRadius: '2px',
+              margin: '0 auto 18px'
+            }}
           />
 
-          <p 
-            style={{ 
-              fontSize: 'clamp(1.05rem, 1.6vw, 1.25rem)', 
-              color: '#CBD5E1', 
-              maxWidth: '680px', 
+          <p
+            style={{
+              fontSize: 'clamp(1.05rem, 1.6vw, 1.25rem)',
+              color: '#CBD5E1',
+              maxWidth: '680px',
               margin: '0 auto 28px',
               lineHeight: '1.6'
             }}
@@ -93,7 +93,7 @@ export default function AboutPage() {
           </p>
 
           <div className="hero-cta-buttons-responsive">
-            <button 
+            <button
               onClick={() => setCounsellingModalOpen(true)}
               className="btn btn-primary"
               style={{ padding: '13px 26px', borderRadius: '10px', fontWeight: '800' }}
@@ -101,7 +101,7 @@ export default function AboutPage() {
               <span>Get Free Counselling</span>
               <ArrowRight size={16} />
             </button>
-            <Link 
+            <Link
               href="/colleges"
               className="btn btn-outline-white"
               style={{ padding: '13px 22px', borderRadius: '10px', fontWeight: '700' }}
@@ -117,7 +117,7 @@ export default function AboutPage() {
           ========================================================================= */}
       <section style={{ padding: '70px 0 50px', background: '#ffffff' }}>
         <div className="container" style={{ maxWidth: '980px' }}>
-          <div 
+          <div
             style={{
               background: '#F8FAFC',
               borderRadius: '20px',
@@ -127,23 +127,23 @@ export default function AboutPage() {
               position: 'relative'
             }}
           >
-            <div 
-              style={{ 
-                position: 'absolute', 
-                top: 0, 
-                left: '40px', 
-                width: '60px', 
-                height: '4px', 
-                background: 'var(--orange-primary)', 
-                borderRadius: '0 0 4px 4px' 
-              }} 
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: '40px',
+                width: '60px',
+                height: '4px',
+                background: 'var(--orange-primary)',
+                borderRadius: '0 0 4px 4px'
+              }}
             />
 
-            <h3 
-              style={{ 
-                fontSize: '1.5rem', 
-                fontWeight: '800', 
-                color: 'var(--navy-primary)', 
+            <h3
+              style={{
+                fontSize: '1.5rem',
+                fontWeight: '800',
+                color: 'var(--navy-primary)',
                 marginBottom: '16px',
                 fontFamily: 'var(--font-outfit), sans-serif'
               }}
@@ -151,11 +151,11 @@ export default function AboutPage() {
               Our Mission &amp; Foundation
             </h3>
 
-            <p 
-              style={{ 
-                fontSize: '1.08rem', 
-                color: '#334155', 
-                lineHeight: '1.85', 
+            <p
+              style={{
+                fontSize: '1.08rem',
+                color: '#334155',
+                lineHeight: '1.85',
                 margin: 0,
                 textAlign: 'justify'
               }}
@@ -171,27 +171,27 @@ export default function AboutPage() {
           ========================================================================= */}
       <section style={{ padding: '40px 0 70px', background: '#ffffff' }}>
         <div className="container" style={{ maxWidth: '1140px' }}>
-          <div 
-            style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-              gap: '48px', 
-              alignItems: 'center' 
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '48px',
+              alignItems: 'center'
             }}
           >
             {/* Left Column: Campus & Network Image */}
             <div>
-              <div 
-                style={{ 
-                  borderRadius: '20px', 
-                  overflow: 'hidden', 
+              <div
+                style={{
+                  borderRadius: '20px',
+                  overflow: 'hidden',
                   boxShadow: '0 18px 45px -10px rgba(6, 33, 71, 0.15)',
                   border: '1px solid #E2E8F0',
                   position: 'relative'
                 }}
               >
-                <img 
-                  src="/images/about-experience-network.jpg" 
+                <img
+                  src="/images/about-experience-network.jpg"
                   alt="Ace My Campus Experience and Network"
                   style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
                 />
@@ -200,12 +200,12 @@ export default function AboutPage() {
 
             {/* Right Column: Experience and Network text from Slide 7 */}
             <div>
-              <span 
-                style={{ 
-                  fontSize: '0.8rem', 
-                  fontWeight: '800', 
-                  color: 'var(--orange-primary)', 
-                  textTransform: 'uppercase', 
+              <span
+                style={{
+                  fontSize: '0.8rem',
+                  fontWeight: '800',
+                  color: 'var(--orange-primary)',
+                  textTransform: 'uppercase',
                   letterSpacing: '0.08em',
                   display: 'block',
                   marginBottom: '8px'
@@ -214,11 +214,11 @@ export default function AboutPage() {
                 DECADE OF TRUST &amp; EXPERTISE
               </span>
 
-              <h2 
-                style={{ 
-                  fontSize: 'clamp(1.8rem, 2.8vw, 2.3rem)', 
-                  fontWeight: '800', 
-                  color: 'var(--navy-primary)', 
+              <h2
+                style={{
+                  fontSize: 'clamp(1.8rem, 2.8vw, 2.3rem)',
+                  fontWeight: '800',
+                  color: 'var(--navy-primary)',
                   marginBottom: '12px',
                   fontFamily: 'var(--font-outfit), sans-serif'
                 }}
@@ -226,22 +226,22 @@ export default function AboutPage() {
                 Experience and Network
               </h2>
 
-              <div 
-                style={{ 
-                  width: '50px', 
-                  height: '4px', 
-                  background: 'linear-gradient(90deg, #FA6400, #FF782D)', 
-                  borderRadius: '2px', 
-                  marginBottom: '20px' 
-                }} 
+              <div
+                style={{
+                  width: '50px',
+                  height: '4px',
+                  background: 'linear-gradient(90deg, #FA6400, #FF782D)',
+                  borderRadius: '2px',
+                  marginBottom: '20px'
+                }}
               />
 
-              <p 
-                style={{ 
-                  fontSize: '1.02rem', 
-                  color: '#475569', 
-                  lineHeight: '1.8', 
-                  marginBottom: '24px' 
+              <p
+                style={{
+                  fontSize: '1.02rem',
+                  color: '#475569',
+                  lineHeight: '1.8',
+                  marginBottom: '24px'
                 }}
               >
                 With over 10 years of experience in admissions counselling, <strong>Ace My Campus</strong> has built strong partnerships with <strong>200+ leading management institutes</strong> across India. We have successfully guided more than <strong>2,500 students</strong> toward colleges that align with their career goals, academic profile, and budget. Our personalized counselling approach considers each student&apos;s unique preferences, including location, specialization, and financial requirements. Backed by deep industry knowledge and extensive institutional networks, we provide clear, practical insights that help students make informed decisions with confidence.
@@ -262,7 +262,7 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <button 
+              <button
                 onClick={() => setCounsellingModalOpen(true)}
                 className="btn btn-primary"
                 style={{ padding: '12px 24px', borderRadius: '10px', fontWeight: '800' }}
@@ -281,71 +281,71 @@ export default function AboutPage() {
       <section style={{ padding: '60px 0 70px', background: '#F8FAFC', borderTop: '1px solid #E2E8F0', borderBottom: '1px solid #E2E8F0' }}>
         <div className="container text-center">
           <div style={{ maxWidth: '650px', margin: '0 auto 40px' }}>
-            <h3 
-              style={{ 
-                fontSize: 'clamp(1.8rem, 3vw, 2.3rem)', 
-                fontWeight: '800', 
-                color: 'var(--navy-primary)', 
+            <h3
+              style={{
+                fontSize: 'clamp(1.8rem, 3vw, 2.3rem)',
+                fontWeight: '800',
+                color: 'var(--navy-primary)',
                 marginBottom: '10px',
                 fontFamily: 'var(--font-outfit), sans-serif'
               }}
             >
               Why trust ACE MY CAMPUS ?
             </h3>
-            <div 
-              style={{ 
-                width: '50px', 
-                height: '4px', 
-                background: 'linear-gradient(90deg, #FA6400, #FF782D)', 
-                borderRadius: '2px', 
-                margin: '0 auto 14px' 
-              }} 
+            <div
+              style={{
+                width: '50px',
+                height: '4px',
+                background: 'linear-gradient(90deg, #FA6400, #FF782D)',
+                borderRadius: '2px',
+                margin: '0 auto 14px'
+              }}
             />
             <p style={{ color: 'var(--text-muted)', fontSize: '0.98rem' }}>
               Clear, cluster-free metrics that speak for our decade-long commitment to Indian students.
             </p>
           </div>
 
-          <div 
-            style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-              gap: '26px',
-              maxWidth: '1050px',
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: '24px',
+              maxWidth: '1240px',
               margin: '0 auto'
             }}
           >
-            {/* Card 1: 200+ */}
-            <div 
-              style={{ 
-                background: 'linear-gradient(135deg, #FA6400 0%, #E05300 100%)', 
-                borderRadius: '20px', 
-                padding: '38px 24px', 
+            {/* Card 1: 5000+ */}
+            <div
+              style={{
+                background: 'linear-gradient(135deg, #FA6400 0%, #E05300 100%)',
+                borderRadius: '20px',
+                padding: '38px 24px',
                 color: '#ffffff',
                 boxShadow: '0 12px 30px -4px rgba(250, 100, 0, 0.35)',
                 textAlign: 'center'
               }}
             >
               <div style={{ width: '52px', height: '52px', borderRadius: '14px', background: 'rgba(255, 255, 255, 0.2)', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
-                <Building2 size={26} />
+                <GraduationCap size={26} />
               </div>
               <h3 style={{ fontSize: '3rem', fontWeight: '900', color: '#ffffff', lineHeight: 1, marginBottom: '10px', fontFamily: 'var(--font-outfit), sans-serif' }}>
-                200+
+                5000+
               </h3>
               <h4 style={{ fontSize: '1.2rem', fontWeight: '800', color: '#ffffff', marginBottom: '6px' }}>
-                Partner institutions across India
+                Students Counselled
               </h4>
               <p style={{ fontSize: '0.86rem', color: 'rgba(255, 255, 255, 0.85)', margin: 0 }}>
-                Accredited universities &amp; top management institutes
+                Absolutely Free of Cost
               </p>
             </div>
 
             {/* Card 2: 2500+ */}
-            <div 
-              style={{ 
-                background: 'linear-gradient(135deg, #FA6400 0%, #E05300 100%)', 
-                borderRadius: '20px', 
-                padding: '38px 24px', 
+            <div
+              style={{
+                background: 'linear-gradient(135deg, #FA6400 0%, #E05300 100%)',
+                borderRadius: '20px',
+                padding: '38px 24px',
                 color: '#ffffff',
                 boxShadow: '0 12px 30px -4px rgba(250, 100, 0, 0.35)',
                 textAlign: 'center'
@@ -365,12 +365,37 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* Card 3: 100% */}
-            <div 
-              style={{ 
-                background: 'linear-gradient(135deg, #FA6400 0%, #E05300 100%)', 
-                borderRadius: '20px', 
-                padding: '38px 24px', 
+            {/* Card 3: 200+ */}
+            <div
+              style={{
+                background: 'linear-gradient(135deg, #FA6400 0%, #E05300 100%)',
+                borderRadius: '20px',
+                padding: '38px 24px',
+                color: '#ffffff',
+                boxShadow: '0 12px 30px -4px rgba(250, 100, 0, 0.35)',
+                textAlign: 'center'
+              }}
+            >
+              <div style={{ width: '52px', height: '52px', borderRadius: '14px', background: 'rgba(255, 255, 255, 0.2)', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
+                <Building2 size={26} />
+              </div>
+              <h3 style={{ fontSize: '3rem', fontWeight: '900', color: '#ffffff', lineHeight: 1, marginBottom: '10px', fontFamily: 'var(--font-outfit), sans-serif' }}>
+                200+
+              </h3>
+              <h4 style={{ fontSize: '1.2rem', fontWeight: '800', color: '#ffffff', marginBottom: '6px' }}>
+                Partner institutions across India
+              </h4>
+              <p style={{ fontSize: '0.86rem', color: 'rgba(255, 255, 255, 0.85)', margin: 0 }}>
+                Accredited universities &amp; top management institutes
+              </p>
+            </div>
+
+            {/* Card 4: 100% */}
+            <div
+              style={{
+                background: 'linear-gradient(135deg, #FA6400 0%, #E05300 100%)',
+                borderRadius: '20px',
+                padding: '38px 24px',
                 color: '#ffffff',
                 boxShadow: '0 12px 30px -4px rgba(250, 100, 0, 0.35)',
                 textAlign: 'center'
@@ -406,21 +431,21 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div 
-            style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
               gap: '28px',
               maxWidth: '1140px',
               margin: '0 auto'
             }}
           >
             {/* Card 1: For Students (Slide 9: Class 11 removed!) */}
-            <div 
-              style={{ 
-                background: '#F8FAFC', 
-                borderRadius: '18px', 
-                padding: '34px 28px', 
+            <div
+              style={{
+                background: '#F8FAFC',
+                borderRadius: '18px',
+                padding: '34px 28px',
                 border: '1px solid #E2E8F0',
                 display: 'flex',
                 flexDirection: 'column'
@@ -460,11 +485,11 @@ export default function AboutPage() {
             </div>
 
             {/* Card 2: For Parents */}
-            <div 
-              style={{ 
-                background: '#F8FAFC', 
-                borderRadius: '18px', 
-                padding: '34px 28px', 
+            <div
+              style={{
+                background: '#F8FAFC',
+                borderRadius: '18px',
+                padding: '34px 28px',
                 border: '1px solid #E2E8F0',
                 display: 'flex',
                 flexDirection: 'column'
@@ -503,11 +528,11 @@ export default function AboutPage() {
             </div>
 
             {/* Card 3: For Institutions */}
-            <div 
-              style={{ 
-                background: '#F8FAFC', 
-                borderRadius: '18px', 
-                padding: '34px 28px', 
+            <div
+              style={{
+                background: '#F8FAFC',
+                borderRadius: '18px',
+                padding: '34px 28px',
                 border: '1px solid #E2E8F0',
                 display: 'flex',
                 flexDirection: 'column'
@@ -556,8 +581,8 @@ export default function AboutPage() {
           <div className="text-center" style={{ marginBottom: '45px' }}>
             <span className="section-tag orange">INSTITUTIONAL PARTNERSHIPS</span>
             <h2 className="section-title">Comprehensive Institutional Solutions</h2>
-            <p 
-              className="section-subtitle center-block" 
+            <p
+              className="section-subtitle center-block"
               style={{ maxWidth: '820px', fontSize: '1.05rem', color: '#334155', lineHeight: '1.7' }}
             >
               &ldquo;We partner with leading colleges and universities to strengthen institutional brand value, enhance student outreach, and drive high-quality admissions through integrated marketing, recruitment, and engagement solutions.&rdquo;
@@ -565,11 +590,11 @@ export default function AboutPage() {
           </div>
 
           {/* 6 Solutions from Slide 8 */}
-          <div 
-            style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-              gap: '24px' 
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '24px'
             }}
           >
             {/* 1. Admissions & Recruitment Support */}
@@ -652,7 +677,7 @@ export default function AboutPage() {
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '40px' }}>
-            <button 
+            <button
               onClick={() => setInstitutionModalOpen(true)}
               className="btn btn-outline"
               style={{ padding: '13px 28px', borderRadius: '10px', fontWeight: '800', fontSize: '0.95rem' }}
@@ -669,7 +694,7 @@ export default function AboutPage() {
           ========================================================================= */}
       <section style={{ padding: '60px 0 80px', background: '#ffffff' }}>
         <div className="container">
-          <div 
+          <div
             style={{
               background: 'linear-gradient(135deg, #041630 0%, #0A3871 60%, #082852 100%)',
               borderRadius: '20px',
@@ -685,12 +710,12 @@ export default function AboutPage() {
             }}
           >
             <div style={{ maxWidth: '680px' }}>
-              <span 
-                style={{ 
-                  color: 'var(--orange-primary)', 
-                  fontSize: '0.8rem', 
-                  fontWeight: '800', 
-                  textTransform: 'uppercase', 
+              <span
+                style={{
+                  color: 'var(--orange-primary)',
+                  fontSize: '0.8rem',
+                  fontWeight: '800',
+                  textTransform: 'uppercase',
                   letterSpacing: '0.08em',
                   background: 'rgba(250, 100, 0, 0.15)',
                   padding: '4px 12px',
@@ -701,10 +726,10 @@ export default function AboutPage() {
               >
                 FREE CAREER &amp; COLLEGE COUNSELLING
               </span>
-              <h3 
-                style={{ 
-                  fontSize: 'clamp(1.5rem, 2.6vw, 2rem)', 
-                  color: '#ffffff', 
+              <h3
+                style={{
+                  fontSize: 'clamp(1.5rem, 2.6vw, 2rem)',
+                  color: '#ffffff',
                   fontWeight: '800',
                   marginBottom: '8px',
                   fontFamily: 'var(--font-outfit), sans-serif'
@@ -717,10 +742,10 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <button 
+            <button
               onClick={() => setCounsellingModalOpen(true)}
               className="btn btn-primary btn-lg"
-              style={{ 
+              style={{
                 whiteSpace: 'nowrap',
                 padding: '14px 28px',
                 borderRadius: '10px',

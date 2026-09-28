@@ -145,7 +145,7 @@ export const InstitutionModal: React.FC<InstitutionModalProps> = ({ isOpen, onCl
                 </div>
                 <div>
                   <strong style={{ display: 'block', fontSize: '0.85rem', color: '#ffffff' }}>Direct School Feeder Drives</strong>
-                  <span style={{ fontSize: '0.775rem', color: '#94A3B8', lineHeight: '1.4' }}>Direct access to 200+ feeder schools and career conclaves.</span>
+                  <span style={{ fontSize: '0.775rem', color: '#94A3B8', lineHeight: '1.4' }}>Direct access to 200+ partner campuses, 5000+ counselled students &amp; 2500+ admissions.</span>
                 </div>
               </div>
             </div>
