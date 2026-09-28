@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer';
 import { CounsellingModal } from '@/components/CounsellingModal';
 import { InstitutionModal } from '@/components/InstitutionModal';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { WhatsAppIcon } from '@/components/WhatsAppIcon';
 import { 
   MapPin, Phone, Mail, Clock, MessageSquare, Send, CheckCircle2, 
   ShieldCheck, FileText, ArrowRight, Sparkles, Users, Award, 
@@ -305,14 +306,14 @@ export default function ContactPage() {
                   height: '46px', 
                   borderRadius: '12px', 
                   background: '#ECFDF5', 
-                  color: '#059669', 
+                  color: '#25D366', 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center', 
                   flexShrink: 0 
                 }}
               >
-                <MessageSquare size={22} />
+                <WhatsAppIcon size={24} />
               </div>
               <div style={{ minWidth: 0, flex: 1 }}>
                 <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: '700', color: '#059669', letterSpacing: '0.04em' }}>
@@ -549,7 +550,7 @@ export default function ContactPage() {
                     gap: '8px'
                   }}
                 >
-                  <MessageSquare size={16} />
+                  <WhatsAppIcon size={18} />
                   <span>Chat Now</span>
                 </a>
               </div>

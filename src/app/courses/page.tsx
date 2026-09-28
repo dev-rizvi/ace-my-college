@@ -7,9 +7,10 @@ import { Footer } from '@/components/Footer';
 import { CounsellingModal } from '@/components/CounsellingModal';
 import { InstitutionModal } from '@/components/InstitutionModal';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { 
-  GraduationCap, Briefcase, TrendingUp, Award, Clock, 
-  CheckCircle2, ArrowRight, ShieldCheck, Search, 
+import { CollegeFilterDropdown } from '@/components/CollegeFilterDropdown';
+import {
+  GraduationCap, Briefcase, TrendingUp, Award, Clock,
+  CheckCircle2, ArrowRight, ShieldCheck, Search,
   Sparkles, Filter, Building2, ChevronRight, Trophy, Laptop, Scale, Layers, X
 } from 'lucide-react';
 
@@ -236,21 +237,47 @@ export default function CoursesPage() {
   const [institutionModalOpen, setInstitutionModalOpen] = useState(false);
   const [selectedCoursePrefill, setSelectedCoursePrefill] = useState('MBA');
 
-  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [selectedStream, setSelectedStream] = useState<string>('all');
+  const [selectedLevel, setSelectedLevel] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const categories = [
-    { id: 'all', label: 'All Courses' },
-    { id: 'management', label: 'Management' },
-    { id: 'undergrad', label: 'Undergraduate' },
-    { id: 'technology', label: 'Technology' },
-    { id: 'law', label: 'Law' },
+  const streamOptions = [
+    { id: 'all', label: 'All Streams' },
+    { id: 'management', label: 'Management & Commerce' },
+    { id: 'undergrad', label: 'Undergraduate Studies' },
+    { id: 'technology', label: 'Engineering & Technology' },
+    { id: 'law', label: 'Law & Legal Studies' },
   ];
 
-  const getCategoryCount = (catId: string) => {
-    if (catId === 'all') return COURSES_DATA.length;
-    return COURSES_DATA.filter((c) => c.category === catId).length;
+  const levelOptions = [
+    { id: 'all', label: 'All Levels' },
+    { id: 'pg', label: 'Postgraduate (PG)' },
+    { id: 'ug', label: 'Undergraduate (UG)' },
+    { id: 'integrated', label: 'Integrated Degrees' },
+  ];
+
+  const getStreamCount = (streamId: string) => {
+    if (streamId === 'all') return COURSES_DATA.length;
+    return COURSES_DATA.filter((c) => c.category === streamId).length;
   };
+
+  const getLevelCount = (lvlId: string) => {
+    if (lvlId === 'all') return COURSES_DATA.length;
+    if (lvlId === 'pg') return COURSES_DATA.filter((c) => c.level.toLowerCase().includes('pg') || c.level.toLowerCase().includes('postgraduate')).length;
+    if (lvlId === 'ug') return COURSES_DATA.filter((c) => c.level.toLowerCase().includes('ug') || c.level.toLowerCase().includes('undergraduate')).length;
+    if (lvlId === 'integrated') return COURSES_DATA.filter((c) => c.level.toLowerCase().includes('integrated')).length;
+    return 0;
+  };
+
+  const streamOptionsWithCount = streamOptions.map(opt => ({
+    ...opt,
+    count: getStreamCount(opt.id)
+  }));
+
+  const levelOptionsWithCount = levelOptions.map(opt => ({
+    ...opt,
+    count: getLevelCount(opt.id)
+  }));
 
   const getCategoryIcon = (catId: string) => {
     switch (catId) {
@@ -263,14 +290,23 @@ export default function CoursesPage() {
   };
 
   const filteredCourses = COURSES_DATA.filter((course) => {
-    const matchesCategory = activeCategory === 'all' || course.category === activeCategory;
-    const matchesSearch = searchQuery === '' ||
-      course.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      course.shortName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      course.specializations.some(s => s.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      course.careerRoles.some(r => r.toLowerCase().includes(searchQuery.toLowerCase()));
+    const matchesStream = selectedStream === 'all' || course.category === selectedStream;
 
-    return matchesCategory && matchesSearch;
+    const matchesLevel = selectedLevel === 'all' ||
+      (selectedLevel === 'pg' && (course.level.toLowerCase().includes('pg') || course.level.toLowerCase().includes('postgraduate'))) ||
+      (selectedLevel === 'ug' && (course.level.toLowerCase().includes('ug') || course.level.toLowerCase().includes('undergraduate'))) ||
+      (selectedLevel === 'integrated' && course.level.toLowerCase().includes('integrated'));
+
+    const q = searchQuery.toLowerCase().trim();
+    const matchesSearch = q === '' ||
+      course.name.toLowerCase().includes(q) ||
+      course.shortName.toLowerCase().includes(q) ||
+      course.category.toLowerCase().includes(q) ||
+      course.level.toLowerCase().includes(q) ||
+      course.specializations.some(s => s.toLowerCase().includes(q)) ||
+      course.careerRoles.some(r => r.toLowerCase().includes(q));
+
+    return matchesStream && matchesLevel && matchesSearch;
   });
 
   const handleOpenCounsellingForCourse = (courseName: string) => {
@@ -288,91 +324,41 @@ export default function CoursesPage() {
       {/* =========================================================================
           HERO BANNER: Cinematic Contrast Banner
           ========================================================================= */}
-      <section 
-        style={{
-          position: 'relative',
-          backgroundImage: `linear-gradient(135deg, rgba(4, 22, 48, 0.94) 0%, rgba(10, 56, 113, 0.88) 50%, rgba(6, 33, 71, 0.94) 100%), url('/images/banner-colleges.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          color: '#ffffff',
-          padding: '85px 0 85px',
-          textAlign: 'center',
-        }}
-      >
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <span 
-            style={{ 
-              display: 'inline-block', 
-              color: 'var(--orange-primary)', 
-              background: 'rgba(250, 100, 0, 0.15)',
-              padding: '6px 18px', 
-              borderRadius: '9999px', 
-              fontSize: '0.82rem', 
-              fontWeight: '800', 
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              marginBottom: '14px',
-              border: '1px solid rgba(250, 100, 0, 0.3)'
-            }}
-          >
-            CAREER &amp; COURSE EXPLORER
-          </span>
+      <section className="colleges-hero">
+        <div className="about-hero-glow" />
+        <div className="about-hero-glow-left" />
 
-          <h1 
-            style={{ 
-              fontSize: 'clamp(2.3rem, 4.4vw, 3.8rem)', 
-              fontWeight: '900', 
-              letterSpacing: '-0.02em', 
-              color: '#ffffff', 
-              marginBottom: '14px',
-              fontFamily: 'var(--font-outfit), sans-serif'
-            }}
-          >
+        <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
+          {/* Badge */}
+          <div className="page-hero-badge">
+            <span className="live-pulse-dot blue" style={{ background: 'var(--orange-primary)' }} />
+            <span className="badge-text">
+              CAREER &amp; COURSE EXPLORER
+            </span>
+          </div>
+
+          {/* Heading */}
+          <h1 className="page-hero-title">
             Course-Wise Information &amp; <span className="text-gradient-orange">Career Outcomes</span>
           </h1>
 
-          <div 
-            style={{ 
-              width: '65px', 
-              height: '4px', 
-              background: 'linear-gradient(90deg, #FA6400, #FF782D)', 
-              borderRadius: '2px', 
-              margin: '0 auto 18px' 
-            }} 
-          />
-
-          <p 
-            style={{ 
-              fontSize: 'clamp(1rem, 1.5vw, 1.2rem)', 
-              color: '#CBD5E1', 
-              maxWidth: '720px', 
-              margin: '0 auto 28px',
-              lineHeight: '1.65'
-            }}
-          >
+          {/* Subtitle */}
+          <p className="page-hero-subtitle">
             Compare duration, eligibility criteria, specialization pathways, verified placement packages, and career roles across India&apos;s leading disciplines.
           </p>
 
-          {/* Quick Stats Ribbon */}
-          <div 
-            style={{ 
-              display: 'flex', 
-              justifyContent: 'center', 
-              gap: '24px', 
-              flexWrap: 'wrap',
-              marginTop: '10px'
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', color: '#F1F5F9' }}>
-              <ShieldCheck size={16} color="var(--orange-primary)" />
+          {/* Trust Value Badges */}
+          <div className="hero-trust-row" style={{ marginBottom: 0 }}>
+            <div className="hero-trust-pill">
+              <ShieldCheck size={15} color="var(--orange-primary)" />
               <span>100% Free Career Guidance</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', color: '#F1F5F9' }}>
-              <CheckCircle2 size={16} color="var(--orange-primary)" />
+            <div className="hero-trust-pill">
+              <CheckCircle2 size={15} color="var(--orange-primary)" />
               <span>200+ Leading Management &amp; Tech Institutes</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', color: '#F1F5F9' }}>
-              <Award size={16} color="var(--orange-primary)" />
+            <div className="hero-trust-pill">
+              <Award size={15} color="var(--orange-primary)" />
               <span>Verified Placement Metrics</span>
             </div>
           </div>
@@ -380,31 +366,46 @@ export default function CoursesPage() {
       </section>
 
       {/* =========================================================================
-          FILTER & SEARCH BAR (UNIFIED STICKY TOOLBAR)
+          FILTER & SEARCH BAR (UNIFIED STICKY TOOLBAR WITH DROPDOWNS)
           ========================================================================= */}
       <section className="courses-toolbar-section">
         <div className="container">
           <div className="courses-toolbar-container">
-            {/* Category Filter Pills */}
-            <div className="courses-filter-pills-row">
-              {categories.map((cat) => {
-                const isSelected = activeCategory === cat.id;
-                return (
-                  <button
-                    key={cat.id}
-                    onClick={() => setActiveCategory(cat.id)}
-                    className={`course-filter-chip ${isSelected ? 'active' : ''}`}
-                  >
-                    <span style={{ color: isSelected ? '#FA6400' : '#64748B', display: 'flex' }}>
-                      {getCategoryIcon(cat.id)}
-                    </span>
-                    <span>{cat.label}</span>
-                    <span className="chip-count">
-                      {getCategoryCount(cat.id)}
-                    </span>
-                  </button>
-                );
-              })}
+            {/* Custom Filter Dropdowns: Stream & Level */}
+            <div className="colleges-filter-dropdowns-row">
+              <CollegeFilterDropdown
+                label="Stream"
+                ariaLabel="Filter by Academic Stream"
+                icon={<GraduationCap size={16} />}
+                options={streamOptionsWithCount}
+                selectedValue={selectedStream}
+                onChange={setSelectedStream}
+              />
+
+              <CollegeFilterDropdown
+                label="Level"
+                ariaLabel="Filter by Degree Level"
+                icon={<Award size={16} />}
+                options={levelOptionsWithCount}
+                selectedValue={selectedLevel}
+                onChange={setSelectedLevel}
+              />
+
+              {/* Reset Button (only shown if a filter is active) */}
+              {(selectedStream !== 'all' || selectedLevel !== 'all') && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedStream('all');
+                    setSelectedLevel('all');
+                  }}
+                  className="filter-reset-pill-btn"
+                  title="Reset all filters"
+                >
+                  <X size={13} />
+                  <span>Reset</span>
+                </button>
+              )}
             </div>
 
             {/* Unified Search Input */}
@@ -438,40 +439,60 @@ export default function CoursesPage() {
         <div className="container">
           {/* Header row with count & active filter badges */}
           <div style={{ marginBottom: '28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
               <span style={{ fontSize: '0.92rem', color: '#64748B', fontWeight: '600' }}>
                 Showing <strong style={{ color: '#0A3871' }}>{filteredCourses.length}</strong> verified career {filteredCourses.length === 1 ? 'program' : 'programs'}
               </span>
-              {searchQuery && (
-                <span 
-                  style={{ 
-                    fontSize: '0.78rem', 
-                    background: '#FFF5EE', 
-                    color: '#FA6400', 
-                    padding: '2px 10px', 
-                    borderRadius: '9999px',
-                    fontWeight: '700',
-                    border: '1px solid rgba(250, 100, 0, 0.2)',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '4px'
-                  }}
-                >
-                  Search: &ldquo;{searchQuery}&rdquo;
-                  <button 
-                    onClick={() => setSearchQuery('')} 
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: '#FA6400', display: 'flex' }}
-                  >
+
+              {/* Active Stream Tag */}
+              {selectedStream !== 'all' && (
+                <span className="active-filter-badge">
+                  Stream: {streamOptions.find(s => s.id === selectedStream)?.label}
+                  <button onClick={() => setSelectedStream('all')} aria-label="Remove stream filter">
                     <X size={12} />
                   </button>
                 </span>
               )}
+
+              {/* Active Level Tag */}
+              {selectedLevel !== 'all' && (
+                <span className="active-filter-badge">
+                  Level: {levelOptions.find(l => l.id === selectedLevel)?.label}
+                  <button onClick={() => setSelectedLevel('all')} aria-label="Remove level filter">
+                    <X size={12} />
+                  </button>
+                </span>
+              )}
+
+              {/* Active Search Tag */}
+              {searchQuery && (
+                <span className="active-filter-badge">
+                  Search: &ldquo;{searchQuery}&rdquo;
+                  <button onClick={() => setSearchQuery('')} aria-label="Clear search">
+                    <X size={12} />
+                  </button>
+                </span>
+              )}
+
+              {/* Reset All Button */}
+              {(selectedStream !== 'all' || selectedLevel !== 'all' || searchQuery !== '') && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedStream('all');
+                    setSelectedLevel('all');
+                    setSearchQuery('');
+                  }}
+                  className="filter-reset-pill-btn"
+                  title="Clear all filters"
+                >
+                  <X size={12} />
+                  <span>Clear all</span>
+                </button>
+              )}
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px', fontSize: '0.84rem', color: '#64748B' }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                <Sparkles size={14} color="#FA6400" /> High-Placement Focus
-              </span>
               <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                 <ShieldCheck size={14} color="#0A3871" /> UGC / AICTE Verified
               </span>
@@ -481,17 +502,17 @@ export default function CoursesPage() {
           {/* Cards Grid */}
           <div className="courses-grid-cards">
             {filteredCourses.map((course) => {
-              const accentGradient = 
+              const accentGradient =
                 course.category === 'management' ? 'linear-gradient(90deg, #0A3871 0%, #FA6400 100%)' :
-                course.category === 'technology' ? 'linear-gradient(90deg, #0A3871 0%, #165EB8 100%)' :
-                course.category === 'law' ? 'linear-gradient(90deg, #0A3871 0%, #FF782D 100%)' :
-                'linear-gradient(90deg, #0A3871 0%, #062147 100%)';
+                  course.category === 'technology' ? 'linear-gradient(90deg, #0A3871 0%, #165EB8 100%)' :
+                    course.category === 'law' ? 'linear-gradient(90deg, #0A3871 0%, #FF782D 100%)' :
+                      'linear-gradient(90deg, #0A3871 0%, #062147 100%)';
 
-              const categoryLabel = 
+              const categoryLabel =
                 course.category === 'management' ? 'Management' :
-                course.category === 'technology' ? 'Technology' :
-                course.category === 'undergrad' ? 'Undergraduate' :
-                'Legal Studies';
+                  course.category === 'technology' ? 'Technology' :
+                    course.category === 'undergrad' ? 'Undergraduate' :
+                      'Legal Studies';
 
               return (
                 <div key={course.id} className="course-card-pro">
@@ -569,7 +590,7 @@ export default function CoursesPage() {
 
           {/* Empty State */}
           {filteredCourses.length === 0 && (
-            <div 
+            <div
               style={{
                 background: '#ffffff',
                 borderRadius: '20px',
@@ -581,7 +602,7 @@ export default function CoursesPage() {
                 margin: '30px auto'
               }}
             >
-              <div 
+              <div
                 style={{
                   width: '64px',
                   height: '64px',
@@ -603,7 +624,7 @@ export default function CoursesPage() {
                 We couldn&apos;t find any programs matching &ldquo;{searchQuery}&rdquo;. Try adjusting your keywords or clearing the category filter.
               </p>
               <button
-                onClick={() => { setSearchQuery(''); setActiveCategory('all'); }}
+                onClick={() => { setSearchQuery(''); setSelectedStream('all'); setSelectedLevel('all'); }}
                 className="btn btn-primary"
                 style={{ padding: '10px 22px', borderRadius: '8px', fontWeight: '700' }}
               >
@@ -619,7 +640,7 @@ export default function CoursesPage() {
           ========================================================================= */}
       <section style={{ padding: '0 0 80px', background: '#F8FAFC' }}>
         <div className="container">
-          <div 
+          <div
             style={{
               background: 'linear-gradient(135deg, #041630 0%, #0A3871 60%, #082852 100%)',
               borderRadius: '20px',
@@ -635,12 +656,12 @@ export default function CoursesPage() {
             }}
           >
             <div style={{ maxWidth: '680px' }}>
-              <span 
-                style={{ 
-                  color: 'var(--orange-primary)', 
-                  fontSize: '0.8rem', 
-                  fontWeight: '800', 
-                  textTransform: 'uppercase', 
+              <span
+                style={{
+                  color: 'var(--orange-primary)',
+                  fontSize: '0.8rem',
+                  fontWeight: '800',
+                  textTransform: 'uppercase',
                   letterSpacing: '0.08em',
                   background: 'rgba(250, 100, 0, 0.15)',
                   padding: '4px 12px',
@@ -651,10 +672,10 @@ export default function CoursesPage() {
               >
                 CONFUSED ABOUT CHOOSING THE RIGHT MBA OR PGDM COLLEGE?
               </span>
-              <h3 
-                style={{ 
-                  fontSize: 'clamp(1.5rem, 2.6vw, 2rem)', 
-                  color: '#ffffff', 
+              <h3
+                style={{
+                  fontSize: 'clamp(1.5rem, 2.6vw, 2rem)',
+                  color: '#ffffff',
                   fontWeight: '800',
                   marginBottom: '8px',
                   fontFamily: 'var(--font-outfit), sans-serif'
@@ -667,10 +688,10 @@ export default function CoursesPage() {
               </p>
             </div>
 
-            <button 
+            <button
               onClick={() => { setSelectedCoursePrefill('MBA'); setCounsellingModalOpen(true); }}
               className="btn btn-primary btn-lg"
-              style={{ 
+              style={{
                 whiteSpace: 'nowrap',
                 padding: '14px 28px',
                 borderRadius: '10px',

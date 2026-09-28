@@ -149,6 +149,13 @@ textarea {
   padding: 0 24px;
 }
 
+@media (max-width: 640px) {
+  .container,
+  .container-wide {
+    padding: 0 16px;
+  }
+}
+
 /* Gradient Text Utilities */
 .text-gradient-orange {
   background: linear-gradient(135deg, #FA6400 0%, #FF8A48 100%);
@@ -443,7 +450,9 @@ textarea {
     height: 64px;
   }
 
-  .login-btn {
+  .login-btn,
+  #header-guidance-btn,
+  .site-header-inner .btn-sm {
     display: none !important;
   }
 }
@@ -459,11 +468,6 @@ textarea {
 
   .brand-name {
     font-size: 1.15rem !important;
-  }
-
-  .site-header-inner .btn-sm {
-    padding: 7px 12px !important;
-    font-size: 0.8rem !important;
   }
 }
 
@@ -2071,12 +2075,12 @@ textarea {
   width: 62px;
   height: 62px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #FF782D 0%, #FA6400 100%);
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 30px rgba(250, 100, 0, 0.45);
+  box-shadow: 0 10px 28px rgba(18, 140, 126, 0.45);
   z-index: 90;
   transition: all var(--transition-spring);
   border: 2.5px solid #ffffff;
@@ -2084,7 +2088,21 @@ textarea {
 
 .floating-whatsapp-btn:hover {
   transform: scale(1.12) rotate(6deg);
-  box-shadow: 0 14px 35px rgba(250, 100, 0, 0.65);
+  box-shadow: 0 14px 35px rgba(37, 211, 102, 0.65);
+}
+
+@media (max-width: 768px) {
+  .floating-whatsapp-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .floating-whatsapp-btn svg {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 /* Modals */
@@ -2206,21 +2224,53 @@ textarea {
     flex-direction: column;
     max-width: 520px;
     max-height: 94vh;
+    border-radius: var(--radius-lg);
   }
 
   .modal-brand-sidebar {
-    width: 100%;
-    padding: 22px 20px;
+    display: none !important;
   }
 
   .modal-form-content {
     padding: 24px 20px;
+    border-radius: var(--radius-lg);
   }
 }
 
 @media (max-width: 576px) {
+  .modal-overlay {
+    padding: 12px;
+  }
+
+  .modal-box-premium {
+    max-height: 96vh;
+    border-radius: 16px;
+  }
+
   .modal-form-content {
     padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .modal-close-btn-premium {
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .modal-form-header-content {
+    padding-right: 38px;
+  }
+
+  .modal-form-header-content h3 {
+    font-size: 1.2rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .modal-form-header-content p {
+    font-size: 0.8rem !important;
+    margin-bottom: 14px !important;
   }
 }
 
@@ -2379,6 +2429,63 @@ textarea {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
+
+@media (max-width: 640px) {
+  .premium-college-card-body {
+    padding: 18px 16px;
+  }
+}
+
+/* Colleges Filter & Cards Grid */
+.colleges-filter-card {
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  padding: 26px 28px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: 36px;
+}
+
+.colleges-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  align-items: flex-end;
+}
+
+.colleges-filter-search-field {
+  grid-column: span 2;
+}
+
+.colleges-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 26px;
+}
+
+@media (max-width: 768px) {
+  .colleges-filter-card {
+    padding: 18px 14px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 22px;
+  }
+
+  .colleges-filter-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .colleges-filter-search-field {
+    grid-column: span 1 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .colleges-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
 }
 
 /* ==========================================================================
@@ -2611,12 +2718,24 @@ textarea {
   }
 
   .hero-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
     gap: 10px;
+  }
+
+  .hero-cta-row .btn {
+    width: 100%;
+    padding: 13px 20px;
+    font-size: 0.95rem;
+    justify-content: center;
   }
 
   .about-stats-ribbon {
     margin-top: -30px;
-    padding-bottom: 15px;
+    padding-bottom: 16px;
   }
 
   .about-stats-grid {
@@ -2626,66 +2745,33 @@ textarea {
 
   .about-stat-card {
     padding: 14px 12px;
-    gap: 10px;
+    gap: 8px;
     border-radius: 14px;
-  }
-
-  .about-stat-icon-wrap {
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-  }
-
-  .about-stat-val {
-    font-size: 1.3rem;
-  }
-
-  .about-stat-label {
-    font-size: 0.72rem;
-    line-height: 1.25;
-  }
-}
-
-@media (max-width: 520px) {
-  .hero-cta-row {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-  }
-
-  .hero-cta-row .btn {
-    width: 100%;
-    padding: 12px 20px;
-    font-size: 0.95rem;
-    justify-content: center;
-  }
-
-  .about-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-  }
-
-  .about-stat-card {
-    padding: 12px 10px;
-    gap: 8px;
     flex-direction: column;
     align-items: flex-start;
   }
 
   .about-stat-icon-wrap {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .about-stat-icon-wrap svg {
+    width: 20px;
+    height: 20px;
   }
 
   .about-stat-val {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    margin-top: 2px;
   }
 
   .about-stat-label {
-    font-size: 0.68rem;
+    font-size: 0.72rem;
+    line-height: 1.3;
+    color: var(--text-muted);
   }
 }
 
@@ -3528,12 +3614,25 @@ textarea.form-input::placeholder {
   transform: translateY(-1px);
 }
 
+@media (max-width: 440px) {
+  .course-card-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .course-btn-counsel,
+  .course-btn-explore {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* ==========================================================================
    COURSES TOOLBAR & FILTER BAR
    ========================================================================== */
 .courses-toolbar-section {
   position: sticky;
-  top: 72px;
+  top: 76px;
   z-index: 35;
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(12px);
@@ -3556,6 +3655,13 @@ textarea.form-input::placeholder {
     flex-direction: column-reverse;
     align-items: stretch;
     gap: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .courses-toolbar-section {
+    top: 64px;
+    padding: 10px 0;
   }
 }
 
@@ -3688,4 +3794,301 @@ textarea.form-input::placeholder {
 .courses-search-clear:hover {
   background: #CBD5E1;
   color: #0F172A;
+}
+
+/* ==========================================================================
+   COLLEGES FILTER DROPDOWNS TOOLBAR & BADGES
+   ========================================================================== */
+.colleges-filter-dropdowns-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+/* ==========================================================================
+   CUSTOM FILTER DROPDOWN POPOVER
+   ========================================================================== */
+.custom-filter-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-filter-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 9999px;
+  padding: 0 14px;
+  height: 42px;
+  font-family: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #1E293B;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  white-space: nowrap;
+}
+
+.custom-filter-trigger:hover {
+  border-color: #0A3871;
+  background: #F8FAFC;
+  box-shadow: 0 4px 12px rgba(10, 56, 113, 0.08);
+}
+
+.custom-filter-trigger.active {
+  border-color: #0A3871;
+  background: #EEF5FF;
+  color: #0A3871;
+  font-weight: 700;
+}
+
+.custom-filter-trigger.open {
+  border-color: #0A3871;
+  box-shadow: 0 0 0 3px rgba(10, 56, 113, 0.12);
+}
+
+.custom-filter-trigger-icon {
+  display: flex;
+  align-items: center;
+  color: #0A3871;
+  flex-shrink: 0;
+}
+
+.custom-filter-trigger.active .custom-filter-trigger-icon {
+  color: #FA6400;
+}
+
+.custom-filter-trigger-label {
+  max-width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.custom-filter-trigger-count {
+  font-size: 0.74rem;
+  font-weight: 700;
+  background: #F1F5F9;
+  color: #64748B;
+  padding: 1px 7px;
+  border-radius: 9999px;
+  margin-left: 2px;
+}
+
+.custom-filter-trigger.active .custom-filter-trigger-count {
+  background: #0A3871;
+  color: #ffffff;
+}
+
+.custom-filter-trigger-chevron {
+  display: flex;
+  align-items: center;
+  color: #64748B;
+  margin-left: 4px;
+  transition: transform 0.2s ease;
+}
+
+.custom-filter-trigger.open .custom-filter-trigger-chevron {
+  transform: rotate(180deg);
+  color: #0A3871;
+}
+
+/* Custom Dropdown Menu Panel */
+.custom-filter-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 260px;
+  max-width: 320px;
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  box-shadow: 0 16px 38px -6px rgba(10, 56, 113, 0.18), 0 3px 10px rgba(0, 0, 0, 0.05);
+  z-index: 100;
+  padding: 6px;
+  overflow: hidden;
+  animation: dropdownPop 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropdownPop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.custom-filter-menu-list {
+  max-height: 290px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.custom-filter-menu-list::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-filter-menu-list::-webkit-scrollbar-track {
+  background: #F1F5F9;
+  border-radius: 4px;
+}
+.custom-filter-menu-list::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+.custom-filter-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 12px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: #334155;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.custom-filter-option:hover {
+  background: #F8FAFC;
+  color: #0A3871;
+}
+
+.custom-filter-option.selected {
+  background: #EEF5FF;
+  color: #0A3871;
+  font-weight: 700;
+}
+
+.custom-filter-option-label {
+  flex: 1;
+  white-space: normal;
+  line-height: 1.3;
+}
+
+.custom-filter-option-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.custom-filter-option-count {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748B;
+  background: #F1F5F9;
+  padding: 1px 7px;
+  border-radius: 9999px;
+}
+
+.custom-filter-option.selected .custom-filter-option-count {
+  background: rgba(10, 56, 113, 0.1);
+  color: #0A3871;
+  font-weight: 700;
+}
+
+.custom-filter-divider {
+  height: 1px;
+  background: #F1F5F9;
+  margin: 4px 6px;
+}
+
+.filter-reset-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 14px;
+  height: 40px;
+  border-radius: 9999px;
+  border: 1px dashed #CBD5E1;
+  background: #F8FAFC;
+  color: #64748B;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-reset-pill-btn:hover {
+  background: #FEE2E2;
+  border-color: #F87171;
+  color: #B91C1C;
+}
+
+.active-filter-badge {
+  font-size: 0.78rem;
+  background: #FFF5EE;
+  color: #FA6400;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-weight: 700;
+  border: 1px solid rgba(250, 100, 0, 0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.active-filter-badge button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #FA6400;
+  display: flex;
+  align-items: center;
+}
+
+.active-filter-badge button:hover {
+  color: #B91C1C;
+}
+
+@media (max-width: 960px) {
+  .colleges-filter-dropdowns-row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .custom-filter-dropdown {
+    flex: 1 1 calc(50% - 8px);
+  }
+
+  .custom-filter-trigger {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .custom-filter-trigger-label {
+    max-width: none;
+  }
+
+  .custom-filter-menu {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-filter-dropdown {
+    flex: 1 1 100%;
+  }
 }

@@ -7,9 +7,11 @@ import { Footer } from '@/components/Footer';
 import { CounsellingModal } from '@/components/CounsellingModal';
 import { InstitutionModal } from '@/components/InstitutionModal';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { 
-  Star, Quote, ArrowRight, CheckCircle2, GraduationCap, Users, 
-  ShieldCheck, Award, HeartHandshake, Building2 
+import { CollegeFilterDropdown } from '@/components/CollegeFilterDropdown';
+import {
+  Star, Quote, ArrowRight, CheckCircle2, GraduationCap, Users,
+  ShieldCheck, Award, HeartHandshake, Building2, Search, X,
+  Laptop, Briefcase, HeartPulse, Scale, Layers
 } from 'lucide-react';
 
 interface FullReview {
@@ -85,19 +87,101 @@ const ALL_REVIEWS: FullReview[] = [
     image: "/images/testimonial-rohan.jpg",
     quote: "From portfolio review to campus transition, ACE was with me at every milestone.",
     story: "Design entrance tests have unique portfolio requirements. The mentors at ACE arranged sessions with senior design students, giving me immense confidence during the studio test."
+  },
+  {
+    id: "6",
+    name: "Vikramaditya Roy",
+    role: "Student",
+    stream: "Management / MBA",
+    college: "SCMS & Top B-Schools",
+    city: "Noida, UP",
+    rating: 5,
+    image: "/images/testimonial-rohan.jpg",
+    quote: "Accurate placement realities instead of inflated marketing brochure figures.",
+    story: "ACE mapped out my GD-PI preparation and gave an honest breakdown of average CTC versus median CTC. Secured my preferred specialization with absolute peace of mind."
+  },
+  {
+    id: "7",
+    name: "Meera Nambiar",
+    role: "Student",
+    stream: "Medical & Health",
+    college: "KMC Manipal / Health Sciences",
+    city: "Lucknow, UP",
+    rating: 5,
+    image: "/images/testimonial-priya.jpg",
+    quote: "Steered us safely through all counseling rounds and seat allocations.",
+    story: "NEET counselling rules change every year. The counsellors guided us step-by-step through choice-filling, state quotas, and security deposit refunds without a single error."
+  },
+  {
+    id: "8",
+    name: "Tanvi Saxena",
+    role: "Student",
+    stream: "Design & Law",
+    college: "National Law University & Private Law Colleges",
+    city: "Prayagraj, UP",
+    rating: 5,
+    image: "/images/testimonial-ananya.jpg",
+    quote: "Mentors who understand corporate law internships and moot court culture.",
+    story: "Helped me choose between 5-year integrated BBA LLB and BA LLB programs based on my career ambition in corporate advisory rather than litigation."
   }
 ];
 
 export default function TestimonialsPage() {
   const [counsellingModalOpen, setCounsellingModalOpen] = useState(false);
   const [institutionModalOpen, setInstitutionModalOpen] = useState(false);
-  const [activeFilter, setActiveFilter] = useState('All');
+  const [selectedStream, setSelectedStream] = useState('all');
+  const [selectedRole, setSelectedRole] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const filterTabs = ['All', 'Engineering & Tech', 'Management / MBA', 'Medical & Health', 'Design & Law'];
+  const streamOptions = [
+    { id: 'all', label: 'All Streams' },
+    { id: 'Engineering & Tech', label: 'Engineering & Tech' },
+    { id: 'Management / MBA', label: 'Management / MBA' },
+    { id: 'Medical & Health', label: 'Medical & Health' },
+    { id: 'Design & Law', label: 'Design & Law' },
+  ];
 
-  const filteredReviews = activeFilter === 'All'
-    ? ALL_REVIEWS
-    : ALL_REVIEWS.filter(r => r.stream === activeFilter);
+  const roleOptions = [
+    { id: 'all', label: 'All Reviewers' },
+    { id: 'Student', label: 'Students' },
+    { id: 'Parents', label: 'Parents' },
+  ];
+
+  const getStreamCount = (streamId: string) => {
+    if (streamId === 'all') return ALL_REVIEWS.length;
+    return ALL_REVIEWS.filter(r => r.stream === streamId).length;
+  };
+
+  const getRoleCount = (roleId: string) => {
+    if (roleId === 'all') return ALL_REVIEWS.length;
+    return ALL_REVIEWS.filter(r => r.role === roleId).length;
+  };
+
+  const streamOptionsWithCount = streamOptions.map(opt => ({
+    ...opt,
+    count: getStreamCount(opt.id)
+  }));
+
+  const roleOptionsWithCount = roleOptions.map(opt => ({
+    ...opt,
+    count: getRoleCount(opt.id)
+  }));
+
+  const filteredReviews = ALL_REVIEWS.filter((rev) => {
+    const matchesStream = selectedStream === 'all' || rev.stream === selectedStream;
+    const matchesRole = selectedRole === 'all' || rev.role === selectedRole;
+    const q = searchQuery.toLowerCase().trim();
+    const matchesSearch = q === '' ||
+      rev.name.toLowerCase().includes(q) ||
+      rev.role.toLowerCase().includes(q) ||
+      rev.stream.toLowerCase().includes(q) ||
+      rev.college.toLowerCase().includes(q) ||
+      rev.city.toLowerCase().includes(q) ||
+      rev.quote.toLowerCase().includes(q) ||
+      rev.story.toLowerCase().includes(q);
+
+    return matchesStream && matchesRole && matchesSearch;
+  });
 
   return (
     <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -129,8 +213,7 @@ export default function TestimonialsPage() {
 
           {/* Subtitle */}
           <p className="page-hero-subtitle">
-            Discover how thousands of students and parents navigated complex admission procedures, avoided expensive capitation traps, 
-            and secured merit admissions at top universities across India with ACE MY CAMPUS.
+            Discover how students and parents navigated admissions, avoided capitation fees, and secured merit seats with ACE MY CAMPUS.
           </p>
 
           {/* Trust Value Badges */}
@@ -149,163 +232,242 @@ export default function TestimonialsPage() {
             </div>
           </div>
 
-          {/* CTA Row */}
-          <div className="hero-cta-row">
-            <button 
-              onClick={() => setCounsellingModalOpen(true)}
-              className="btn btn-primary btn-lg"
-              style={{ boxShadow: '0 12px 30px rgba(250, 100, 0, 0.4)' }}
-            >
-              <span>Book Free 1-on-1 Consultation</span>
-              <ArrowRight size={18} />
-            </button>
-            <a 
-              href="#student-reviews"
-              className="btn btn-outline-white btn-lg"
-            >
-              <span>Read Student Journeys</span>
-            </a>
-          </div>
         </div>
       </section>
 
       {/* =========================================================================
-          IMPACT STATS RIBBON (FLOATING)
+          FILTER & SEARCH BAR (UNIFIED STICKY TOOLBAR WITH DROPDOWNS)
           ========================================================================= */}
-      <section className="about-stats-ribbon">
+      <section className="courses-toolbar-section">
         <div className="container">
-          <div className="about-stats-grid">
-            <div className="about-stat-card">
-              <div className="about-stat-icon-wrap" style={{ background: 'var(--orange-light)', color: 'var(--orange-primary)' }}>
-                <Users size={26} />
-              </div>
-              <div>
-                <div className="about-stat-val">5000+</div>
-                <div className="about-stat-label">Students Counselled (Free)</div>
-              </div>
+          <div className="courses-toolbar-container">
+            {/* Custom Filter Dropdowns: Stream & Reviewer */}
+            <div className="colleges-filter-dropdowns-row">
+              <CollegeFilterDropdown
+                label="Stream"
+                ariaLabel="Filter by Academic Stream"
+                icon={<GraduationCap size={16} />}
+                options={streamOptionsWithCount}
+                selectedValue={selectedStream}
+                onChange={setSelectedStream}
+              />
+
+              <CollegeFilterDropdown
+                label="Reviewer"
+                ariaLabel="Filter by Reviewer Type"
+                icon={<Users size={16} />}
+                options={roleOptionsWithCount}
+                selectedValue={selectedRole}
+                onChange={setSelectedRole}
+              />
+
+              {/* Reset Button (only shown if a filter is active) */}
+              {(selectedStream !== 'all' || selectedRole !== 'all') && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedStream('all');
+                    setSelectedRole('all');
+                  }}
+                  className="filter-reset-pill-btn"
+                  title="Reset all filters"
+                >
+                  <X size={13} />
+                  <span>Reset</span>
+                </button>
+              )}
             </div>
 
-            <div className="about-stat-card">
-              <div className="about-stat-icon-wrap" style={{ background: 'var(--blue-light)', color: 'var(--navy-primary)' }}>
-                <Star size={26} />
-              </div>
-              <div>
-                <div className="about-stat-val">2500+</div>
-                <div className="about-stat-label">Successful Admissions Secured</div>
-              </div>
-            </div>
-
-            <div className="about-stat-card">
-              <div className="about-stat-icon-wrap" style={{ background: 'var(--orange-light)', color: 'var(--orange-primary)' }}>
-                <Award size={26} />
-              </div>
-              <div>
-                <div className="about-stat-val">100%</div>
-                <div className="about-stat-label">Placement &amp; Admission Support</div>
-              </div>
-            </div>
-
-            <div className="about-stat-card">
-              <div className="about-stat-icon-wrap" style={{ background: 'var(--blue-light)', color: 'var(--navy-primary)' }}>
-                <Building2 size={26} />
-              </div>
-              <div>
-                <div className="about-stat-val">200+</div>
-                <div className="about-stat-label">Partner Institutions Across India</div>
-              </div>
+            {/* Unified Search Input */}
+            <div className="courses-search-wrap">
+              <input
+                type="text"
+                placeholder="Search reviews, students, colleges, stories..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="courses-search-input"
+              />
+              <Search size={16} className="courses-search-icon" />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="courses-search-clear"
+                  aria-label="Clear search"
+                >
+                  <X size={12} />
+                </button>
+              )}
             </div>
           </div>
         </div>
       </section>
 
       {/* Reviews Section */}
-      <section className="py-section" id="student-reviews" style={{ background: 'var(--bg-page)' }}>
+      <section className="py-section" id="student-reviews" style={{ background: 'var(--bg-page)', flexGrow: 1, paddingTop: '36px' }}>
         <div className="container">
-          {/* Stream Filter Pills */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '44px' }}>
-            {filterTabs.map((tab) => (
-              <button
-                type="button"
-                key={tab}
-                onClick={() => setActiveFilter(tab)}
-                style={{
-                  background: activeFilter === tab ? 'linear-gradient(135deg, var(--orange-vibrant), var(--orange-primary))' : '#ffffff',
-                  color: activeFilter === tab ? '#ffffff' : 'var(--navy-primary)',
-                  border: '1px solid',
-                  borderColor: activeFilter === tab ? 'var(--orange-primary)' : 'var(--border-subtle)',
-                  padding: '9px 22px',
-                  borderRadius: 'var(--radius-full)',
-                  fontWeight: '700',
-                  fontSize: '0.9rem',
-                  cursor: 'pointer',
-                  boxShadow: activeFilter === tab ? 'var(--shadow-orange)' : 'var(--shadow-sm)',
-                  transition: 'all var(--transition-fast)'
-                }}
-              >
-                {tab}
-              </button>
-            ))}
+          {/* Header row with count & active filter badges */}
+          <div style={{ marginBottom: '28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+              <span style={{ fontSize: '0.92rem', color: '#64748B', fontWeight: '600' }}>
+                Showing <strong style={{ color: '#0A3871' }}>{filteredReviews.length}</strong> verified {filteredReviews.length === 1 ? 'story' : 'stories'}
+              </span>
+
+              {/* Active Stream Tag */}
+              {selectedStream !== 'all' && (
+                <span className="active-filter-badge">
+                  Stream: {streamOptions.find(t => t.id === selectedStream)?.label}
+                  <button onClick={() => setSelectedStream('all')} aria-label="Remove stream filter">
+                    <X size={12} />
+                  </button>
+                </span>
+              )}
+
+              {/* Active Reviewer Tag */}
+              {selectedRole !== 'all' && (
+                <span className="active-filter-badge">
+                  Reviewer: {roleOptions.find(r => r.id === selectedRole)?.label}
+                  <button onClick={() => setSelectedRole('all')} aria-label="Remove reviewer filter">
+                    <X size={12} />
+                  </button>
+                </span>
+              )}
+
+              {/* Active Search Tag */}
+              {searchQuery && (
+                <span className="active-filter-badge">
+                  Search: &ldquo;{searchQuery}&rdquo;
+                  <button onClick={() => setSearchQuery('')} aria-label="Clear search">
+                    <X size={12} />
+                  </button>
+                </span>
+              )}
+
+              {/* Reset All Button */}
+              {(selectedStream !== 'all' || selectedRole !== 'all' || searchQuery !== '') && (
+                <button
+                  type="button"
+                  onClick={() => { setSelectedStream('all'); setSelectedRole('all'); setSearchQuery(''); }}
+                  className="filter-reset-pill-btn"
+                  title="Clear all filters"
+                >
+                  <X size={12} />
+                  <span>Clear all</span>
+                </button>
+              )}
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px', fontSize: '0.84rem', color: '#64748B' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <Star size={14} fill="#F59E0B" color="#F59E0B" /> 100% Genuine Reviews
+              </span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <ShieldCheck size={14} color="#0A3871" /> Verified Admissions
+              </span>
+            </div>
           </div>
 
-          {/* Reviews Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '30px' }}>
-            {filteredReviews.map((rev) => (
-              <div 
-                key={rev.id}
+          {/* Reviews Grid or Empty State */}
+          {filteredReviews.length > 0 ? (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '30px' }}>
+              {filteredReviews.map((rev) => (
+                <div
+                  key={rev.id}
+                  style={{
+                    background: '#ffffff',
+                    borderRadius: 'var(--radius-xl)',
+                    border: '1px solid var(--border-subtle)',
+                    padding: '36px',
+                    boxShadow: 'var(--shadow-md)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    position: 'relative',
+                    transition: 'transform 250ms ease, box-shadow 250ms ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-6px)';
+                    e.currentTarget.style.boxShadow = 'var(--shadow-xl)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '18px' }}>
+                    <div style={{ display: 'flex', gap: '4px' }}>
+                      {[...Array(rev.rating)].map((_, i) => (
+                        <Star key={i} size={18} fill="#F59E0B" color="#F59E0B" />
+                      ))}
+                    </div>
+                    <span style={{ fontSize: '0.75rem', fontWeight: '800', background: 'var(--blue-light)', color: 'var(--navy-primary)', padding: '4px 12px', borderRadius: 'var(--radius-full)', border: '1px solid rgba(10, 56, 113, 0.2)' }}>
+                      {rev.role}
+                    </span>
+                  </div>
+
+                  <h4 style={{ fontSize: '1.2rem', color: 'var(--navy-primary)', fontWeight: '800', marginBottom: '14px', lineHeight: '1.4' }}>
+                    &ldquo;{rev.quote}&rdquo;
+                  </h4>
+
+                  <p style={{ fontSize: '0.95rem', color: 'var(--text-body)', lineHeight: '1.7', marginBottom: '26px', flexGrow: 1 }}>
+                    {rev.story}
+                  </p>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px', paddingTop: '20px', borderTop: '1px solid var(--border-subtle)' }}>
+                    <img
+                      src={rev.image}
+                      alt={rev.name}
+                      style={{ width: '56px', height: '56px', borderRadius: '50%', objectFit: 'cover', border: '2.5px solid var(--orange-primary)', boxShadow: '0 4px 10px rgba(250, 100, 0, 0.25)' }}
+                    />
+                    <div>
+                      <div style={{ fontWeight: '800', color: 'var(--navy-primary)', fontSize: '1.05rem' }}>{rev.name}</div>
+                      <div style={{ fontSize: '0.825rem', color: 'var(--navy-primary)', fontWeight: '700' }}>{rev.college}</div>
+                      <div style={{ fontSize: '0.775rem', color: 'var(--text-muted)' }}>{rev.city}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div
+              style={{
+                background: '#ffffff',
+                borderRadius: '16px',
+                border: '1px dashed #CBD5E1',
+                padding: '60px 24px',
+                textAlign: 'center',
+                maxWidth: '560px',
+                margin: '40px auto'
+              }}
+            >
+              <div
                 style={{
-                  background: '#ffffff',
-                  borderRadius: 'var(--radius-xl)',
-                  border: '1px solid var(--border-subtle)',
-                  padding: '36px',
-                  boxShadow: 'var(--shadow-md)',
+                  width: '64px',
+                  height: '64px',
+                  borderRadius: '50%',
+                  background: '#FFF5EE',
                   display: 'flex',
-                  flexDirection: 'column',
-                  position: 'relative',
-                  transition: 'transform 250ms ease, box-shadow 250ms ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-6px)';
-                  e.currentTarget.style.boxShadow = 'var(--shadow-xl)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 16px',
+                  color: 'var(--orange-primary)'
                 }}
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '18px' }}>
-                  <div style={{ display: 'flex', gap: '4px' }}>
-                    {[...Array(rev.rating)].map((_, i) => (
-                      <Star key={i} size={18} fill="#F59E0B" color="#F59E0B" />
-                    ))}
-                  </div>
-                  <span style={{ fontSize: '0.75rem', fontWeight: '800', background: 'var(--blue-light)', color: 'var(--navy-primary)', padding: '4px 12px', borderRadius: 'var(--radius-full)', border: '1px solid rgba(10, 56, 113, 0.2)' }}>
-                    {rev.role}
-                  </span>
-                </div>
-
-                <h4 style={{ fontSize: '1.2rem', color: 'var(--navy-primary)', fontWeight: '800', marginBottom: '14px', lineHeight: '1.4' }}>
-                  &ldquo;{rev.quote}&rdquo;
-                </h4>
-
-                <p style={{ fontSize: '0.95rem', color: 'var(--text-body)', lineHeight: '1.7', marginBottom: '26px', flexGrow: 1 }}>
-                  {rev.story}
-                </p>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '16px', paddingTop: '20px', borderTop: '1px solid var(--border-subtle)' }}>
-                  <img 
-                    src={rev.image} 
-                    alt={rev.name} 
-                    style={{ width: '56px', height: '56px', borderRadius: '50%', objectFit: 'cover', border: '2.5px solid var(--orange-primary)', boxShadow: '0 4px 10px rgba(250, 100, 0, 0.25)' }}
-                  />
-                  <div>
-                    <div style={{ fontWeight: '800', color: 'var(--navy-primary)', fontSize: '1.05rem' }}>{rev.name}</div>
-                    <div style={{ fontSize: '0.825rem', color: 'var(--navy-primary)', fontWeight: '700' }}>{rev.college}</div>
-                    <div style={{ fontSize: '0.775rem', color: 'var(--text-muted)' }}>{rev.city}</div>
-                  </div>
-                </div>
+                <Search size={28} />
               </div>
-            ))}
-          </div>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--navy-primary)', marginBottom: '8px' }}>
+                No stories found
+              </h3>
+              <p style={{ color: '#64748B', fontSize: '0.92rem', marginBottom: '20px', lineHeight: '1.6' }}>
+                We couldn&apos;t find any reviews matching your search criteria. Try adjusting your search keywords or switching streams.
+              </p>
+              <button
+                onClick={() => { setSearchQuery(''); setSelectedStream('all'); setSelectedRole('all'); }}
+                className="btn btn-primary"
+                style={{ padding: '10px 22px', borderRadius: '8px', fontWeight: '700' }}
+              >
+                Reset All Filters
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

@@ -5,7 +5,7 @@ import { Building2, Users, Award, Sparkles, GraduationCap } from 'lucide-react';
 
 export const TrustStats: React.FC = () => {
   return (
-    <section style={{ padding: '110px 0 80px', background: '#ffffff', position: 'relative' }}>
+    <section className="py-section" style={{ background: '#ffffff', position: 'relative' }}>
       <div className="container text-center">
         {/* Section Header as per Slide 5 */}
         <div style={{ maxWidth: '750px', margin: '0 auto 48px', textAlign: 'center' }}>

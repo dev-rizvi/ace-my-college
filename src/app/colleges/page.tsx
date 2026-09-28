@@ -7,9 +7,11 @@ import { FinalCta } from '@/components/FinalCta';
 import { CounsellingModal } from '@/components/CounsellingModal';
 import { InstitutionModal } from '@/components/InstitutionModal';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { CollegeFilterDropdown } from '@/components/CollegeFilterDropdown';
 import { COLLEGES } from '@/lib/mock-data';
-import { 
-  MapPin, Award, Filter, ArrowRight, Sparkles, Building2, ShieldCheck, TrendingUp, GraduationCap, CheckCircle2 
+import {
+  MapPin, Award, ArrowRight, Sparkles, Building2, ShieldCheck, GraduationCap, CheckCircle2,
+  Search, X, Briefcase, Laptop, Scale, HeartPulse, Layers, ChevronDown
 } from 'lucide-react';
 
 export default function CollegesPage() {
@@ -17,35 +19,63 @@ export default function CollegesPage() {
   const [institutionModalOpen, setInstitutionModalOpen] = useState(false);
   const [enquiringCollege, setEnquiringCollege] = useState('');
 
-  const [selectedStream, setSelectedStream] = useState('All Streams');
-  const [selectedCity, setSelectedCity] = useState('All Locations');
+  const [selectedStream, setSelectedStream] = useState<string>('all');
+  const [selectedCity, setSelectedCity] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const streams = [
-    'All Streams',
-    'Engineering & Technology',
-    'Medical & Health Sciences',
-    'Management & Commerce',
-    'Law & Legal Studies',
-    'Design & Architecture'
+  const streamOptions = [
+    { id: 'all', label: 'All Streams' },
+    { id: 'engineering', label: 'Engineering & Technology' },
+    { id: 'management', label: 'Management & Commerce' },
+    { id: 'medical', label: 'Medical & Health Sciences' },
+    { id: 'law', label: 'Law & Legal Studies' },
+    { id: 'applied', label: 'Applied Sciences' },
   ];
 
-  const cities = [
-    'All Locations',
-    'Lucknow',
-    'Greater Noida',
-    'Ghaziabad',
-    'Dehradun'
+  const cityOptions = [
+    { id: 'all', label: 'All Locations' },
+    { id: 'lucknow', label: 'Lucknow, UP' },
+    { id: 'greater noida', label: 'Greater Noida, UP' },
+    { id: 'ghaziabad', label: 'Ghaziabad, UP' },
+    { id: 'dehradun', label: 'Dehradun, UK' },
   ];
+
+  const getStreamCount = (streamId: string) => {
+    if (streamId === 'all') return COLLEGES.length;
+    return COLLEGES.filter(c => c.streams.some(s => s.toLowerCase().includes(streamId.toLowerCase()))).length;
+  };
+
+  const getCityCount = (cityId: string) => {
+    if (cityId === 'all') return COLLEGES.length;
+    return COLLEGES.filter(c => c.city.toLowerCase().includes(cityId.toLowerCase())).length;
+  };
+
+  const streamOptionsWithCount = streamOptions.map(opt => ({
+    ...opt,
+    count: getStreamCount(opt.id)
+  }));
+
+  const cityOptionsWithCount = cityOptions.map(opt => ({
+    ...opt,
+    count: getCityCount(opt.id)
+  }));
 
   const filteredColleges = COLLEGES.filter((col) => {
-    const matchesStream = selectedStream === 'All Streams' || col.streams.some(s => s.toLowerCase().includes(selectedStream.toLowerCase()));
-    const matchesCity = selectedCity === 'All Locations' || col.city.toLowerCase().includes(selectedCity.toLowerCase()) || col.state.toLowerCase().includes(selectedCity.toLowerCase());
-    const matchesSearch = searchQuery === '' || 
+    const matchesStream = selectedStream === 'all' ||
+      col.streams.some(s => s.toLowerCase().includes(selectedStream.toLowerCase()));
+
+    const matchesCity = selectedCity === 'all' ||
+      col.city.toLowerCase().includes(selectedCity.toLowerCase());
+
+    const matchesSearch = searchQuery === '' ||
       col.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       col.shortName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       col.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      col.streams.some(s => s.toLowerCase().includes(searchQuery.toLowerCase()));
+      col.state.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      col.streams.some(s => s.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (col.campusType && col.campusType.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      col.accreditation.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      col.tagline.toLowerCase().includes(searchQuery.toLowerCase());
 
     return matchesStream && matchesCity && matchesSearch;
   });
@@ -85,8 +115,7 @@ export default function CollegesPage() {
 
           {/* Subtitle */}
           <p className="page-hero-subtitle">
-            Filter accredited institutions across Lucknow, Uttar Pradesh, and nationwide by actual fee structures, 
-            verified placement statistics, and genuine campus reviews with zero hidden capitation fees.
+            Compare accredited institutions by verified fees, placements & genuine reviews—no hidden capitation fees.
           </p>
 
           {/* Trust Value Badges */}
@@ -105,153 +134,175 @@ export default function CollegesPage() {
             </div>
           </div>
 
-          {/* CTA Row */}
+          {/* CTA Row 
           <div className="hero-cta-row">
-            <button 
+            <button
               onClick={() => { setEnquiringCollege(''); setCounsellingModalOpen(true); }}
-              className="btn btn-primary btn-lg"
+              className="btn btn-primary"
               style={{ boxShadow: '0 12px 30px rgba(250, 100, 0, 0.4)' }}
             >
               <span>Get Free College Advisory</span>
               <ArrowRight size={18} />
             </button>
-            <a 
+            <a
               href="#college-filters"
-              className="btn btn-outline-white btn-lg"
+              className="btn btn-outline-white"
             >
               <span>Filter 500+ Campuses</span>
             </a>
+          </div>*/}
+        </div>
+      </section>
+
+      {/* =========================================================================
+          FILTER & SEARCH BAR (UNIFIED STICKY TOOLBAR MATCHING COURSES)
+          ========================================================================= */}
+      <section className="courses-toolbar-section">
+        <div className="container">
+          <div className="courses-toolbar-container">
+            {/* Custom Filter Dropdowns: Stream & Location */}
+            <div className="colleges-filter-dropdowns-row">
+              <CollegeFilterDropdown
+                label="Stream"
+                ariaLabel="Filter by Academic Stream"
+                icon={<GraduationCap size={16} />}
+                options={streamOptionsWithCount}
+                selectedValue={selectedStream}
+                onChange={setSelectedStream}
+              />
+
+              <CollegeFilterDropdown
+                label="Location"
+                ariaLabel="Filter by City or Location"
+                icon={<MapPin size={16} />}
+                options={cityOptionsWithCount}
+                selectedValue={selectedCity}
+                onChange={setSelectedCity}
+              />
+
+              {/* Reset Button (only shown if a filter is active) */}
+              {(selectedStream !== 'all' || selectedCity !== 'all') && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedStream('all');
+                    setSelectedCity('all');
+                  }}
+                  className="filter-reset-pill-btn"
+                  title="Reset all filters"
+                >
+                  <X size={13} />
+                  <span>Reset</span>
+                </button>
+              )}
+            </div>
+
+            {/* Unified Search Input */}
+            <div className="courses-search-wrap">
+              <input
+                type="text"
+                placeholder="Search colleges, cities, streams..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="courses-search-input"
+              />
+              <Search size={16} className="courses-search-icon" />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="courses-search-clear"
+                  aria-label="Clear search"
+                >
+                  <X size={12} />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          IMPACT STATS RIBBON (FLOATING)
+          COLLEGES LISTING GRID (RESPONSIVE CARDS)
           ========================================================================= */}
-      <section className="about-stats-ribbon">
+      <section style={{ padding: '36px 0 80px', flexGrow: 1 }}>
         <div className="container">
-          <div className="about-stats-grid">
-            <div className="about-stat-card">
-              <div className="about-stat-icon-wrap" style={{ background: 'var(--blue-light)', color: 'var(--navy-primary)' }}>
-                <Building2 size={26} />
-              </div>
-              <div>
-                <div className="about-stat-val">500+</div>
-                <div className="about-stat-label">Accredited Partner Campuses</div>
-              </div>
-            </div>
+          {/* Header row with count & active filter badges */}
+          <div style={{ marginBottom: '28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+              <span style={{ fontSize: '0.92rem', color: '#64748B', fontWeight: '600' }}>
+                Showing <strong style={{ color: '#0A3871' }}>{filteredColleges.length}</strong> verified {filteredColleges.length === 1 ? 'institution' : 'institutions'}
+              </span>
 
-            <div className="about-stat-card">
-              <div className="about-stat-icon-wrap" style={{ background: 'var(--orange-light)', color: 'var(--orange-primary)' }}>
-                <TrendingUp size={26} />
-              </div>
-              <div>
-                <div className="about-stat-val">₹18.5 LPA</div>
-                <div className="about-stat-label">Peak Verified Salary Package</div>
-              </div>
-            </div>
+              {/* Active Stream Tag */}
+              {selectedStream !== 'all' && (
+                <span className="active-filter-badge">
+                  Stream: {streamOptions.find(s => s.id === selectedStream)?.label}
+                  <button onClick={() => setSelectedStream('all')} aria-label="Remove stream filter">
+                    <X size={12} />
+                  </button>
+                </span>
+              )}
 
-            <div className="about-stat-card">
-              <div className="about-stat-icon-wrap" style={{ background: 'var(--blue-light)', color: 'var(--navy-primary)' }}>
-                <ShieldCheck size={26} />
-              </div>
-              <div>
-                <div className="about-stat-val">₹0</div>
-                <div className="about-stat-label">Capitation / Donation Policy</div>
-              </div>
-            </div>
+              {/* Active City Tag */}
+              {selectedCity !== 'all' && (
+                <span className="active-filter-badge">
+                  City: {cityOptions.find(c => c.id === selectedCity)?.label}
+                  <button onClick={() => setSelectedCity('all')} aria-label="Remove city filter">
+                    <X size={12} />
+                  </button>
+                </span>
+              )}
 
-            <div className="about-stat-card">
-              <div className="about-stat-icon-wrap" style={{ background: 'var(--orange-light)', color: 'var(--orange-primary)' }}>
-                <GraduationCap size={26} />
-              </div>
-              <div>
-                <div className="about-stat-val">25+</div>
-                <div className="about-stat-label">Specialised Career Streams</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+              {/* Active Search Tag */}
+              {searchQuery && (
+                <span className="active-filter-badge">
+                  Search: &ldquo;{searchQuery}&rdquo;
+                  <button onClick={() => setSearchQuery('')} aria-label="Clear search">
+                    <X size={12} />
+                  </button>
+                </span>
+              )}
 
-      {/* Filter and Content Section */}
-      <section className="py-section" id="college-filters" style={{ background: 'var(--bg-page)' }}>
-        <div className="container">
-          {/* Main Filter Toolbar */}
-          <div 
-            style={{ 
-              background: '#ffffff', 
-              borderRadius: 'var(--radius-xl)', 
-              padding: '28px', 
-              boxShadow: 'var(--shadow-md)', 
-              border: '1px solid var(--border-subtle)',
-              marginBottom: '36px'
-            }}
-          >
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '18px', alignItems: 'flex-end' }}>
-              <div className="form-group">
-                <label className="form-label">
-                  <Filter size={14} style={{ display: 'inline', marginRight: '4px' }} />
-                  Filter by Stream
-                </label>
-                <select
-                  className="form-select"
-                  value={selectedStream}
-                  onChange={(e) => setSelectedStream(e.target.value)}
-                >
-                  {streams.map((s, idx) => (
-                    <option key={idx} value={s}>{s}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="form-group">
-                <label className="form-label">Filter by Location</label>
-                <select
-                  className="form-select"
-                  value={selectedCity}
-                  onChange={(e) => setSelectedCity(e.target.value)}
-                >
-                  {cities.map((c, idx) => (
-                    <option key={idx} value={c}>{c}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="form-group" style={{ gridColumn: 'span 2' }}>
-                <label className="form-label">Search College or Keyword</label>
-                <input
-                  type="text"
-                  placeholder="e.g. BBDU, Amity, Lucknow, Engineering, MBA..."
-                  className="form-input"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
-
-              <div style={{ display: 'flex', gap: '10px' }}>
+              {(selectedStream !== 'all' || selectedCity !== 'all' || searchQuery) && (
                 <button
-                  type="button"
-                  onClick={() => { setSelectedStream('All Streams'); setSelectedCity('All Locations'); setSearchQuery(''); }}
-                  className="btn btn-outline btn-sm"
-                  style={{ width: '100%', height: '44px' }}
+                  onClick={() => {
+                    setSelectedStream('all');
+                    setSelectedCity('all');
+                    setSearchQuery('');
+                  }}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#64748B',
+                    fontSize: '0.8rem',
+                    textDecoration: 'underline',
+                    cursor: 'pointer',
+                    fontWeight: 600,
+                    padding: '2px 6px'
+                  }}
                 >
-                  Reset
+                  Clear all
                 </button>
-              </div>
+              )}
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px', fontSize: '0.84rem', color: '#64748B' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <ShieldCheck size={14} color="#0A3871" /> UGC / NAAC Verified
+              </span>
             </div>
           </div>
 
           {/* Colleges Cards Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '30px' }}>
+          <div className="colleges-cards-grid">
             {filteredColleges.map((col) => {
               return (
                 <div key={col.id} className="premium-college-card">
                   {/* Top Image Banner with Badges & Location Overlay */}
                   <div className="premium-college-card-img-wrapper">
-                    <img 
-                      src={col.image} 
-                      alt={col.name} 
+                    <img
+                      src={col.image}
+                      alt={col.name}
                       className="premium-college-card-img"
                       loading="lazy"
                     />
@@ -259,7 +310,7 @@ export default function CollegesPage() {
 
                     {/* Top Left: Featured Badge */}
                     {/* Top Badges Bar - flex container to guarantee ZERO overlap */}
-                    <div 
+                    <div
                       style={{
                         position: 'absolute',
                         top: '12px',
@@ -274,7 +325,7 @@ export default function CollegesPage() {
                       }}
                     >
                       {col.featured ? (
-                        <span 
+                        <span
                           style={{
                             fontSize: '0.725rem',
                             fontWeight: '800',
@@ -298,7 +349,7 @@ export default function CollegesPage() {
                       ) : <div />}
 
                       {col.accreditation && (
-                        <span 
+                        <span
                           style={{
                             fontSize: '0.725rem',
                             fontWeight: '700',
@@ -323,7 +374,7 @@ export default function CollegesPage() {
                     </div>
 
                     {/* Bottom Image Overlay: City & Est Year */}
-                    <div 
+                    <div
                       style={{
                         position: 'absolute',
                         bottom: '12px',
@@ -352,12 +403,12 @@ export default function CollegesPage() {
                   {/* Card Content Body */}
                   <div className="premium-college-card-body">
                     {/* College Title */}
-                    <h3 
-                      style={{ 
-                        fontSize: '1.25rem', 
-                        fontWeight: '800', 
-                        color: 'var(--navy-primary)', 
-                        lineHeight: '1.35', 
+                    <h3
+                      style={{
+                        fontSize: '1.25rem',
+                        fontWeight: '800',
+                        color: 'var(--navy-primary)',
+                        lineHeight: '1.35',
                         marginBottom: '10px',
                         minHeight: '2.7em',
                         display: '-webkit-box',
@@ -371,17 +422,17 @@ export default function CollegesPage() {
 
                     {/* Campus Specialization / Type Tag */}
                     {col.campusType && (
-                      <div 
-                        style={{ 
-                          display: 'inline-flex', 
-                          alignItems: 'center', 
-                          gap: '6px', 
-                          background: 'var(--blue-light)', 
-                          color: 'var(--navy-primary)', 
-                          padding: '4px 10px', 
-                          borderRadius: '6px', 
-                          fontSize: '0.775rem', 
-                          fontWeight: '700', 
+                      <div
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          background: 'var(--blue-light)',
+                          color: 'var(--navy-primary)',
+                          padding: '4px 10px',
+                          borderRadius: '6px',
+                          fontSize: '0.775rem',
+                          fontWeight: '700',
                           marginBottom: '12px',
                           border: '1px solid rgba(10, 56, 113, 0.12)',
                           width: 'fit-content'
@@ -393,11 +444,11 @@ export default function CollegesPage() {
                     )}
 
                     {/* Tagline / Description */}
-                    <p 
-                      style={{ 
-                        fontSize: '0.875rem', 
-                        color: '#475569', 
-                        lineHeight: '1.55', 
+                    <p
+                      style={{
+                        fontSize: '0.875rem',
+                        color: '#475569',
+                        lineHeight: '1.55',
                         marginBottom: '14px',
                         minHeight: '2.7em',
                         display: '-webkit-box',
@@ -412,7 +463,7 @@ export default function CollegesPage() {
                     {/* Available Program Streams */}
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '18px' }}>
                       {col.streams.slice(0, 3).map((stream, idx) => (
-                        <span 
+                        <span
                           key={idx}
                           style={{
                             fontSize: '0.725rem',
@@ -428,7 +479,7 @@ export default function CollegesPage() {
                         </span>
                       ))}
                       {col.streams.length > 3 && (
-                        <span 
+                        <span
                           style={{
                             fontSize: '0.725rem',
                             fontWeight: '700',
@@ -444,11 +495,11 @@ export default function CollegesPage() {
                     </div>
 
                     {/* Key Metrics: Fees, Avg Package, Highest Package */}
-                    <div 
-                      style={{ 
-                        background: 'var(--bg-subtle)', 
-                        borderRadius: 'var(--radius-md)', 
-                        padding: '12px 14px', 
+                    <div
+                      style={{
+                        background: 'var(--bg-subtle)',
+                        borderRadius: 'var(--radius-md)',
+                        padding: '12px 14px',
                         marginBottom: '20px',
                         display: 'grid',
                         gridTemplateColumns: '1.2fr 1fr 1fr',
@@ -484,12 +535,12 @@ export default function CollegesPage() {
 
                     {/* Action Button */}
                     <div style={{ marginTop: 'auto' }}>
-                      <button 
+                      <button
                         onClick={() => handleEnquire(col.name)}
                         className="btn btn-primary btn-sm"
-                        style={{ 
-                          width: '100%', 
-                          justifyContent: 'center', 
+                        style={{
+                          width: '100%',
+                          justifyContent: 'center',
                           height: '44px',
                           fontSize: '0.9rem',
                           fontWeight: '700',
@@ -506,6 +557,50 @@ export default function CollegesPage() {
               );
             })}
           </div>
+
+          {/* Empty State */}
+          {filteredColleges.length === 0 && (
+            <div
+              style={{
+                background: '#ffffff',
+                borderRadius: '20px',
+                border: '1px solid #E2E8F0',
+                padding: '60px 24px',
+                textAlign: 'center',
+                boxShadow: '0 4px 20px -2px rgba(10, 56, 113, 0.05)',
+                maxWidth: '540px',
+                margin: '30px auto'
+              }}
+            >
+              <div
+                style={{
+                  width: '64px',
+                  height: '64px',
+                  borderRadius: '50%',
+                  background: 'rgba(250, 100, 0, 0.1)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 16px',
+                  color: 'var(--orange-primary)'
+                }}
+              >
+                <Search size={28} />
+              </div>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--navy-primary)', marginBottom: '8px' }}>
+                No colleges found
+              </h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '20px' }}>
+                No partner campuses match your selected category or search keyword.
+              </p>
+              <button
+                onClick={() => { setSelectedStream('all'); setSelectedCity('all'); setSearchQuery(''); }}
+                className="btn btn-primary btn-sm"
+              >
+                Clear All Filters
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

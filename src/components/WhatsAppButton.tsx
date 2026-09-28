@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { MessageSquare } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const WhatsAppButton: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ export const WhatsAppButton: React.FC = () => {
       aria-label="Chat with ACE MY CAMPUS on WhatsApp"
       title="Chat with our Lucknow counsellors on WhatsApp"
     >
-      <MessageSquare size={28} />
+      <WhatsAppIcon size={30} />
     </a>
   );
 };
