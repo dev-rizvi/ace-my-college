@@ -16,7 +16,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const [course, setCourse] = useState('MBA');
+  const [course, setCourse] = useState('');
   const [location, setLocation] = useState('');
   const [targetCollege, setTargetCollege] = useState('');
   const [agreed, setAgreed] = useState(true);
@@ -99,88 +99,98 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
     <section 
       style={{
         position: 'relative',
-        backgroundImage: `linear-gradient(135deg, rgba(4, 22, 48, 0.94) 0%, rgba(10, 56, 113, 0.88) 45%, rgba(6, 33, 71, 0.65) 100%), url('/images/hero-student-contrast.jpg')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center right',
         color: '#ffffff',
-        padding: '85px 0 95px',
+        padding: '50px 0 54px',
         overflow: 'hidden',
+        backgroundColor: '#041630',
       }}
     >
-        <div className="about-hero-glow" />
-        <div className="about-hero-glow-left" />
+        {/* Full-visibility celebration photo without any blur */}
+        <div 
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: `url('/images/hero-graduation-banner.jpg')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center 20%',
+            opacity: 1,
+            zIndex: 0,
+          }}
+        />
+        {/* Light subtle overlay: provides soft contrast on left for text while keeping photo clear and visible */}
+        <div 
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(90deg, rgba(4, 22, 48, 0.65) 0%, rgba(4, 22, 48, 0.35) 45%, rgba(0, 0, 0, 0.05) 100%)',
+            zIndex: 1,
+          }}
+        />
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="hero-consultation-grid">
             {/* Left Column: Heading and Tagline as requested in Slide 1 */}
             <div style={{ color: '#ffffff' }}>
-              <div 
-                style={{ 
-                  display: 'inline-flex', 
-                  alignItems: 'center', 
-                  gap: '8px', 
-                  background: 'rgba(255, 255, 255, 0.12)', 
-                  backdropFilter: 'blur(10px)',
-                  padding: '6px 16px', 
-                  borderRadius: '9999px', 
-                  marginBottom: '16px',
-                  border: '1px solid rgba(255, 255, 255, 0.2)' 
-                }}
-              >
-                <span className="live-pulse-dot blue" style={{ background: 'var(--orange-primary)' }} />
-                <span style={{ fontSize: '0.82rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', color: '#ffffff' }}>
-                  PROFESSIONAL EDUCATION CONSULTING
-                </span>
-              </div>
 
               {/* Exact Heading from Slide 1 */}
               <h1 
                 style={{ 
                   fontFamily: 'var(--font-outfit), sans-serif', 
-                  fontSize: 'clamp(2.4rem, 4.4vw, 3.8rem)', 
+                  fontSize: 'clamp(2.1rem, 3.8vw, 3.2rem)', 
                   fontWeight: '800', 
-                  lineHeight: '1.18', 
+                  lineHeight: '1.16', 
                   letterSpacing: '-0.025em', 
-                  color: '#ffffff',
-                  marginBottom: '16px'
+                  marginBottom: '12px',
                 }}
               >
-                Right Guidance, <br />
-                <span className="text-gradient-orange">Bright Future</span>
+                <span style={{ color: '#ffffff' }}>
+                  Right Guidance,
+                </span>
+                <br />
+                <span 
+                  style={{ 
+                    color: '#FF6F1E', 
+                    display: 'inline-block'
+                  }}
+                >
+                  Bright Future
+                </span>
               </h1>
 
               {/* Orange Divider */}
               <div 
                 style={{ 
-                  width: '75px', 
-                  height: '4px', 
+                  width: '65px', 
+                  height: '3.5px', 
                   background: 'linear-gradient(90deg, #FA6400, #FF782D)', 
                   borderRadius: '2px', 
-                  marginBottom: '20px' 
+                  marginBottom: '14px',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.4)'
                 }} 
               />
 
               {/* Exact Subtitles from Slide 1 */}
               <p 
                 style={{ 
-                  fontSize: 'clamp(1.05rem, 1.6vw, 1.25rem)', 
-                  color: '#F1F5F9', 
-                  lineHeight: '1.6', 
-                  maxWidth: '560px', 
-                  marginBottom: '10px',
-                  fontWeight: '600'
+                  fontSize: 'clamp(0.95rem, 1.3vw, 1.08rem)', 
+                  color: '#ffffff', 
+                  lineHeight: '1.45', 
+                  maxWidth: '100%', 
+                  marginBottom: '6px',
+                  fontWeight: '600',
+                  textShadow: '0 2px 8px rgba(0, 0, 0, 0.85)'
                 }}
               >
                 Guiding Thousand of students and parents to find the right college.
               </p>
               <p 
                 style={{ 
-                  fontSize: 'clamp(0.98rem, 1.4vw, 1.12rem)', 
-                  color: '#CBD5E1', 
-                  lineHeight: '1.6', 
-                  maxWidth: '560px', 
-                  marginBottom: '32px',
-                  fontStyle: 'italic'
+                  fontSize: 'clamp(0.88rem, 1.2vw, 0.98rem)', 
+                  color: '#F1F5F9', 
+                  lineHeight: '1.45', 
+                  maxWidth: '100%', 
+                  marginBottom: '22px',
+                  textShadow: '0 2px 8px rgba(0, 0, 0, 0.85)'
                 }}
               >
                 One Student, One Dream, One Step Toward India&apos;s Future
@@ -192,54 +202,54 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                   onClick={() => onOpenCounselling()}
                   className="btn btn-primary"
                   style={{ 
-                    padding: '16px 36px', 
-                    borderRadius: '12px', 
+                    padding: '13px 30px', 
+                    borderRadius: '10px', 
                     fontWeight: '800', 
-                    fontSize: '1.05rem',
-                    boxShadow: '0 8px 28px rgba(250, 100, 0, 0.45)',
+                    fontSize: '0.98rem',
+                    boxShadow: '0 8px 24px rgba(250, 100, 0, 0.4)',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '10px'
+                    gap: '8px'
                   }}
                 >
                   <span>Get Free Counselling</span>
-                  <ArrowRight size={18} />
+                  <ArrowRight size={17} />
                 </button>
               </div>
             </div>
 
-            {/* Right Column: Clean Form matching Slide 2 reference */}
+            {/* Right Column: Clean Compact Form matching Slide 2 reference */}
             <div>
               <div 
                 className="consultation-hero-card"
                 style={{
                   background: '#ffffff',
-                  borderRadius: '20px',
-                  padding: '34px 28px',
-                  boxShadow: '0 24px 50px -12px rgba(4, 22, 48, 0.45)',
+                  borderRadius: '18px',
+                  padding: '22px 22px',
+                  boxShadow: '0 20px 45px -10px rgba(4, 22, 48, 0.45)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
                   color: 'var(--text-main)',
                   width: '100%',
-                  maxWidth: '460px',
+                  maxWidth: '440px',
                   marginLeft: 'auto'
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
                   <span 
                     style={{ 
-                      fontSize: '0.78rem', 
+                      fontSize: '0.74rem', 
                       fontWeight: '800', 
                       letterSpacing: '0.08em', 
                       textTransform: 'uppercase', 
                       color: 'var(--orange-primary)',
                       background: 'var(--orange-light)',
-                      padding: '4px 12px',
+                      padding: '3px 10px',
                       borderRadius: '6px'
                     }}
                   >
                     ENQUIRE NOW
                   </span>
-                  <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
                     <ShieldCheck size={14} color="var(--orange-primary)" /> Instant Callback
                   </span>
                 </div>
@@ -247,17 +257,17 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                 <h3 
                   style={{ 
                     fontFamily: 'var(--font-outfit), sans-serif', 
-                    fontSize: '1.7rem', 
+                    fontSize: '1.45rem', 
                     fontWeight: '800', 
                     color: 'var(--navy-primary)', 
                     letterSpacing: '-0.02em',
-                    marginTop: '8px', 
-                    marginBottom: '4px' 
+                    marginTop: '4px', 
+                    marginBottom: '2px' 
                   }}
                 >
                   Get Consultation
                 </h3>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', marginBottom: '20px' }}>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginBottom: '14px' }}>
                   Connect directly with verified admissions counsellors.
                 </p>
 
@@ -295,23 +305,23 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleConsultationSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
+                  <form onSubmit={handleConsultationSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
                     {errorMsg && (
                       <div 
                         style={{ 
                           background: '#FEF2F2', 
                           border: '1px solid #F87171', 
                           color: '#991B1B', 
-                          padding: '10px 12px', 
+                          padding: '8px 10px', 
                           borderRadius: '8px', 
-                          fontSize: '0.85rem',
+                          fontSize: '0.8rem',
                           display: 'flex',
                           alignItems: 'center',
                           gap: '8px',
                           width: '100%'
                         }}
                       >
-                        <AlertCircle size={16} style={{ flexShrink: 0 }} />
+                        <AlertCircle size={15} style={{ flexShrink: 0 }} />
                         <span>{errorMsg}</span>
                       </div>
                     )}
@@ -324,7 +334,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                         className="form-input"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        style={{ width: '100%' }}
+                        style={{ width: '100%', padding: '9px 12px', fontSize: '0.88rem' }}
                         required
                       />
                     </div>
@@ -337,7 +347,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                         className="form-input"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
-                        style={{ width: '100%' }}
+                        style={{ width: '100%', padding: '9px 12px', fontSize: '0.88rem' }}
                         required
                       />
                       <input 
@@ -346,23 +356,20 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                         className="form-input"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        style={{ width: '100%' }}
+                        style={{ width: '100%', padding: '9px 12px', fontSize: '0.88rem' }}
                       />
                     </div>
 
-                    {/* 4. Course: MBA, PGDM, BBA, B.com as per Slide 2 */}
+                    {/* 4. Course / Program */}
                     <div style={{ width: '100%' }}>
-                      <select 
-                        className="form-select"
+                      <input 
+                        type="text"
+                        placeholder="Course / Program of Interest (Optional)"
+                        className="form-input"
                         value={course}
                         onChange={(e) => setCourse(e.target.value)}
-                        style={{ width: '100%' }}
-                      >
-                        <option value="MBA">MBA</option>
-                        <option value="PGDM">PGDM</option>
-                        <option value="BBA">BBA</option>
-                        <option value="B.Com">B.com</option>
-                      </select>
+                        style={{ width: '100%', padding: '9px 12px', fontSize: '0.88rem' }}
+                      />
                     </div>
 
                     {/* 5. Location */}
@@ -373,7 +380,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                         className="form-input"
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
-                        style={{ width: '100%' }}
+                        style={{ width: '100%', padding: '9px 12px', fontSize: '0.88rem' }}
                         required
                       />
                     </div>
@@ -386,20 +393,20 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                         className="form-input"
                         value={targetCollege}
                         onChange={(e) => setTargetCollege(e.target.value)}
-                        style={{ width: '100%' }}
+                        style={{ width: '100%', padding: '9px 12px', fontSize: '0.88rem' }}
                       />
                     </div>
 
                     {/* Consent Checkbox */}
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', width: '100%', marginTop: '2px' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', width: '100%', marginTop: '1px' }}>
                       <input 
                         type="checkbox" 
                         id="hero-agree" 
                         checked={agreed}
                         onChange={(e) => setAgreed(e.target.checked)}
-                        style={{ marginTop: '3px', cursor: 'pointer', accentColor: 'var(--orange-primary)', width: '15px', height: '15px', flexShrink: 0 }}
+                        style={{ marginTop: '3px', cursor: 'pointer', accentColor: 'var(--orange-primary)', width: '14px', height: '14px', flexShrink: 0 }}
                       />
-                      <label htmlFor="hero-agree" style={{ fontSize: '0.76rem', color: '#64748B', lineHeight: '1.4', cursor: 'pointer', margin: 0 }}>
+                      <label htmlFor="hero-agree" style={{ fontSize: '0.74rem', color: '#64748B', lineHeight: '1.35', cursor: 'pointer', margin: 0 }}>
                         Enable updates &amp; important information on WhatsApp.
                       </label>
                     </div>
@@ -411,16 +418,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                       className="btn btn-primary"
                       style={{ 
                         width: '100%', 
-                        padding: '13px', 
-                        borderRadius: '10px', 
+                        padding: '11px', 
+                        borderRadius: '9px', 
                         fontWeight: '800', 
-                        fontSize: '0.98rem',
-                        boxShadow: '0 8px 22px rgba(250, 100, 0, 0.4)',
+                        fontSize: '0.94rem',
+                        boxShadow: '0 6px 18px rgba(250, 100, 0, 0.35)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         gap: '8px',
-                        marginTop: '4px'
+                        marginTop: '3px'
                       }}
                     >
                       {loading ? 'Submitting...' : 'Get Free Counselling'}
@@ -433,33 +440,33 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
         </div>
 
         {/* 4 Overlapping Feature Highlights matching a3career.com */}
-        <div className="container" style={{ position: 'relative', zIndex: 10, marginTop: '64px', marginBottom: '-55px' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 10, marginTop: '34px', marginBottom: '-28px' }}>
           <div 
             style={{ 
               display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', 
-              gap: '18px' 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', 
+              gap: '14px' 
             }}
           >
             {/* Card 1 */}
             <div 
               style={{
                 background: '#ffffff',
-                borderRadius: '16px',
-                padding: '24px 20px',
-                boxShadow: '0 15px 35px -5px rgba(4, 22, 48, 0.1)',
+                borderRadius: '14px',
+                padding: '14px 16px',
+                boxShadow: '0 12px 30px -4px rgba(4, 22, 48, 0.08)',
                 border: '1px solid #E2E8F0',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '16px',
+                gap: '12px',
               }}
               className="hero-feature-card"
             >
               <div 
                 style={{ 
-                  width: '50px', 
-                  height: '50px', 
-                  borderRadius: '14px', 
+                  width: '42px', 
+                  height: '42px', 
+                  borderRadius: '11px', 
                   background: 'var(--orange-light)', 
                   color: 'var(--orange-primary)', 
                   display: 'flex', 
@@ -468,13 +475,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                   flexShrink: 0 
                 }}
               >
-                <BookOpen size={24} />
+                <BookOpen size={20} />
               </div>
               <div>
-                <h4 style={{ fontSize: '1.02rem', fontWeight: '800', color: '#041630', margin: 0 }}>
+                <h4 style={{ fontSize: '0.94rem', fontWeight: '800', color: '#041630', margin: 0 }}>
                   Career Discovery
                 </h4>
-                <p style={{ fontSize: '0.82rem', color: '#64748B', margin: '4px 0 0', lineHeight: '1.4' }}>
+                <p style={{ fontSize: '0.78rem', color: '#64748B', margin: '2px 0 0', lineHeight: '1.35' }}>
                   Find careers matching your strengths
                 </p>
               </div>
@@ -484,21 +491,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
             <div 
               style={{
                 background: '#ffffff',
-                borderRadius: '16px',
-                padding: '24px 20px',
-                boxShadow: '0 15px 35px -5px rgba(4, 22, 48, 0.1)',
+                borderRadius: '14px',
+                padding: '14px 16px',
+                boxShadow: '0 12px 30px -4px rgba(4, 22, 48, 0.08)',
                 border: '1px solid #E2E8F0',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '16px',
+                gap: '12px',
               }}
               className="hero-feature-card"
             >
               <div 
                 style={{ 
-                  width: '50px', 
-                  height: '50px', 
-                  borderRadius: '14px', 
+                  width: '42px', 
+                  height: '42px', 
+                  borderRadius: '11px', 
                   background: 'var(--blue-light)', 
                   color: 'var(--navy-primary)', 
                   display: 'flex', 
@@ -507,13 +514,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                   flexShrink: 0 
                 }}
               >
-                <Compass size={24} />
+                <Compass size={20} />
               </div>
               <div>
-                <h4 style={{ fontSize: '1.02rem', fontWeight: '800', color: '#041630', margin: 0 }}>
+                <h4 style={{ fontSize: '0.94rem', fontWeight: '800', color: '#041630', margin: 0 }}>
                   Course Exploration
                 </h4>
-                <p style={{ fontSize: '0.82rem', color: '#64748B', margin: '4px 0 0', lineHeight: '1.4' }}>
+                <p style={{ fontSize: '0.78rem', color: '#64748B', margin: '2px 0 0', lineHeight: '1.35' }}>
                   Explore top courses &amp; growth paths
                 </p>
               </div>
@@ -523,21 +530,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
             <div 
               style={{
                 background: '#ffffff',
-                borderRadius: '16px',
-                padding: '24px 20px',
-                boxShadow: '0 15px 35px -5px rgba(4, 22, 48, 0.1)',
+                borderRadius: '14px',
+                padding: '14px 16px',
+                boxShadow: '0 12px 30px -4px rgba(4, 22, 48, 0.08)',
                 border: '1px solid #E2E8F0',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '16px',
+                gap: '12px',
               }}
               className="hero-feature-card"
             >
               <div 
                 style={{ 
-                  width: '50px', 
-                  height: '50px', 
-                  borderRadius: '14px', 
+                  width: '42px', 
+                  height: '42px', 
+                  borderRadius: '11px', 
                   background: 'var(--orange-light)', 
                   color: 'var(--orange-primary)', 
                   display: 'flex', 
@@ -546,13 +553,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                   flexShrink: 0 
                 }}
               >
-                <Building2 size={24} />
+                <Building2 size={20} />
               </div>
               <div>
-                <h4 style={{ fontSize: '1.02rem', fontWeight: '800', color: '#041630', margin: 0 }}>
+                <h4 style={{ fontSize: '0.94rem', fontWeight: '800', color: '#041630', margin: 0 }}>
                   College Comparison
                 </h4>
-                <p style={{ fontSize: '0.82rem', color: '#64748B', margin: '4px 0 0', lineHeight: '1.4' }}>
+                <p style={{ fontSize: '0.78rem', color: '#64748B', margin: '2px 0 0', lineHeight: '1.35' }}>
                   Compare fees, placements &amp; ROI
                 </p>
               </div>
@@ -562,21 +569,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
             <div 
               style={{
                 background: '#ffffff',
-                borderRadius: '16px',
-                padding: '24px 20px',
-                boxShadow: '0 15px 35px -5px rgba(4, 22, 48, 0.1)',
+                borderRadius: '14px',
+                padding: '14px 16px',
+                boxShadow: '0 12px 30px -4px rgba(4, 22, 48, 0.08)',
                 border: '1px solid #E2E8F0',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '16px',
+                gap: '12px',
               }}
               className="hero-feature-card"
             >
               <div 
                 style={{ 
-                  width: '50px', 
-                  height: '50px', 
-                  borderRadius: '14px', 
+                  width: '42px', 
+                  height: '42px', 
+                  borderRadius: '11px', 
                   background: 'var(--blue-light)', 
                   color: 'var(--navy-primary)', 
                   display: 'flex', 
@@ -585,13 +592,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCounselling, onFilterColleges 
                   flexShrink: 0 
                 }}
               >
-                <GraduationCap size={24} />
+                <GraduationCap size={20} />
               </div>
               <div>
-                <h4 style={{ fontSize: '1.02rem', fontWeight: '800', color: '#041630', margin: 0 }}>
+                <h4 style={{ fontSize: '0.94rem', fontWeight: '800', color: '#041630', margin: 0 }}>
                   Expert Guidance
                 </h4>
-                <p style={{ fontSize: '0.82rem', color: '#64748B', margin: '4px 0 0', lineHeight: '1.4' }}>
+                <p style={{ fontSize: '0.78rem', color: '#64748B', margin: '2px 0 0', lineHeight: '1.35' }}>
                   1-on-1 personalized advisory
                 </p>
               </div>

@@ -29,7 +29,7 @@ export default function Home() {
 
   const handleOpenCounselling = (serviceOrStepName?: string) => {
     setCounsellingPrefill({
-      stream: 'Management (MBA / PGDM)',
+      stream: 'Career & College Guidance',
       collegeName: serviceOrStepName,
     });
     setCounsellingModalOpen(true);

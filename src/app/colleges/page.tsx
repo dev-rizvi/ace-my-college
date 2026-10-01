@@ -100,14 +100,6 @@ export default function CollegesPage() {
         <div className="about-hero-glow-left" />
 
         <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
-          {/* Badge */}
-          <div className="page-hero-badge">
-            <span className="live-pulse-dot blue" style={{ background: 'var(--orange-primary)' }} />
-            <span className="badge-text">
-              VERIFIED DIRECTORY • 500+ CAMPUSES
-            </span>
-          </div>
-
           {/* Heading */}
           <h1 className="page-hero-title">
             Explore Verified Colleges on <span className="text-gradient-orange">What Truly Matters</span>

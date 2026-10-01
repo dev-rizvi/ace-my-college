@@ -329,17 +329,10 @@ export default function CoursesPage() {
         <div className="about-hero-glow-left" />
 
         <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
-          {/* Badge */}
-          <div className="page-hero-badge">
-            <span className="live-pulse-dot blue" style={{ background: 'var(--orange-primary)' }} />
-            <span className="badge-text">
-              CAREER &amp; COURSE EXPLORER
-            </span>
-          </div>
-
           {/* Heading */}
           <h1 className="page-hero-title">
-            Course-Wise Information &amp; <span className="text-gradient-orange">Career Outcomes</span>
+            Course-Wise Information &amp; <br />
+            <span className="text-gradient-orange" style={{ whiteSpace: 'nowrap' }}>Career Outcomes</span>
           </h1>
 
           {/* Subtitle */}

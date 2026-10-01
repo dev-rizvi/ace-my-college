@@ -109,9 +109,9 @@ export default function ContactPage() {
       <section 
         style={{
           position: 'relative',
-          backgroundImage: `linear-gradient(rgba(4, 22, 48, 0.88), rgba(6, 33, 71, 0.94)), url('/images/banner-contact.jpg')`,
+          backgroundImage: `linear-gradient(135deg, rgba(4, 22, 48, 0.25) 0%, rgba(10, 56, 113, 0.18) 50%, rgba(6, 33, 71, 0.28) 100%), url('/images/banner-contact.jpg')`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center 28%',
+          backgroundPosition: 'center 35%',
           color: '#ffffff',
           padding: '90px 0 85px',
           overflow: 'hidden',
@@ -121,14 +121,6 @@ export default function ContactPage() {
         <div className="about-hero-glow-left" />
 
         <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
-          {/* Badge */}
-          <div className="page-hero-badge" style={{ marginBottom: '16px' }}>
-            <span className="live-pulse-dot blue" style={{ background: 'var(--orange-primary)' }} />
-            <span className="badge-text">
-              CENTRAL ADVISORY DESK • LUCKNOW HQ
-            </span>
-          </div>
-
           {/* Heading */}
           <h1 
             style={{ 
@@ -138,7 +130,8 @@ export default function ContactPage() {
               letterSpacing: '-0.025em', 
               color: '#ffffff',
               marginBottom: '8px',
-              textTransform: 'uppercase'
+              textTransform: 'uppercase',
+              textShadow: '0 2px 14px rgba(0, 0, 0, 0.85), 0 4px 24px rgba(4, 22, 48, 0.9)'
             }}
           >
             CONTACT <span className="text-gradient-orange">US</span>
@@ -151,7 +144,8 @@ export default function ContactPage() {
               height: '4px', 
               background: 'linear-gradient(90deg, #FA6400, #FF782D)', 
               borderRadius: '2px', 
-              margin: '0 auto 18px' 
+              margin: '0 auto 18px',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.4)'
             }} 
           />
 
@@ -161,8 +155,10 @@ export default function ContactPage() {
               maxWidth: '720px', 
               margin: '0 auto 28px', 
               fontSize: 'clamp(1rem, 1.6vw, 1.2rem)', 
-              color: '#CBD5E1', 
-              lineHeight: '1.6' 
+              color: '#ffffff', 
+              lineHeight: '1.6',
+              fontWeight: '500',
+              textShadow: '0 2px 10px rgba(0, 0, 0, 0.9), 0 3px 18px rgba(4, 22, 48, 0.9)'
             }}
           >
             Reach out to our senior career advisors for personalized college shortlists, 

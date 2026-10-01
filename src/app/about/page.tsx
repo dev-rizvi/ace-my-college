@@ -30,32 +30,15 @@ export default function AboutPage() {
       <section
         style={{
           position: 'relative',
-          backgroundImage: `linear-gradient(135deg, rgba(4, 22, 48, 0.92) 0%, rgba(10, 56, 113, 0.85) 60%, rgba(6, 33, 71, 0.92) 100%), url('/images/banner-about.jpg')`,
+          backgroundImage: `linear-gradient(135deg, rgba(4, 22, 48, 0.25) 0%, rgba(10, 56, 113, 0.18) 50%, rgba(6, 33, 71, 0.28) 100%), url('/images/banner-about.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           color: '#ffffff',
-          padding: '80px 0 80px',
+          padding: '85px 0 85px',
           textAlign: 'center',
         }}
       >
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <span
-            style={{
-              display: 'inline-block',
-              color: 'var(--orange-primary)',
-              background: 'rgba(250, 100, 0, 0.15)',
-              padding: '6px 18px',
-              borderRadius: '9999px',
-              fontSize: '0.82rem',
-              fontWeight: '800',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              marginBottom: '14px',
-              border: '1px solid rgba(250, 100, 0, 0.3)'
-            }}
-          >
-            ABOUT ACE MY CAMPUS
-          </span>
 
           <h1
             style={{
@@ -64,10 +47,11 @@ export default function AboutPage() {
               letterSpacing: '-0.02em',
               color: '#ffffff',
               marginBottom: '12px',
-              fontFamily: 'var(--font-outfit), sans-serif'
+              fontFamily: 'var(--font-outfit), sans-serif',
+              textShadow: '0 2px 14px rgba(0, 0, 0, 0.85), 0 4px 24px rgba(4, 22, 48, 0.9)'
             }}
           >
-            ABOUT US
+            ABOUT <span className="text-gradient-orange">US</span>
           </h1>
 
           <div
@@ -76,17 +60,20 @@ export default function AboutPage() {
               height: '4px',
               background: 'linear-gradient(90deg, #FA6400, #FF782D)',
               borderRadius: '2px',
-              margin: '0 auto 18px'
+              margin: '0 auto 18px',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.4)'
             }}
           />
 
           <p
             style={{
               fontSize: 'clamp(1.05rem, 1.6vw, 1.25rem)',
-              color: '#CBD5E1',
+              color: '#ffffff',
               maxWidth: '680px',
               margin: '0 auto 28px',
-              lineHeight: '1.6'
+              lineHeight: '1.6',
+              fontWeight: '500',
+              textShadow: '0 2px 10px rgba(0, 0, 0, 0.9), 0 3px 18px rgba(4, 22, 48, 0.9)'
             }}
           >
             Empowering students with transparent counselling, verified college insights, and confident admission pathways.

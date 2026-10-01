@@ -29,17 +29,31 @@ export const Footer: React.FC<FooterProps> = ({
               <Link href="/" style={{ display: 'inline-block', textDecoration: 'none' }}>
                 {/* Clean Logo without any white square box container */}
                 <div style={{ display: 'inline-flex', alignItems: 'center', gap: '12px' }}>
-                  <img
-                    src="/images/emblem-transparent.png"
-                    alt="ACE MY CAMPUS Official Logo"
-                    style={{ height: '48px', width: 'auto', display: 'block' }}
-                  />
+                  <div 
+                    style={{ 
+                      width: '46px', 
+                      height: '46px', 
+                      borderRadius: '50%', 
+                      backgroundColor: '#ffffff', 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center', 
+                      flexShrink: 0,
+                      boxShadow: '0 2px 10px rgba(0, 0, 0, 0.28)'
+                    }}
+                  >
+                    <img
+                      src="/images/emblem-transparent.png"
+                      alt="ACE MY CAMPUS Official Logo"
+                      style={{ height: '40px', width: 'auto', display: 'block' }}
+                    />
+                  </div>
                   <div>
                     <span style={{ fontSize: '1.35rem', fontWeight: '900', color: '#ffffff', letterSpacing: '-0.02em', display: 'block' }}>
                       ACE MY <span style={{ color: 'var(--orange-primary)' }}>CAMPUS</span>
                     </span>
                     <span style={{ fontSize: '0.74rem', color: '#94A3B8', letterSpacing: '0.04em' }}>
-                      Your Campus | Your Growth | Your Success
+                      Your Campus | <span style={{ color: 'var(--orange-primary)', fontWeight: '700' }}>Your Growth</span> | Your Success
                     </span>
                   </div>
                 </div>

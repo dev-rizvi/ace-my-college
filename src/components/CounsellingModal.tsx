@@ -24,7 +24,7 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const [course, setCourse] = useState(prefillData?.stream?.includes('BBA') ? 'BBA' : 'MBA');
+  const [course, setCourse] = useState(prefillData?.stream || '');
   const [location, setLocation] = useState(prefillData?.location || '');
   const [targetCollege, setTargetCollege] = useState(prefillData?.collegeName || '');
   const [whatsappUpdates, setWhatsappUpdates] = useState(true);
@@ -101,75 +101,92 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
         {/* Left Brand Panel: Slide 2 Reference */}
         <div className="modal-brand-sidebar">
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-              <img 
-                src="/images/emblem-transparent.png" 
-                alt="ACE MY CAMPUS" 
-                style={{ width: '38px', height: '38px', objectFit: 'contain' }} 
-              />
-              <span style={{ fontSize: '1.25rem', fontWeight: '900', letterSpacing: '-0.02em', color: '#ffffff' }}>
-                ACE MY <span style={{ color: 'var(--orange-primary)' }}>CAMPUS</span>
-              </span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '22px' }}>
+              <div 
+                style={{ 
+                  width: '42px', 
+                  height: '42px', 
+                  borderRadius: '50%', 
+                  backgroundColor: '#ffffff', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  flexShrink: 0,
+                  boxShadow: '0 2px 8px rgba(10, 56, 113, 0.12)',
+                  border: '1px solid #E2E8F0'
+                }}
+              >
+                <img 
+                  src="/images/emblem-transparent.png" 
+                  alt="ACE MY CAMPUS" 
+                  style={{ width: '36px', height: '36px', objectFit: 'contain' }} 
+                />
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <span style={{ fontFamily: 'var(--font-outfit), sans-serif', fontSize: '1.25rem', fontWeight: '900', letterSpacing: '-0.01em', color: '#0A3871', lineHeight: '1.1' }}>
+                  ACE MY <span style={{ color: 'var(--orange-primary)' }}>CAMPUS</span>
+                </span>
+                <span style={{ fontSize: '0.67rem', color: '#64748B', marginTop: '3px', fontWeight: '600', letterSpacing: '0.01em', whiteSpace: 'nowrap' }}>
+                  Your Campus | <span style={{ color: 'var(--orange-primary)', fontWeight: '700' }}>Your Growth</span> | Your Success
+                </span>
+              </div>
             </div>
-            <p style={{ fontSize: '0.8rem', color: '#CBD5E1', marginBottom: '24px', fontStyle: 'italic' }}>
-              Your Campus | Your Growth | Your Success
-            </p>
 
-            <h4 style={{ fontSize: '1.1rem', color: '#ffffff', fontWeight: '800', marginBottom: '16px' }}>
+            <h4 style={{ fontSize: '1.1rem', color: '#0A3871', fontWeight: '800', marginBottom: '16px' }}>
               Why register with us?
             </h4>
 
             {/* Consistent Brand Stats: 5000+ Students Counselled & 2500+ Successful Admissions */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.25)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.12)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
                   <Check size={12} strokeWidth={3} />
                 </div>
-                <span style={{ fontSize: '0.84rem', color: '#E2E8F0', lineHeight: '1.45' }}>
-                  <strong style={{ color: '#ffffff' }}>5000+ Students Counselled</strong>, Absolutely Free of Cost
+                <span style={{ fontSize: '0.84rem', color: '#475569', lineHeight: '1.45' }}>
+                  <strong style={{ color: '#041630' }}>5000+ Students Counselled</strong>, Absolutely Free of Cost
                 </span>
               </div>
 
               <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.25)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.12)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
                   <Check size={12} strokeWidth={3} />
                 </div>
-                <span style={{ fontSize: '0.84rem', color: '#E2E8F0', lineHeight: '1.45' }}>
-                  <strong style={{ color: '#ffffff' }}>2500+ Successful Admissions</strong> across 200+ partner colleges
+                <span style={{ fontSize: '0.84rem', color: '#475569', lineHeight: '1.45' }}>
+                  <strong style={{ color: '#041630' }}>2500+ Successful Admissions</strong> across 200+ partner colleges
                 </span>
               </div>
 
               <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.25)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.12)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
                   <Check size={12} strokeWidth={3} />
                 </div>
-                <span style={{ fontSize: '0.84rem', color: '#E2E8F0', lineHeight: '1.45' }}>
+                <span style={{ fontSize: '0.84rem', color: '#475569', lineHeight: '1.45' }}>
                   Get help from our experts in finding the right college for you
                 </span>
               </div>
 
               <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.25)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.12)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
                   <Check size={12} strokeWidth={3} />
                 </div>
-                <span style={{ fontSize: '0.84rem', color: '#E2E8F0', lineHeight: '1.45' }}>
+                <span style={{ fontSize: '0.84rem', color: '#475569', lineHeight: '1.45' }}>
                   With totally online Admission Process we help you get college admission without having to step out
                 </span>
               </div>
 
               <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.25)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.12)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
                   <Check size={12} strokeWidth={3} />
                 </div>
-                <span style={{ fontSize: '0.84rem', color: '#E2E8F0', lineHeight: '1.45' }}>
+                <span style={{ fontSize: '0.84rem', color: '#475569', lineHeight: '1.45' }}>
                   You won&apos;t get unwanted calls from third parties
                 </span>
               </div>
             </div>
           </div>
 
-          <div style={{ marginTop: '24px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '12px', padding: '12px 14px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
-            <span style={{ fontSize: '0.75rem', color: '#CBD5E1', display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <div style={{ marginTop: '24px', background: '#F8FAFC', borderRadius: '12px', padding: '12px 14px', border: '1px solid #E2E8F0' }}>
+            <span style={{ fontSize: '0.75rem', color: '#475569', display: 'flex', alignItems: 'center', gap: '6px' }}>
               <ShieldCheck size={14} color="var(--orange-primary)" /> 100% Free Guidance • 2500+ Admissions Secured
             </span>
           </div>
@@ -200,15 +217,15 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
                 <CheckCircle size={38} />
               </div>
 
-              <h3 style={{ fontSize: '1.65rem', color: 'var(--navy-primary)', marginBottom: '8px', fontWeight: '800' }}>
+              <h3 style={{ fontSize: '1.65rem', color: '#ffffff', marginBottom: '8px', fontWeight: '800' }}>
                 Counselling Request Confirmed!
               </h3>
 
-              <p style={{ color: 'var(--text-body)', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '24px', maxWidth: '440px', margin: '0 auto 24px' }}>
+              <p style={{ color: '#E2E8F0', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '24px', maxWidth: '440px', margin: '0 auto 24px' }}>
                 Thank you, <strong>{fullName}</strong>. An ACE MY CAMPUS senior academic mentor will evaluate your profile and contact you shortly.
               </p>
 
-              <div style={{ background: 'var(--bg-subtle)', borderRadius: 'var(--radius-md)', padding: '16px 20px', marginBottom: '26px', textAlign: 'left', fontSize: '0.85rem', border: '1px solid var(--border-subtle)', maxWidth: '440px', margin: '0 auto 26px' }}>
+              <div style={{ background: 'rgba(255, 255, 255, 0.08)', borderRadius: 'var(--radius-md)', padding: '16px 20px', marginBottom: '26px', textAlign: 'left', fontSize: '0.85rem', border: '1px solid rgba(255, 255, 255, 0.15)', maxWidth: '440px', margin: '0 auto 26px', color: '#F1F5F9' }}>
                 <div style={{ marginBottom: '6px' }}><strong>Selected Course:</strong> {course}</div>
                 <div style={{ marginBottom: '6px' }}><strong>Location:</strong> {location}</div>
                 <div><strong>Contact Phone:</strong> {phone}</div>
@@ -225,11 +242,11 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
           ) : (
             <div>
               <div className="modal-form-header-content">
-                <h3 style={{ fontSize: '1.45rem', color: 'var(--navy-primary)', fontWeight: '800', marginTop: '2px', marginBottom: '6px' }}>
+                <h3 style={{ fontSize: '1.45rem', color: '#ffffff', fontWeight: '700', marginTop: '2px', marginBottom: '6px' }}>
                   Give us your details and let&apos;s start your admission journey today !
                 </h3>
 
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '18px' }}>
+                <p style={{ color: '#CBD5E1', fontSize: '0.85rem', marginBottom: '18px' }}>
                   Fill out the form below to receive personalized college recommendations.
                 </p>
               </div>
@@ -284,20 +301,17 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
                   </div>
                 </div>
 
-                {/* 4. Course: MBA, PGDM, BBA, B.com */}
+                {/* 4. Course / Program of Interest */}
                 <div className="form-group" style={{ marginBottom: 0 }}>
-                  <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Course *</label>
-                  <select
-                    className="form-select"
+                  <label className="form-label" style={{ fontSize: '0.8rem', marginBottom: '4px' }}>Course / Program of Interest</label>
+                  <input
+                    type="text"
+                    className="form-input"
+                    placeholder="e.g. Undergrad, Postgrad, or Specific Field"
                     style={{ height: '40px', fontSize: '0.85rem' }}
                     value={course}
                     onChange={(e) => setCourse(e.target.value)}
-                  >
-                    <option value="MBA">MBA</option>
-                    <option value="PGDM">PGDM</option>
-                    <option value="BBA">BBA</option>
-                    <option value="B.Com">B.com</option>
-                  </select>
+                  />
                 </div>
 
                 {/* 5. Location & 6. Target College (Optional) */}
@@ -337,7 +351,7 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
                     onChange={(e) => setWhatsappUpdates(e.target.checked)}
                     style={{ cursor: 'pointer', accentColor: 'var(--orange-primary)', width: '15px', height: '15px' }}
                   />
-                  <label htmlFor="modal-wa-updates" style={{ fontSize: '0.78rem', color: '#64748B', cursor: 'pointer', margin: 0 }}>
+                  <label htmlFor="modal-wa-updates" style={{ fontSize: '0.78rem', color: '#CBD5E1', cursor: 'pointer', margin: 0 }}>
                     Enable updates &amp; important information on WhatsApp
                   </label>
                 </div>
@@ -361,7 +375,7 @@ export const CounsellingModal: React.FC<CounsellingModalProps> = ({
                   {loading ? 'Submitting...' : 'Get Free Counselling'}
                 </button>
 
-                <p style={{ fontSize: '0.74rem', color: 'var(--text-muted)', textAlign: 'center', margin: '2px 0 0', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
+                <p style={{ fontSize: '0.74rem', color: '#94A3B8', textAlign: 'center', margin: '2px 0 0', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
                   <ShieldCheck size={14} color="var(--orange-primary)" />
                   <span>100% Free &amp; Unbiased • 2500+ Admissions • Zero Spam</span>
                 </p>

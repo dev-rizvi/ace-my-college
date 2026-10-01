@@ -198,14 +198,6 @@ export default function TestimonialsPage() {
         <div className="about-hero-glow-left" />
 
         <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
-          {/* Badge */}
-          <div className="page-hero-badge">
-            <span className="live-pulse-dot blue" style={{ background: 'var(--orange-primary)' }} />
-            <span className="badge-text">
-              VERIFIED REVIEWS • 5,000+ STUDENTS COUNSELLED
-            </span>
-          </div>
-
           {/* Heading */}
           <h1 className="page-hero-title">
             Stories of Clarity, <span className="text-gradient-orange">Confidence &amp; Growth</span>

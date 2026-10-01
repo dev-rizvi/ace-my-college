@@ -11,15 +11,15 @@ interface CoreServicesProps {
 export const CoreServices: React.FC<CoreServicesProps> = ({ onOpenCounselling, onOpenCollegeFilter }) => {
   const whatWeDoCards = [
     {
-      id: 'mba-guidance',
-      title: 'MBA & PGDM Career Guidance',
-      image: '/images/what-we-do-mba.jpg',
+      id: 'career-guidance',
+      title: 'Personalized Career Guidance',
+      image: '/images/what-we-do-career-guidance.jpg',
       points: [
-        'Profile-based program selection',
-        'Specialization clarity (Marketing, Finance, HR, Analytics)',
+        'Profile-based program and college selection',
+        'Stream & specialization clarity tailored to your strengths',
         'ROI & fee structure comparative analysis',
       ],
-      actionText: 'Get MBA Guidance',
+      actionText: 'Get Career Guidance',
     },
     {
       id: 'college-shortlisting',
@@ -197,7 +197,7 @@ export const CoreServices: React.FC<CoreServicesProps> = ({ onOpenCounselling, o
                 marginBottom: '10px'
               }}
             >
-              CONFUSED ABOUT CHOOSING THE RIGHT MBA OR PGDM COLLEGE?
+              CONFUSED ABOUT CHOOSING THE RIGHT COLLEGE OR PROGRAM?
             </span>
             <h3 
               style={{ 

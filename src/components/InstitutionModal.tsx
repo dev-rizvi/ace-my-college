@@ -104,59 +104,75 @@ export const InstitutionModal: React.FC<InstitutionModalProps> = ({ isOpen, onCl
         {/* Left Brand Panel */}
         <div className="modal-brand-sidebar">
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-              <img 
-                src="/images/emblem-transparent.png" 
-                alt="ACE MY CAMPUS" 
-                style={{ width: '38px', height: '38px', objectFit: 'contain' }} 
-              />
-              <span style={{ fontSize: '1.25rem', fontWeight: '900', letterSpacing: '-0.02em', color: '#ffffff' }}>
-                ACE MY <span style={{ color: 'var(--orange-primary)' }}>CAMPUS</span>
-              </span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '22px' }}>
+              <div 
+                style={{ 
+                  width: '42px', 
+                  height: '42px', 
+                  borderRadius: '50%', 
+                  backgroundColor: '#ffffff', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  flexShrink: 0,
+                  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.28)'
+                }}
+              >
+                <img 
+                  src="/images/emblem-transparent.png" 
+                  alt="ACE MY CAMPUS" 
+                  style={{ width: '36px', height: '36px', objectFit: 'contain' }} 
+                />
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <span style={{ fontSize: '1.25rem', fontWeight: '900', letterSpacing: '-0.02em', color: '#0A3871', lineHeight: '1.15' }}>
+                  ACE MY <span style={{ color: 'var(--orange-primary)' }}>CAMPUS</span>
+                </span>
+                <span style={{ fontSize: '0.74rem', color: '#64748B', marginTop: '3px', fontWeight: '600', letterSpacing: '0.01em' }}>
+                  Institutional Education Marketing &amp; Growth
+                </span>
+              </div>
             </div>
-            <p style={{ fontSize: '0.8rem', color: '#CBD5E1', marginBottom: '28px', fontStyle: 'italic' }}>
-              Institutional Education Marketing & Growth
-            </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.2)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.12)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
                   <Check size={13} strokeWidth={3} />
                 </div>
                 <div>
-                  <strong style={{ display: 'block', fontSize: '0.85rem', color: '#ffffff' }}>High-Intent Student Leads</strong>
-                  <span style={{ fontSize: '0.775rem', color: '#94A3B8', lineHeight: '1.4' }}>Qualified applicants filtered by merit, budget, and academic goals.</span>
+                  <strong style={{ display: 'block', fontSize: '0.85rem', color: '#041630' }}>High-Intent Student Leads</strong>
+                  <span style={{ fontSize: '0.775rem', color: '#475569', lineHeight: '1.4' }}>Qualified applicants filtered by merit, budget, and academic goals.</span>
                 </div>
               </div>
 
               <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.2)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.12)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
                   <Check size={13} strokeWidth={3} />
                 </div>
                 <div>
-                  <strong style={{ display: 'block', fontSize: '0.85rem', color: '#ffffff' }}>Strategic Campus Branding</strong>
-                  <span style={{ fontSize: '0.775rem', color: '#94A3B8', lineHeight: '1.4' }}>Omnichannel video storytelling, CXO positioning, and student reels.</span>
+                  <strong style={{ display: 'block', fontSize: '0.85rem', color: '#041630' }}>Strategic Campus Branding</strong>
+                  <span style={{ fontSize: '0.775rem', color: '#475569', lineHeight: '1.4' }}>Omnichannel video storytelling, CXO positioning, and student reels.</span>
                 </div>
               </div>
 
               <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.2)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: 'rgba(250, 100, 0, 0.12)', color: 'var(--orange-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
                   <Check size={13} strokeWidth={3} />
                 </div>
                 <div>
-                  <strong style={{ display: 'block', fontSize: '0.85rem', color: '#ffffff' }}>Direct School Feeder Drives</strong>
-                  <span style={{ fontSize: '0.775rem', color: '#94A3B8', lineHeight: '1.4' }}>Direct access to 200+ partner campuses, 5000+ counselled students &amp; 2500+ admissions.</span>
+                  <strong style={{ display: 'block', fontSize: '0.85rem', color: '#041630' }}>Direct School Feeder Drives</strong>
+                  <span style={{ fontSize: '0.775rem', color: '#475569', lineHeight: '1.4' }}>Direct access to 200+ partner campuses, 5000+ counselled students &amp; 2500+ admissions.</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div style={{ marginTop: '30px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '12px', padding: '14px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
-            <span style={{ fontSize: '0.725rem', color: '#CBD5E1', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '6px' }}>
+          <div style={{ marginTop: '30px', background: '#F8FAFC', borderRadius: '12px', padding: '14px', border: '1px solid #E2E8F0' }}>
+            <span style={{ fontSize: '0.725rem', color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '6px', fontWeight: '700' }}>
               Partnership Desk
             </span>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <a href="mailto:acemycampus@gmail.com" style={{ color: '#ffffff', fontWeight: '700', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <a href="mailto:acemycampus@gmail.com" style={{ color: '#0A3871', fontWeight: '700', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <Mail size={13} color="var(--orange-primary)" /> acemycampus@gmail.com
               </a>
             </div>
@@ -188,11 +204,11 @@ export const InstitutionModal: React.FC<InstitutionModalProps> = ({ isOpen, onCl
                 <CheckCircle size={38} />
               </div>
 
-              <h3 style={{ fontSize: '1.65rem', color: 'var(--navy-primary)', marginBottom: '8px', fontWeight: '800' }}>
+              <h3 style={{ fontSize: '1.65rem', color: '#ffffff', marginBottom: '8px', fontWeight: '800' }}>
                 Partnership Inquiry Logged!
               </h3>
 
-              <p style={{ color: 'var(--text-body)', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '24px', maxWidth: '440px', margin: '0 auto 24px' }}>
+              <p style={{ color: '#CBD5E1', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '24px', maxWidth: '440px', margin: '0 auto 24px' }}>
                 Thank you, <strong>{contactPerson}</strong>. Our Head of Education Marketing Partnerships will review your campus requirements and connect with you within 24 hours.
               </p>
 
@@ -211,13 +227,13 @@ export const InstitutionModal: React.FC<InstitutionModalProps> = ({ isOpen, onCl
                   style={{ 
                     fontSize: '0.725rem', 
                     fontWeight: '800', 
-                    color: 'var(--navy-primary)', 
-                    background: 'var(--blue-light)', 
+                    color: 'var(--orange-primary)', 
+                    background: 'rgba(250, 100, 0, 0.16)', 
                     padding: '4px 12px', 
                     borderRadius: 'var(--radius-full)', 
                     textTransform: 'uppercase', 
                     letterSpacing: '0.05em',
-                    border: '1px solid rgba(10, 56, 113, 0.2)',
+                    border: '1px solid rgba(250, 100, 0, 0.35)',
                     display: 'inline-block'
                   }}
                 >
@@ -226,11 +242,11 @@ export const InstitutionModal: React.FC<InstitutionModalProps> = ({ isOpen, onCl
               </div>
 
               <div className="modal-form-header-content">
-                <h3 style={{ fontSize: '1.5rem', color: 'var(--navy-primary)', fontWeight: '800', marginTop: '6px', marginBottom: '4px' }}>
+                <h3 style={{ fontSize: '1.5rem', color: '#ffffff', fontWeight: '800', marginTop: '6px', marginBottom: '4px' }}>
                   Partner With ACE MY CAMPUS
                 </h3>
 
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '18px' }}>
+                <p style={{ color: '#CBD5E1', fontSize: '0.85rem', marginBottom: '18px' }}>
                   Accelerate enrollment conversions with customized educational marketing.
                 </p>
               </div>
@@ -325,10 +341,10 @@ export const InstitutionModal: React.FC<InstitutionModalProps> = ({ isOpen, onCl
                           key={idx}
                           onClick={() => toggleService(srv)}
                           style={{
-                            background: isSelected ? 'var(--orange-primary)' : 'var(--bg-subtle)',
-                            color: isSelected ? '#ffffff' : 'var(--navy-primary)',
+                            background: isSelected ? 'var(--orange-primary)' : 'rgba(255, 255, 255, 0.1)',
+                            color: isSelected ? '#ffffff' : '#CBD5E1',
                             border: '1px solid',
-                            borderColor: isSelected ? 'var(--orange-primary)' : 'var(--border-subtle)',
+                            borderColor: isSelected ? 'var(--orange-primary)' : 'rgba(255, 255, 255, 0.2)',
                             padding: '5px 12px',
                             borderRadius: 'var(--radius-full)',
                             fontSize: '0.75rem',
@@ -376,7 +392,7 @@ export const InstitutionModal: React.FC<InstitutionModalProps> = ({ isOpen, onCl
                   {loading ? 'Submitting...' : 'Request Institutional Strategy Call →'}
                 </button>
 
-                <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', margin: '2px 0 0', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
+                <p style={{ fontSize: '0.75rem', color: '#94A3B8', textAlign: 'center', margin: '2px 0 0', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
                   <ShieldCheck size={14} color="var(--orange-primary)" />
                   <span>Strategic Confidentiality Guaranteed • Direct Founders Access</span>
                 </p>
