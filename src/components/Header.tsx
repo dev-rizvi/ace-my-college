@@ -41,7 +41,7 @@ export const Header: React.FC<HeaderProps> = ({
     { label: 'About Us', href: '/about' },
     { label: 'Courses', href: '/courses' },
     { label: 'Colleges', href: '/colleges' },
-    { label: 'Testimonials', href: '/testimonials' },
+    { label: 'Entrance Exams', href: '/exams' },
     { label: 'Contact Us', href: '/contact' },
   ];
 

@@ -62,7 +62,11 @@ export const FinalCta: React.FC<FinalCtaProps> = ({
                 lineHeight: '1.25'
               }}
             >
-              {title}
+              {title.includes('success pathway') ? (
+                <>
+                  Ready to find your own <span style={{ color: '#FF6F1E' }}>success pathway?</span>
+                </>
+              ) : title}
             </h3>
             <p style={{ color: '#CBD5E1', fontSize: '1rem', lineHeight: '1.5', margin: 0 }}>
               {subtitle}

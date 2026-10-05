@@ -16,7 +16,7 @@ export const FaqSection: React.FC = () => {
       <div className="container">
         <div className="text-center">
           <span className="section-tag blue">Got Questions?</span>
-          <h2 className="section-title">Frequently Asked Questions</h2>
+          <h2 className="section-title">Frequently Asked <span style={{ color: '#FF6F1E' }}>Questions</span></h2>
           <p className="section-subtitle center-block">
             Everything you need to know about our student guidance process, college comparisons, and university marketing services.
           </p>

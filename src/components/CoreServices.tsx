@@ -52,7 +52,7 @@ export const CoreServices: React.FC<CoreServicesProps> = ({ onOpenCounselling, o
         <div className="text-center" style={{ marginBottom: '48px' }}>
           <span className="section-tag orange">OUR CORE EXPERTISE</span>
           <h2 className="section-title" style={{ textTransform: 'uppercase', letterSpacing: '-0.01em' }}>
-            WHAT WE DO
+            WHAT WE <span style={{ color: '#FF6F1E' }}>DO</span>
           </h2>
           <p className="section-subtitle center-block" style={{ maxWidth: '640px' }}>
             Clear, cluster-free guidance tailored to help you navigate college admissions with absolute confidence.
@@ -208,7 +208,7 @@ export const CoreServices: React.FC<CoreServicesProps> = ({ onOpenCounselling, o
                 fontFamily: 'var(--font-outfit), sans-serif'
               }}
             >
-              Not sure which college is right for you?
+              Not sure which college is <span style={{ color: '#FF6F1E' }}>right for you?</span>
             </h3>
             <p style={{ color: '#CBD5E1', fontSize: '1rem', lineHeight: '1.6', margin: 0 }}>
               You&apos;re not alone. We&apos;re here to help you make the right choice with confidence.

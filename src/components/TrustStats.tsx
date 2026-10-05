@@ -39,7 +39,7 @@ export const TrustStats: React.FC = () => {
               marginBottom: '12px'
             }}
           >
-            Why trust ACE MY CAMPUS ?
+            Why trust <span style={{ color: '#FF6F1E' }}>ACE MY CAMPUS</span>?
           </h2>
 
           <div

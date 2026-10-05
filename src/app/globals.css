@@ -27,12 +27,12 @@
   --teal-surface: rgba(10, 56, 113, 0.08);
   --teal-glow: rgba(10, 56, 113, 0.35);
 
-  --orange-primary: #FA6400;
+  --orange-primary: #FF6F1E;
   --orange-vibrant: #FF782D;
-  --orange-hover: #D95300;
+  --orange-hover: #E65A00;
   --orange-light: #FFF5EE;
-  --orange-surface: rgba(250, 100, 0, 0.08);
-  --orange-glow: rgba(250, 100, 0, 0.35);
+  --orange-surface: rgba(255, 111, 30, 0.08);
+  --orange-glow: rgba(255, 111, 30, 0.35);
 
   /* Backgrounds & Canvas */
   --bg-page: #F8FAFC;
@@ -157,11 +157,11 @@ textarea {
 }
 
 .text-gradient-orange {
-  background: linear-gradient(135deg, #FF782D 0%, #FFA86B 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: none !important;
-  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.85));
+  color: #FF6F1E !important;
+  -webkit-text-fill-color: #FF6F1E !important;
+  background: none !important;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.85), 0 2px 8px rgba(0, 0, 0, 0.9) !important;
+  filter: none !important;
   display: inline-block;
 }
 
@@ -2661,7 +2661,7 @@ textarea {
   letter-spacing: -0.025em;
   max-width: 950px;
   margin: 0 auto 20px;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85), 0 4px 24px rgba(4, 22, 48, 0.9);
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.85), 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 .page-hero-subtitle {
@@ -3725,7 +3725,8 @@ textarea.form-input::placeholder {
   flex: 1;
 }
 
-.courses-filter-pills-row::-webkit-scrollbar {
+.courses-filter-pills-row::-webkit-scrollbar,
+.hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
 

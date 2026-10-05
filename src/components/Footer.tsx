@@ -118,7 +118,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li><Link href="/about">About Us</Link></li>
               <li><Link href="/courses">Course Explorer</Link></li>
               <li><Link href="/colleges">Colleges Directory</Link></li>
-              <li><Link href="/testimonials">Student Reviews</Link></li>
+              <li><Link href="/exams">Entrance Exams</Link></li>
               <li><Link href="/contact">Contact Us</Link></li>
             </ul>
           </div>
@@ -127,12 +127,12 @@ export const Footer: React.FC<FooterProps> = ({
           <div>
             <h4 className="footer-col-title">Academic Courses</h4>
             <ul className="footer-links">
-              <li><Link href="/courses">MBA (Master of Business Admin)</Link></li>
-              <li><Link href="/courses">PGDM (Post Graduate Diploma)</Link></li>
-              <li><Link href="/courses">BBA (Bachelor of Business Admin)</Link></li>
-              <li><Link href="/courses">B.Com / Honors</Link></li>
-              <li><Link href="/courses">B.Tech &amp; Engineering</Link></li>
-              <li><Link href="/colleges">Pan-India College Search</Link></li>
+              <li><Link href="/courses">MBA &amp; PGDM Programs</Link></li>
+              <li><Link href="/courses">BBA &amp; B.Com Studies</Link></li>
+              <li><Link href="/courses">B.Tech &amp; M.Tech (CSE, AI, ECE)</Link></li>
+              <li><Link href="/courses">BCA &amp; MCA (Computer Apps)</Link></li>
+              <li><Link href="/exams">All India Entrance Exams</Link></li>
+              <li><Link href="/colleges">Top Colleges Directory</Link></li>
             </ul>
           </div>
 

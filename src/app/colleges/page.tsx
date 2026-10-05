@@ -27,6 +27,7 @@ export default function CollegesPage() {
     { id: 'all', label: 'All Streams' },
     { id: 'engineering', label: 'Engineering & Technology' },
     { id: 'management', label: 'Management & Commerce' },
+    { id: 'computer', label: 'BCA & MCA (Computer Apps)' },
     { id: 'medical', label: 'Medical & Health Sciences' },
     { id: 'law', label: 'Law & Legal Studies' },
     { id: 'applied', label: 'Applied Sciences' },
@@ -35,7 +36,8 @@ export default function CollegesPage() {
   const cityOptions = [
     { id: 'all', label: 'All Locations' },
     { id: 'lucknow', label: 'Lucknow, UP' },
-    { id: 'greater noida', label: 'Greater Noida, UP' },
+    { id: 'noida', label: 'Noida / Greater Noida' },
+    { id: 'indore', label: 'Indore, MP' },
     { id: 'ghaziabad', label: 'Ghaziabad, UP' },
     { id: 'dehradun', label: 'Dehradun, UK' },
   ];

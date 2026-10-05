@@ -157,50 +157,105 @@ const COURSES_DATA: CourseData[] = [
     avgPackage: '₹6.5 LPA - ₹15.0 LPA',
     highestPackage: '₹44.0 LPA',
     specializations: [
-      'Computer Science & Engineering (CSE)',
-      'Artificial Intelligence & Machine Learning (AI & ML)',
-      'Data Science & Analytics',
-      'Cyber Security & Blockchain',
-      'Cloud Computing & DevOps',
-      'Electronics & Communication (ECE)'
+      'Computer Science and Engineering (CSE)',
+      'Electronics and Communication Engineering (ECE)',
+      'Civil Engineering',
+      'Mechanical Engineering',
+      'Artificial Intelligence and Machine Learning (AI & ML)'
     ],
     careerRoles: [
       'Software Development Engineer (SDE)',
-      'Machine Learning Scientist',
-      'Cloud Solutions Architect',
-      'Cyber Security Analyst',
-      'DevOps Specialist'
+      'AI & Machine Learning Engineer',
+      'Robotics & Systems Engineer',
+      'Structural & Design Engineer',
+      'DevOps & Cloud Specialist'
     ],
-    description: 'Equips aspiring engineers with technical competence, algorithm design, software architecture, and modern hands-on engineering labs for global tech industries.',
-    topRecruiters: ['Microsoft', 'Google India', 'Amazon', 'Cisco', 'Cognizant', 'Capgemini']
+    description: 'Equips aspiring engineers with technical competence, algorithm design, software architecture, core branch fundamentals, and modern hands-on engineering labs for global industries.',
+    topRecruiters: ['Microsoft', 'Google India', 'Amazon', 'Cisco', 'L&T', 'Cognizant']
   },
   {
-    id: 'bca-mca',
-    name: 'Bachelor & Master of Computer Applications (BCA / MCA)',
-    shortName: 'BCA / MCA',
+    id: 'mtech',
+    name: 'Master of Technology (M.Tech)',
+    shortName: 'M.Tech',
     category: 'technology',
-    level: 'Undergraduate (BCA 3 Yrs) / Postgraduate (MCA 2 Yrs)',
-    duration: '3 Years (BCA) / 2 Years (MCA)',
-    eligibility: '10+2 with Mathematics or Computer Science for BCA; BCA/B.Sc IT with 50%+ for MCA',
-    shortEligibility: '10+2 with Math/CS (BCA); BCA/B.Sc IT (50%+) for MCA',
-    avgPackage: '₹5.0 LPA - ₹11.0 LPA',
-    highestPackage: '₹22.0 LPA',
+    level: 'Postgraduate (PG)',
+    duration: '2 Years (4 Semesters)',
+    eligibility: 'B.Tech / B.E. in relevant engineering discipline with minimum 55% aggregate marks + GATE / State Entrance',
+    shortEligibility: 'B.Tech/B.E. (55%+) + GATE / Entrance Score',
+    avgPackage: '₹8.5 LPA - ₹18.0 LPA',
+    highestPackage: '₹48.0 LPA',
     specializations: [
+      'Computer Science and Engineering (CSE)',
+      'Electronics and Communication Engineering (ECE)',
+      'Civil Engineering (Structural & Transportation)',
+      'Mechanical Engineering (Thermal & Design)',
+      'Artificial Intelligence and Machine Learning (AI & ML)'
+    ],
+    careerRoles: [
+      'Principal Research Engineer',
+      'VLSI & Embedded Systems Architect',
+      'Senior AI/ML Scientist',
+      'Lead Structural Consultant',
+      'Engineering Project Director'
+    ],
+    description: 'Advanced postgraduate engineering degree emphasizing applied research, cutting-edge technology domains, specialized simulation labs, and industry R&D sponsorships.',
+    topRecruiters: ['Intel', 'Qualcomm', 'NVIDIA', 'ISRO', 'Tata Motors', 'BHEL']
+  },
+  {
+    id: 'bca',
+    name: 'Bachelor of Computer Applications (BCA)',
+    shortName: 'BCA',
+    category: 'technology',
+    level: 'Undergraduate (UG)',
+    duration: '3 Years (6 Semesters)',
+    eligibility: '10+2 in any stream with Mathematics or Computer Science / Informatics Practices (minimum 50% marks)',
+    shortEligibility: '10+2 with Math/CS (50%+) + CUET / Merit',
+    avgPackage: '₹4.8 LPA - ₹9.2 LPA',
+    highestPackage: '₹18.0 LPA',
+    specializations: [
+      'Cloud Computing & DevOps',
       'Full Stack Web Development',
-      'Mobile Application Engineering (iOS/Android)',
-      'Cloud Infrastructure & AWS',
-      'Database Administration & Big Data',
-      'UI/UX & Product Engineering'
+      'Data Analytics & Python',
+      'Cyber Security & Networking',
+      'Mobile Application Engineering (iOS/Android)'
     ],
     careerRoles: [
       'Full Stack Developer (MERN / Java)',
-      'Mobile Application Developer',
-      'Database Administrator',
-      'Systems Analyst',
-      'Network Security Specialist'
+      'Cloud Support Engineer',
+      'Junior Data Analyst',
+      'Network Administrator',
+      'UI/UX Technical Designer'
     ],
-    description: 'A fast-track technical computing path emphasizing modern programming languages, database architectures, enterprise applications, and cloud-native frameworks.',
-    topRecruiters: ['TCS', 'Tech Mahindra', 'LTIMindtree', 'Hexaware', 'Paytm']
+    description: 'A dynamic undergraduate computing curriculum that builds early hands-on proficiency in software programming, database architectures, enterprise applications, and modern cloud platforms.',
+    topRecruiters: ['TCS', 'Infosys', 'Wipro', 'Accenture', 'Cognizant', 'HCL Technologies']
+  },
+  {
+    id: 'mca',
+    name: 'Master of Computer Applications (MCA)',
+    shortName: 'MCA',
+    category: 'technology',
+    level: 'Postgraduate (PG)',
+    duration: '2 Years (4 Semesters)',
+    eligibility: 'BCA / B.Sc (Computer Science / IT) or Bachelor’s degree with Mathematics at 10+2 or graduation (50%+ marks) + NIMCET / CUET PG / State CET',
+    shortEligibility: 'BCA/B.Sc IT or Math (50%+) + NIMCET / CUET PG',
+    avgPackage: '₹7.2 LPA - ₹14.5 LPA',
+    highestPackage: '₹28.0 LPA',
+    specializations: [
+      'Enterprise Software Architecture',
+      'Artificial Intelligence & Machine Learning',
+      'Cloud Infrastructure & AWS Systems',
+      'Data Science & Big Data Engineering',
+      'Cyber Security & Secure Coding'
+    ],
+    careerRoles: [
+      'Senior Software Engineer',
+      'Solutions Architect',
+      'Machine Learning Engineer',
+      'Database Administrator & DevOps Lead',
+      'IT Security Analyst'
+    ],
+    description: 'The premier professional computing degree in India equivalent to B.Tech CSE in corporate recruitment, focusing on enterprise software systems, scalable backends, and cloud microservices.',
+    topRecruiters: ['Amazon', 'Oracle', 'Tech Mahindra', 'LTIMindtree', 'Paytm', 'Deloitte']
   },
   {
     id: 'law',

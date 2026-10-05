@@ -6,6 +6,8 @@ import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { CoreServices } from '@/components/CoreServices';
 import { TrustStats } from '@/components/TrustStats';
+import { TopCollegesShowcase } from '@/components/TopCollegesShowcase';
+import { HomeTestimonials } from '@/components/HomeTestimonials';
 import { FaqSection } from '@/components/FaqSection';
 import { FinalCta } from '@/components/FinalCta';
 import { Footer } from '@/components/Footer';
@@ -56,10 +58,15 @@ export default function Home() {
         }}
       />
 
-      {/* 3. Proven Trust Statistics from Slide 5 (Why trust ACE MY CAMPUS?) */}
+      {/* 3. Top Colleges & Universities Showcase (Requested from Slide & PDF) */}
+      <TopCollegesShowcase
+        onOpenCounselling={(collegeName) => handleOpenCounselling(collegeName)}
+      />
+
+      {/* 4. Proven Trust Statistics from Slide 5 (Why trust ACE MY CAMPUS?) */}
       <TrustStats />
 
-      {/* 4. WHAT WE DO: 3 Clear Photo Guidance Cards + Slide 6 Banner */}
+      {/* 5. WHAT WE DO: 3 Clear Photo Guidance Cards + Slide 6 Banner */}
       <CoreServices
         onOpenCounselling={handleOpenCounselling}
         onOpenCollegeFilter={() => {
@@ -67,10 +74,15 @@ export default function Home() {
         }}
       />
 
-      {/* 5. Frequently Asked Questions (Clean Accordion) */}
+      {/* 6. Testimonials on Home Page (Requested in Page 2 of PDF) */}
+      <HomeTestimonials
+        onOpenCounselling={() => handleOpenCounselling('Student Testimonials')}
+      />
+
+      {/* 7. Frequently Asked Questions (Official 8 FAQs from PDF) */}
       <FaqSection />
 
-      {/* 6. High-Impact CTA Banner */}
+      {/* 8. High-Impact CTA Banner */}
       <FinalCta onOpenCounselling={() => handleOpenCounselling()} />
 
 
